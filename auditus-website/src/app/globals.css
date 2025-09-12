@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+/* Global styles with blue-dominant colors */
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Lato', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  background-color: #f8fafc;
+  color: #1e293b;
+  line-height: 1.6;
+}
+
+/* Headings use Poppins font */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+/* Custom blue-dominant styles */
+.bg-primary-blue {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+}
+
+.text-primary-blue {
+  color: #3b82f6;
+}
+
+.text-secondary-turquoise {
+  color: #06b6d4;
+}
+
+.bg-secondary-turquoise {
+  background-color: #06b6d4;
+}
+
+.bg-accent-pink {
+  background-color: #fce7f3;
+}
+
+/* Header styles */
+.header-gradient {
+  background: linear-gradient(90deg, rgba(59, 130, 246, 0.1) 0%, transparent 50%, rgba(6, 182, 212, 0.1) 100%);
+}
+
+/* Button styles */
+.btn-primary {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
+  color: white;
+  padding: 0.75rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  box-shadow: 0 10px 25px -12px rgba(59, 130, 246, 0.25);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px -12px rgba(59, 130, 246, 0.4);
+}
+
+.btn-secondary {
+  background: linear-gradient(135deg, #06b6d4 0%, #0891b2 100%);
+  color: white;
+  padding: 0.75rem 2rem;
+  border-radius: 0.75rem;
+  font-weight: 600;
+  box-shadow: 0 10px 25px -12px rgba(6, 182, 212, 0.25);
+  transition: all 0.3s ease;
+}
+
+.btn-secondary:hover {
+  background: linear-gradient(135deg, #0891b2 0%, #0e7490 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 20px 40px -12px rgba(6, 182, 212, 0.4);
+}
+
+/* Professional card styles */
+.professional-card {
+  background: white;
+  border-radius: 1.5rem;
+  padding: 2rem;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.1);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+}
+
+/* Hero section */
+.hero-gradient {
+  background: linear-gradient(135deg, #dbeafe 0%, #ffffff 50%, #fce7f3 100%);
+}
+
+/* Badge styles */
+.professional-badge {
+  background: linear-gradient(135deg, #3b82f6 0%, #06b6d4 100%);
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border-radius: 2rem;
+  font-weight: 500;
+  box-shadow: 0 10px 25px -12px rgba(59, 130, 246, 0.3);
+}
+
+/* Focus styles for accessibility */
+button:focus,
+a:focus,
+input:focus,
+textarea:focus {
+  outline: 2px solid #3b82f6;
+  outline-offset: 2px;
+}
+
+/* Smooth transitions */
+* {
+  transition: color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+/* CTA Section Styles */
+.professional-cta-section {
+  background: linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #06b6d4 100%);
+}
+
+.professional-badge-light {
+  background: rgba(255, 255, 255, 0.2);
+  color: white;
+  backdrop-filter: blur(8px);
+}
+
+.btn-cta-primary {
+  background: white;
+  color: #3b82f6;
+  border: none;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+  transition: all 0.2s ease;
+}
+
+.btn-cta-primary:hover {
+  background: #f8fafc;
+  transform: translateY(-2px);
+  box-shadow: 0 35px 60px -12px rgba(0, 0, 0, 0.35);
+}
+
+.btn-cta-secondary {
+  background: transparent;
+  color: white;
+  border: 2px solid white;
+  box-shadow: 0 10px 25px -12px rgba(0, 0, 0, 0.25);
+  transition: all 0.2s ease;
+}
+
+.btn-cta-secondary:hover {
+  background: white;
+  color: #3b82f6;
+  transform: translateY(-2px);
+  box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.35);
+}
+
+/* Print styles */
+@media print {
+  .no-print {
+    display: none !important;
+  }
+}
