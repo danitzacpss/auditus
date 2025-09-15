@@ -14,7 +14,7 @@ interface GoogleMapsConfig {
 }
 
 interface UseGoogleMapsReturn {
-  mapRef: React.RefObject<HTMLDivElement>;
+  mapRef: React.RefObject<HTMLDivElement | null>;
   map: google.maps.Map | null;
   isLoading: boolean;
   error: string | null;
@@ -26,7 +26,6 @@ export function useGoogleMaps(config: GoogleMapsConfig): UseGoogleMapsReturn {
   const [map, setMap] = useState<google.maps.Map | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [loader, setLoader] = useState<Loader | null>(null);
 
   // Initialize Google Maps
   useEffect(() => {
@@ -47,7 +46,6 @@ export function useGoogleMaps(config: GoogleMapsConfig): UseGoogleMapsReturn {
       libraries: ['places', 'geometry'],
     });
 
-    setLoader(googleMapsLoader);
 
     // Load Google Maps
     googleMapsLoader
@@ -101,9 +99,8 @@ export function useGoogleMaps(config: GoogleMapsConfig): UseGoogleMapsReturn {
     // Cleanup function
     return () => {
       setMap(null);
-      setLoader(null);
     };
-  }, [config.apiKey, config.center.lat, config.center.lng, config.zoom, config.mapId]);
+  }, [config.apiKey, config.center, config.zoom, config.mapId]);
 
   // Function to add markers
   const addMarker = useCallback((

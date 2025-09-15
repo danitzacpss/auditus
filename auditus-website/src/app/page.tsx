@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
-import { HeroSection, ServicesSection, TestimonialsSection } from '@/components/sections';
+import { HeroSection, ServicesSection } from '@/components/sections';
+import TestimonialsSectionWithModal from '@/components/sections/TestimonialsSectionWithModal';
 import { SITE_CONFIG } from '@/data/constants';
 
 export const metadata: Metadata = {
@@ -16,7 +17,7 @@ export default function HomePage() {
     <div className="min-h-screen">
       <HeroSection />
       <ServicesSection />
-      <TestimonialsSection />
+      <TestimonialsSectionWithModal />
     </div>
   );
 }

@@ -3,6 +3,7 @@ import "./globals.css";
 import { Header, Footer } from "@/components/layout";
 import StructuredData from "@/components/seo/StructuredData";
 import { SITE_CONFIG } from "@/data/constants";
+import I18nProvider from "@/components/providers/I18nProvider";
 
 export const metadata: Metadata = {
   title: {
@@ -86,15 +87,17 @@ export default function RootLayout({
           Ir al contenido principal
         </a>
         
-        <div className="flex flex-col min-h-screen">
-          <Header />
-          
-          <main id="main-content" className="flex-1 pt-16 lg:pb-0 pb-16">
-            {children}
-          </main>
-          
-          <Footer />
-        </div>
+        <I18nProvider>
+          <div className="flex flex-col min-h-screen">
+            <Header />
+
+            <main id="main-content" className="flex-1 pt-16 lg:pb-0 pb-16">
+              {children}
+            </main>
+
+            <Footer />
+          </div>
+        </I18nProvider>
 
         {/* Structured data for local business */}
         <StructuredData type="organization" />

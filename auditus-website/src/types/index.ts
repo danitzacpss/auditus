@@ -175,3 +175,6 @@ export interface AnalyticsEvent {
   label?: string;
   value?: number;
 }
+
+// Re-export Google Reviews types
+export * from './google-reviews';
