@@ -31,7 +31,7 @@ const TestimonialsSectionWithModal: React.FC = () => {
 
   return (
     <>
-      <section className="py-16 lg:py-24">
+      <section className="pt-8 pb-4 lg:pt-12 lg:pb-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
 
@@ -82,106 +82,6 @@ const TestimonialsSectionWithModal: React.FC = () => {
           )}
 
 
-          {/* Trust metrics */}
-          <div className="bg-gradient-to-r from-primary-600 via-primary-700 to-secondary-600 rounded-3xl p-8 lg:p-12 text-white relative overflow-hidden shadow-2xl">
-
-            {/* Background pattern */}
-            <div className="absolute inset-0 opacity-10">
-              <svg className="w-full h-full" viewBox="0 0 200 200" preserveAspectRatio="none">
-                <defs>
-                  <pattern id="trust-pattern" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
-                    <path d="M10 2 L10 18 M2 10 L18 10" stroke="currentColor" strokeWidth="0.5" />
-                    <circle cx="10" cy="10" r="1" fill="currentColor" />
-                  </pattern>
-                </defs>
-                <rect width="100%" height="100%" fill="url(#trust-pattern)" />
-              </svg>
-            </div>
-
-            <div className="relative text-center">
-              <div className="mb-8">
-                <div className="inline-flex items-center gap-2 bg-white/20 px-4 py-2 rounded-full text-sm font-medium font-secondary mb-4">
-                  <CheckIcon size="sm" />
-                  <span>{t('trustMetrics.trustAndSatisfaction')}</span>
-                </div>
-
-                <h3 className="text-2xl lg:text-3xl font-bold mb-4 font-primary">
-                  {t('trustMetrics.title')}
-                </h3>
-
-                <p className="text-primary-100 mb-8 font-secondary max-w-2xl mx-auto text-lg leading-relaxed">
-                  {t('trustMetrics.subtitle')} {t('trustMetrics.description', { excellence: t('trustMetrics.excellence') })}
-                </p>
-              </div>
-
-              {/* Trust statistics */}
-              <div className="grid md:grid-cols-4 gap-8 mb-8">
-                <div className="text-center">
-                  <div className="text-4xl font-bold font-primary mb-2">5.0</div>
-                  <div className="flex items-center justify-center space-x-1 mb-2">
-                    {[...Array(5)].map((_, i) => (
-                      <StarIcon key={i} size="sm" className="text-yellow-300 fill-current" />
-                    ))}
-                  </div>
-                  <div className="text-primary-100 font-secondary text-sm">{t('trustMetrics.averageRating')}</div>
-                </div>
-
-                <div className="text-center">
-                  <div className="text-4xl font-bold font-primary mb-2">100%</div>
-                  <div className="text-primary-100 font-secondary text-sm">{t('trustMetrics.patientSatisfaction')}</div>
-                </div>
-
-                <div className="text-center">
-                  <div className="text-4xl font-bold font-primary mb-2">5+</div>
-                  <div className="text-primary-100 font-secondary text-sm">{t('trustMetrics.yearsOfExperience')}</div>
-                </div>
-
-                <div className="text-center">
-                  <div className="text-4xl font-bold font-primary mb-2">✓</div>
-                  <div className="text-primary-100 font-secondary text-sm">{t('trustMetrics.certifiedProfessional')}</div>
-                </div>
-              </div>
-
-              {/* Professional commitment */}
-              <div className="bg-white/10 rounded-2xl p-6 backdrop-blur-sm">
-                <h4 className="font-bold text-xl font-primary mb-3">{t('trustMetrics.ourCommitment')}</h4>
-                <div className="grid md:grid-cols-2 gap-4 text-primary-100 font-secondary">
-                  <div className="flex items-center space-x-2">
-                    <CheckIcon size="sm" />
-                    <span>{t('trustMetrics.commitments.personalizedCare')}</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <CheckIcon size="sm" />
-                    <span>{t('trustMetrics.commitments.modernTechnology')}</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <CheckIcon size="sm" />
-                    <span>{t('trustMetrics.commitments.painFreeProcedures')}</span>
-                  </div>
-                  <div className="flex items-center space-x-2">
-                    <CheckIcon size="sm" />
-                    <span>{t('trustMetrics.commitments.followUp')}</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Additional trust elements */}
-          <div className="mt-12 text-center">
-            <p className="text-gray-600 font-secondary mb-4">
-              {t('cta.question')}
-            </p>
-            <div className="inline-flex items-center space-x-4 bg-white rounded-full px-6 py-3 shadow-lg border border-gray-200">
-              <div className="flex items-center space-x-1">
-                {[...Array(5)].map((_, i) => (
-                  <StarIcon key={i} size="sm" className="text-yellow-400 fill-current" />
-                ))}
-              </div>
-              <span className="text-gray-700 font-secondary">{t('cta.joinSatisfied')}</span>
-              <CheckIcon size="sm" className="text-green-600" />
-            </div>
-          </div>
         </div>
       </section>
 

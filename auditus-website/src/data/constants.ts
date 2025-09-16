@@ -1,4 +1,4 @@
-import type { ContactInfo, Professional, Service, NavItem, Testimonial } from '@/types';
+import type { ContactInfo, Professional, Service, NavItem, Testimonial, PressArticle } from '@/types';
 
 export const SITE_CONFIG = {
   name: 'Centro Auditus',
@@ -22,7 +22,7 @@ export const SITE_CONFIG = {
 export const CONTACT_INFO: ContactInfo = {
   phone: '+56952024377',
   whatsapp: '56952024377',
-  email: 'contacto@centroauditus.cl',
+  email: 'valecampossovino@gmail.com',
   address: {
     street: 'Aníbal Pinto 486',
     office: 'Oficina 403',
@@ -36,7 +36,7 @@ export const CONTACT_INFO: ContactInfo = {
     sunday: 'Domingo: Cerrado'
   },
   social: {
-    instagram: '@centroauditus',
+    instagram: '@valefonoaudiologa',
     facebook: 'Centro Auditus Concepción'
   }
 };
@@ -292,3 +292,25 @@ export const BUSINESS_HOURS = {
     { day: 'Domingo', open: null, close: null }
   ]
 } as const;
+
+// Press articles and media coverage
+export const PRESS_ARTICLES: PressArticle[] = [
+  {
+    id: 'canal9-ruidos-intensos',
+    title: 'Los riesgos de exponer a bebés y niños pequeños a ruidos de alta intensidad',
+    publication: 'Canal 9',
+    date: '2025-08-19',
+    url: 'https://www.canal9.cl/episodios/nuestra-casa/2025/08/19/tras-incidente-en-concierto-de-maluma-los-riesgos-de-exponer-a-bebes-y-ninos-pequenos-a-ruidos-de-alta-intensidad',
+    description: 'Tras incidente en concierto de Maluma, analizamos los riesgos auditivos en menores expuestos a sonidos de alta intensidad y la importancia de la protección auditiva desde temprana edad.',
+    category: 'awareness'
+  },
+  {
+    id: 'canal9-perdida-auditiva-demencia',
+    title: 'Conoce la relación entre la pérdida auditiva y el incremento en la posibilidad de padecer demencia',
+    publication: 'Canal 9',
+    date: '2025-06-09',
+    url: 'https://www.canal9.cl/episodios/nuestra-casa/2025/06/09/conoce-la-relacion-entre-la-perdida-auditiva-y-el-incremento-en-la-posibilidad-de-padecer-demencia',
+    description: 'Exploramos la conexión científica entre la pérdida auditiva no tratada y el mayor riesgo de desarrollar demencia, destacando la importancia del diagnóstico temprano.',
+    category: 'health'
+  }
+];

@@ -1,16 +1,17 @@
 'use client';
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { Card, CardContent, Button } from '@/components/ui';
-import { EarIcon, StethoscopeIcon, CheckIcon, ArrowRightIcon, ClockIcon, StarIcon, VideotoscopiaIcon, WashIcon, AudiometryIcon } from '@/components/ui/Icon';
+import { CheckIcon, ArrowRightIcon, ClockIcon, StarIcon } from '@/components/ui/Icon';
 import { SERVICES } from '@/data/constants';
 import { formatPrice, getWhatsAppUrl } from '@/lib/utils';
 import { CONTACT_INFO } from '@/data/constants';
 
-const serviceIcons = {
-  'videotoscopia': VideotoscopiaIcon,
-  'lavado-oidos': WashIcon,
-  'audiometria': AudiometryIcon,
+const serviceImages = {
+  'videotoscopia': '/images/services/videotoscopia.png',
+  'lavado-oidos': '/images/services/lavado.png',
+  'audiometria': '/images/services/audiometria.png',
 };
 
 const ServicesSection: React.FC = () => {
@@ -49,22 +50,32 @@ const ServicesSection: React.FC = () => {
         {/* Services grid */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {SERVICES.map((service) => {
-            const IconComponent = serviceIcons[service.id as keyof typeof serviceIcons] || EarIcon;
-            
+            const serviceImage = serviceImages[service.id as keyof typeof serviceImages];
+
             return (
               <Card
                 key={service.id}
                 className="professional-card group relative hover:bg-gradient-to-br hover:from-white hover:to-blue-50 border border-gray-200 hover:border-blue-200 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 rounded-3xl overflow-hidden"
               >
                 <CardContent className="p-8 h-full flex flex-col relative">
-                  
+
                   {/* Service icon with professional styling */}
                   <div className="mb-8 relative">
-                    <div className="w-20 h-20 rounded-2xl flex items-center justify-center transition-all duration-300 shadow-lg" 
+                    <div className="w-20 h-20 rounded-2xl flex items-center justify-center transition-all duration-300 shadow-lg p-3 bg-white"
                          style={{
-                           background: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)'
+                           border: '2px solid #3b82f6'
                          }}>
-                      <IconComponent size="lg" className="text-primary-blue" />
+                      {serviceImage ? (
+                        <Image
+                          src={serviceImage}
+                          alt={`Icono de ${service.name}`}
+                          width={48}
+                          height={48}
+                          className="object-contain"
+                        />
+                      ) : (
+                        <div className="w-12 h-12 bg-primary-blue rounded-lg"></div>
+                      )}
                     </div>
                     {/* Professional badge */}
                     <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">

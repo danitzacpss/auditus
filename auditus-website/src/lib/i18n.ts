@@ -102,6 +102,108 @@ const resources = {
         }
       }
     },
+    translation: {
+    quickDiagnosis: {
+      title: "Diagnóstico Rápido de Orientación",
+      subtitle: "Herramienta de orientación para entender qué tipo de consulta podrías necesitar según tus síntomas",
+      disclaimer: {
+        title: "Importante",
+        text: "La información es orientativa y no sustituye evaluación profesional. Ante dolor intenso, fiebre o supuración, acuda a un médico.",
+        icon: "⚠️"
+      },
+      form: {
+        title: "Selecciona los síntomas que presentas",
+        subtitle: "Puedes seleccionar múltiples opciones que mejor describan tu situación actual",
+        submitButton: "Generar Orientación",
+        resetButton: "Reiniciar",
+        backButton: "Volver"
+      },
+      symptoms: {
+        title: "Síntomas",
+        itching: "Picazón en el oído",
+        discharge: "Supuración (secreción)",
+        pain: "Dolor de oído",
+        blocked: "Sensación de oído tapado",
+        tinnitus: "Zumbidos (tinnitus)",
+        suddenLoss: "Pérdida súbita de audición",
+        noiseExposure: "Exposición reciente a ruido intenso",
+        others: "Otros síntomas"
+      },
+      additionalInfo: {
+        title: "Información Adicional (Opcional)",
+        placeholder: "Describe brevemente otros síntomas o detalles relevantes...",
+        label: "Síntomas adicionales o comentarios"
+      },
+      results: {
+        title: "Orientación Basada en Tus Síntomas",
+        subtitle: "Recomendación profesional para tu caso específico",
+        loading: "Analizando síntomas...",
+        medical: {
+          urgent: {
+            primary: "Se recomienda consulta médica urgente con otorrinolaringólogo debido a la presencia de síntomas que podrían indicar una infección u otra condición que requiere atención médica inmediata.",
+            secondary1: "El dolor intenso y/o la supuración pueden ser signos de infección que requieren tratamiento médico.",
+            secondary2: "No demores la consulta médica. Es importante recibir atención profesional lo antes posible."
+          },
+          suddenLoss: {
+            primary: "La pérdida súbita de audición requiere evaluación médica urgente. Se recomienda consultar con un otorrinolaringólogo de inmediato.",
+            secondary1: "La atención temprana es crucial en casos de pérdida auditiva súbita para mejores resultados del tratamiento."
+          }
+        },
+        videotoscopy: {
+          itching: {
+            primary: "La picazón sin otros síntomas graves sugiere realizar una Videotoscopía para evaluar el estado del canal auditivo y determinar la causa.",
+            secondary1: "Este procedimiento permitirá visualizar si hay acumulación de cerumen, irritación o alguna otra condición."
+          },
+          blocked: {
+            primary: "La sensación de oído tapado puede indicar acumulación de cerumen. Se recomienda Videotoscopía inicial para evaluación.",
+            secondary1: "Si se confirma cerumen impactado, podrá procederse con un Lavado de Oídos profesional.",
+            secondary2: "El procedimiento es seguro y puede resolver la sensación de bloqueo inmediatamente."
+          },
+          general: {
+            primary: "Se recomienda una Videotoscopía como evaluación inicial para determinar la causa de los síntomas.",
+            secondary1: "Este examen visual permitirá identificar el problema y recomendar el tratamiento más apropiado.",
+            secondary2: "Es el primer paso recomendado para la mayoría de problemas auditivos."
+          }
+        },
+        audiometry: {
+          noise: {
+            primary: "La exposición a ruido intenso junto con zumbidos sugiere realizar una Audiometría para evaluar posible daño auditivo.",
+            secondary1: "Es importante evaluar si ha habido afectación de la capacidad auditiva.",
+            secondary2: "La detección temprana permite tomar medidas preventivas adecuadas."
+          },
+          tinnitus: {
+            primary: "Los zumbidos persistentes requieren evaluación auditiva completa mediante Audiometría.",
+            secondary1: "Este examen determinará si existe alguna pérdida auditiva asociada a los zumbidos."
+          }
+        },
+        severity: {
+          low: "Baja prioridad",
+          moderate: "Prioridad moderada",
+          high: "Alta prioridad",
+          urgent: "Atención urgente"
+        },
+        estimatedPrice: "Precio estimado: ${{price}}",
+        priceOnConsult: "Precio por consultar"
+      },
+      actions: {
+        scheduleVideotoscopy: "Agendar Videotoscopía",
+        scheduleAudiometry: "Agendar Audiometría",
+        consultWhatsApp: "Consultar por WhatsApp",
+        seeDoctor: "Consultar Médico",
+        urgentMedical: "Atención Médica Urgente",
+        newDiagnosis: "Nueva Consulta",
+        backToForm: "Volver al Formulario"
+      },
+      validation: {
+        noSymptoms: "Debes seleccionar al menos un síntoma para continuar.",
+        genericError: "Ha ocurrido un error. Por favor, inténtalo nuevamente."
+      },
+      steps: {
+        symptoms: "Síntomas",
+        details: "Detalles",
+        results: "Resultados"
+      }
+    },
     common: {
       loading: "Cargando...",
       error: "Error",
@@ -114,6 +216,56 @@ const resources = {
       delete: "Eliminar",
       view: "Ver",
       hide: "Ocultar"
+    },
+    results: {
+      medical: {
+        urgent: {
+          primary: "Se recomienda consulta médica urgente con otorrinolaringólogo debido a la presencia de síntomas que podrían indicar una infección u otra condición que requiere atención médica inmediata.",
+          secondary1: "El dolor intenso y/o la supuración pueden ser signos de infección que requieren tratamiento médico.",
+          secondary2: "No demores la consulta médica. Es importante recibir atención profesional lo antes posible."
+        },
+        suddenLoss: {
+          primary: "La pérdida súbita de audición requiere evaluación médica urgente. Se recomienda consultar con un otorrinolaringólogo de inmediato.",
+          secondary1: "La atención temprana es crucial en casos de pérdida auditiva súbita para mejores resultados del tratamiento."
+        }
+      },
+      videotoscopy: {
+        itching: {
+          primary: "La picazón sin otros síntomas graves sugiere realizar una Videotoscopía para evaluar el estado del canal auditivo y determinar la causa.",
+          secondary1: "Este procedimiento permitirá visualizar si hay acumulación de cerumen, irritación o alguna otra condición."
+        },
+        blocked: {
+          primary: "La sensación de oído tapado puede indicar acumulación de cerumen. Se recomienda Videotoscopía inicial para evaluación.",
+          secondary1: "Si se confirma cerumen impactado, podrá procederse con un Lavado de Oídos profesional.",
+          secondary2: "El procedimiento es seguro y puede resolver la sensación de bloqueo inmediatamente."
+        },
+        general: {
+          primary: "Se recomienda una Videotoscopía como evaluación inicial para determinar la causa de los síntomas.",
+          secondary1: "Este examen visual permitirá identificar el problema y recomendar el tratamiento más apropiado.",
+          secondary2: "Es el primer paso recomendado para la mayoría de problemas auditivos."
+        }
+      },
+      audiometry: {
+        noise: {
+          primary: "La exposición a ruido intenso junto con zumbidos sugiere realizar una Audiometría para evaluar posible daño auditivo.",
+          secondary1: "Es importante evaluar si ha habido afectación de la capacidad auditiva.",
+          secondary2: "La detección temprana permite tomar medidas preventivas adecuadas."
+        },
+        tinnitus: {
+          primary: "Los zumbidos persistentes requieren evaluación auditiva completa mediante Audiometría.",
+          secondary1: "Este examen determinará si existe alguna pérdida auditiva asociada a los zumbidos."
+        }
+      }
+    },
+    actions: {
+      scheduleVideotoscopy: "Agendar Videotoscopía",
+      scheduleAudiometry: "Agendar Audiometría",
+      consultWhatsApp: "Consultar por WhatsApp",
+      seeDoctor: "Consultar Médico",
+      urgentMedical: "Atención Médica Urgente",
+      newDiagnosis: "Nueva Consulta",
+      backToForm: "Volver al Formulario"
+    }
     }
   }
 };

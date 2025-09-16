@@ -124,7 +124,40 @@ export const chileanPhoneSchema = z
   .max(15, 'El teléfono no puede exceder 15 caracteres')
   .refine(validateChileanPhone, 'Formato de teléfono chileno inválido');
 
+// Quick Diagnosis Validations
+export const quickDiagnosisSchema = z.object({
+  symptoms: z.array(z.string()).min(1, 'Debes seleccionar al menos un síntoma'),
+  additionalInfo: z.string().max(500, 'La información adicional no puede exceder 500 caracteres').optional(),
+  age: z.number().min(0).max(120).optional(),
+  hasRecentExposure: z.boolean().optional()
+});
+
+// Validated symptom options
+export const validSymptoms = [
+  'itching',
+  'discharge',
+  'pain',
+  'blocked',
+  'tinnitus',
+  'suddenLoss',
+  'noiseExposure',
+  'others'
+] as const;
+
+export const symptomSchema = z.enum(validSymptoms);
+
+// Enhanced quick diagnosis schema with symptom validation
+export const quickDiagnosisSchemaEnhanced = z.object({
+  symptoms: z.array(symptomSchema).min(1, 'Debes seleccionar al menos un síntoma'),
+  additionalInfo: z.string().max(500, 'La información adicional no puede exceder 500 caracteres').optional(),
+  age: z.number().min(0, 'La edad debe ser un número positivo').max(120, 'La edad no puede exceder 120 años').optional(),
+  hasRecentExposure: z.boolean().optional()
+});
+
 // Export types
 export type ContactFormData = z.infer<typeof contactFormSchema>;
 export type AppointmentFormData = z.infer<typeof appointmentFormSchema>;
 export type NewsletterData = z.infer<typeof newsletterSchema>;
+export type QuickDiagnosisFormValidation = z.infer<typeof quickDiagnosisSchema>;
+export type QuickDiagnosisFormEnhanced = z.infer<typeof quickDiagnosisSchemaEnhanced>;
+export type ValidSymptom = z.infer<typeof symptomSchema>;

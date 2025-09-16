@@ -100,6 +100,17 @@ export interface Professional {
   bio: string;
 }
 
+export interface PressArticle {
+  id: string;
+  title: string;
+  publication: string;
+  date: string;
+  url: string;
+  description: string;
+  category?: 'health' | 'medical' | 'awareness';
+  image?: string;
+}
+
 export interface Appointment {
   id?: string;
   service: string;
@@ -174,6 +185,54 @@ export interface AnalyticsEvent {
   category: 'engagement' | 'conversion' | 'navigation' | 'error';
   label?: string;
   value?: number;
+}
+
+// Quick Diagnosis Types
+export interface QuickDiagnosisSymptom {
+  id: string;
+  key: string;
+  labelKey: string;
+  category: 'common' | 'warning' | 'exposure';
+}
+
+export interface QuickDiagnosisFormData {
+  symptoms: string[];
+  additionalInfo?: string;
+  age?: number;
+  hasRecentExposure?: boolean;
+}
+
+export interface QuickDiagnosisResult {
+  type: 'videotoscopy' | 'cleaning' | 'audiometry' | 'medical_urgent';
+  severity: 'low' | 'moderate' | 'high' | 'urgent';
+  primaryRecommendation: string;
+  secondaryRecommendations?: string[];
+  suggestedService?: string;
+  estimatedPrice?: number;
+  urgencyLevel: 1 | 2 | 3 | 4; // 1: no urgency, 4: immediate attention
+  disclaimerRequired: boolean;
+  nextSteps: {
+    primary: {
+      action: 'schedule' | 'contact' | 'emergency';
+      label: string;
+      href?: string;
+      external?: boolean;
+    };
+    secondary?: {
+      action: 'whatsapp' | 'call' | 'info';
+      label: string;
+      href?: string;
+      external?: boolean;
+    };
+  };
+}
+
+export interface QuickDiagnosisState {
+  currentStep: 'symptoms' | 'details' | 'results';
+  formData: QuickDiagnosisFormData;
+  result?: QuickDiagnosisResult;
+  isLoading: boolean;
+  error?: string;
 }
 
 // Re-export Google Reviews types

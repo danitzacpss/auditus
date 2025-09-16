@@ -27,7 +27,7 @@ const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({
 }) => {
   const { t } = useTranslation('testimonials');
   const [currentIndex, setCurrentIndex] = useState(0);
-  const [isPlaying, setIsPlaying] = useState(autoPlay);
+  const [isPlaying, setIsPlaying] = useState(true); // Always start with autoplay enabled
   const [isPaused, setIsPaused] = useState(false);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -121,25 +121,38 @@ const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({
     }, 300); // Quick but smooth
   }, [currentIndex, isTransitioning]);
 
-  // Pause auto-play on hover
-  const handleMouseEnter = () => setIsPaused(true);
-  const handleMouseLeave = () => setIsPaused(false);
+  // Remove hover functionality - autoplay only controlled by button
 
-  // Touch/Swipe handlers for mobile
+  // Touch/Swipe handlers for mobile - only for carousel content
   const handleTouchStart = useCallback((e: React.TouchEvent) => {
+    // Ignore touch events on control buttons
+    const target = e.target as HTMLElement;
+    if (target.closest('.autoplay-controls') || target.closest('.nav-arrow') || target.closest('button')) {
+      return;
+    }
+
     const touch = e.touches[0];
     touchStartRef.current = { x: touch.clientX, y: touch.clientY };
     touchEndRef.current = null;
-    setIsPaused(true); // Pause auto-play during touch
   }, []);
 
   const handleTouchMove = useCallback((e: React.TouchEvent) => {
+    // Ignore touch events on control buttons
+    const target = e.target as HTMLElement;
+    if (target.closest('.autoplay-controls') || target.closest('.nav-arrow') || target.closest('button')) {
+      return;
+    }
+
     const touch = e.touches[0];
     touchEndRef.current = { x: touch.clientX, y: touch.clientY };
   }, []);
 
   const handleTouchEnd = useCallback((e: React.TouchEvent) => {
-    setIsPaused(false); // Resume auto-play after touch
+    // Ignore touch events on control buttons
+    const target = e.target as HTMLElement;
+    if (target.closest('.autoplay-controls') || target.closest('.nav-arrow') || target.closest('button')) {
+      return;
+    }
 
     if (!touchStartRef.current || !touchEndRef.current) return;
 
@@ -163,7 +176,7 @@ const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({
     // Reset touch references
     touchStartRef.current = null;
     touchEndRef.current = null;
-  }, [goToNext, goToPrev, canGoNext, canGoPrev]);
+  }, [goToNext, goToPrev]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -304,8 +317,6 @@ const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({
     <div
       ref={carouselRef}
       className={`relative w-full ${className}`}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchEnd={handleTouchEnd}
@@ -347,7 +358,11 @@ const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({
         {/* Previous Arrow - Enhanced */}
         {showArrows && reviews.length > 1 && (
           <button
-            onClick={goToPrev}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              goToPrev();
+            }}
             disabled={isTransitioning}
             className={`nav-arrow absolute left-4 top-1/2 -translate-y-1/2 z-10 w-14 h-14 rounded-full shadow-lg transition-all duration-300 flex items-center justify-center focus:outline-none group animate-slideInFromLeft hover:shadow-2xl focus:ring-4 focus:ring-blue-200 ${isTransitioning ? 'cursor-not-allowed opacity-50' : 'cursor-pointer hover:scale-110 active:scale-95'}`}
             aria-label="Testimonio anterior"
@@ -361,7 +376,11 @@ const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({
         {/* Next Arrow - Enhanced */}
         {showArrows && reviews.length > 1 && (
           <button
-            onClick={goToNext}
+            onClick={(e) => {
+              e.preventDefault();
+              e.stopPropagation();
+              goToNext();
+            }}
             disabled={isTransitioning}
             className={`nav-arrow absolute right-4 top-1/2 -translate-y-1/2 z-10 w-14 h-14 rounded-full shadow-lg transition-all duration-300 flex items-center justify-center focus:outline-none group animate-slideInFromRight hover:shadow-2xl focus:ring-4 focus:ring-blue-200 ${isTransitioning ? 'cursor-not-allowed opacity-50' : 'cursor-pointer hover:scale-110 active:scale-95'}`}
             aria-label="Siguiente testimonio"
@@ -401,7 +420,11 @@ const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({
           {reviews.slice(0, 5).map((_, index) => (
             <button
               key={index}
-              onClick={() => goToSlide(index)}
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                goToSlide(index);
+              }}
               className={`dot-indicator w-4 h-4 rounded-full focus:outline-none focus:ring-2 focus:ring-pink-200 transition-all duration-300 hover:scale-110 active:scale-95 ${
                 currentIndex === index
                   ? 'bg-pink-300 shadow-lg shadow-pink-200/50 animate-pulse'
@@ -416,22 +439,22 @@ const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({
       {/* Auto-play Indicator - Enhanced */}
       {reviews.length > 1 && (
         <div className="flex justify-center items-center mt-6">
-          <div className="flex items-center space-x-3 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-md border border-blue-100">
+          <div className="autoplay-controls flex items-center space-x-3 bg-white/80 backdrop-blur-sm px-4 py-2 rounded-full shadow-md border border-blue-100">
             <div className={`w-3 h-3 rounded-full shadow-sm transition-all duration-300 ${
               isPlaying && !isPaused
                 ? 'bg-gradient-to-r from-green-400 to-emerald-500 animate-pulse'
                 : 'bg-gradient-to-r from-gray-400 to-gray-500'
             }`}></div>
-            <span className="text-sm text-gray-600 font-medium">
+            <span className="text-sm text-gray-600 font-medium select-none">
               {isPlaying && !isPaused ? 'Reproducción automática activa' : 'Reproducción automática pausada'}
             </span>
             <button
-              onClick={() => {
-                setIsPlaying(!isPlaying);
-                // Reset isPaused when manually toggling
-                if (!isPlaying) {
-                  setIsPaused(false);
-                }
+              onClick={(e) => {
+                e.preventDefault();
+                e.stopPropagation();
+                const newPlayingState = !isPlaying;
+                setIsPlaying(newPlayingState);
+                setIsPaused(false); // Always reset pause state when manually toggling
               }}
               className="ml-2 p-1 rounded-full hover:bg-gray-200 transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-blue-300"
               aria-label={isPlaying ? 'Pausar reproducción automática' : 'Iniciar reproducción automática'}
