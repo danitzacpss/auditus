@@ -4,7 +4,7 @@ import Link from 'next/link';
 import { Card, CardContent, Button } from '@/components/ui';
 import { ClockIcon, CheckIcon, ArrowRightIcon, StarIcon, ShieldIcon, GraduationIcon } from '@/components/ui/Icon';
 import { SERVICES, SITE_CONFIG, PROFESSIONAL_INFO, CONTACT_INFO } from '@/data/constants';
-import { formatPrice, getWhatsAppUrl } from '@/lib/utils';
+import { formatCurrency, getWhatsAppUrl } from '@/lib/utils';
 
 
 const serviceImages = {
@@ -211,7 +211,7 @@ export default function ServicesPage() {
                         <div className="flex items-center justify-between">
                           <div>
                             <div className="text-3xl font-bold text-primary-blue font-primary">
-                              {service.price > 0 ? formatPrice(service.price) : 'Consultar'}
+                              {service.price > 0 ? formatCurrency(service.price) : 'Consultar'}
                             </div>
                             <div className="flex items-center space-x-2 text-sm text-gray-600 font-secondary">
                               <ClockIcon size="sm" className="text-secondary-turquoise" />
@@ -383,11 +383,11 @@ export default function ServicesPage() {
               <p className="text-yellow-800 font-secondary leading-relaxed mb-4">
                 <strong>Lavado de Oídos + Videotoscopía:</strong> Cuando realizas un lavado de oídos,
                 la videotoscopía está <strong>incluida sin costo adicional</strong>.
-                Solo pagas <strong>{formatPrice(15000)}</strong> por ambos procedimientos.
+                Solo pagas <strong>{formatCurrency(15000)}</strong> por ambos procedimientos.
               </p>
               <div className="bg-yellow-100 rounded-lg p-3">
                 <div className="text-2xl font-bold text-yellow-900 font-primary">
-                  Ahorro: {formatPrice(10000)}
+                  Ahorro: {formatCurrency(10000)}
                 </div>
                 <div className="text-sm text-yellow-700 font-secondary">En servicio combinado</div>
               </div>
@@ -464,45 +464,17 @@ export default function ServicesPage() {
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <button className="font-semibold px-8 py-4 rounded-xl text-lg transition-all duration-200"
-                          style={{
-                            background: 'white',
-                            color: '#3b82f6',
-                            border: 'none',
-                            boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
-                          }}
-                          onMouseEnter={(e) => {
-                            e.currentTarget.style.transform = 'translateY(-2px)';
-                            e.currentTarget.style.boxShadow = '0 35px 60px -12px rgba(0, 0, 0, 0.35)';
-                          }}
-                          onMouseLeave={(e) => {
-                            e.currentTarget.style.transform = 'translateY(0)';
-                            e.currentTarget.style.boxShadow = '0 25px 50px -12px rgba(0, 0, 0, 0.25)';
-                          }}>
-                    Agendar Evaluación Profesional
-                  </button>
+                  <Link href={getWhatsAppUrl(CONTACT_INFO.whatsapp, 'Hola, me interesa agendar una evaluación profesional')}>
+                    <button className="font-semibold px-8 py-4 rounded-xl text-lg transition-all duration-200 bg-white text-blue-600 border-none shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+                      Agendar Evaluación Profesional
+                    </button>
+                  </Link>
 
-                  <button className="px-8 py-4 rounded-xl text-lg transition-all duration-200"
-                          style={{
-                            background: 'transparent',
-                            color: 'white',
-                            border: '2px solid white',
-                            boxShadow: '0 10px 25px -12px rgba(0, 0, 0, 0.25)'
-                          }}
-                          onMouseEnter={(e) => {
-                            e.currentTarget.style.background = 'white';
-                            e.currentTarget.style.color = '#3b82f6';
-                            e.currentTarget.style.transform = 'translateY(-2px)';
-                            e.currentTarget.style.boxShadow = '0 20px 35px -12px rgba(0, 0, 0, 0.35)';
-                          }}
-                          onMouseLeave={(e) => {
-                            e.currentTarget.style.background = 'transparent';
-                            e.currentTarget.style.color = 'white';
-                            e.currentTarget.style.transform = 'translateY(0)';
-                            e.currentTarget.style.boxShadow = '0 10px 25px -12px rgba(0, 0, 0, 0.25)';
-                          }}>
-                    Llamar Directamente
-                  </button>
+                  <Link href={`tel:${CONTACT_INFO.phone}`}>
+                    <button className="px-8 py-4 rounded-xl text-lg transition-all duration-200 bg-transparent text-white border-2 border-white shadow-lg hover:bg-white hover:text-blue-600 hover:-translate-y-1 hover:shadow-xl">
+                      Llamar Directamente
+                    </button>
+                  </Link>
                 </div>
 
                 {/* Professional trust indicators */}

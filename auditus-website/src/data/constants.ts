@@ -38,7 +38,8 @@ export const CONTACT_INFO: ContactInfo = {
   social: {
     instagram: '@valefonoaudiologa',
     facebook: 'Centro Auditus Concepción'
-  }
+  },
+  calendarBooking: 'https://calendar.google.com/calendar/u/0/appointments/schedules/AcZssZ05fQMTlAW4u0fp-eqo8Cty4Oyvu08ydGoj6-D66lXq1kGWOmDS8ht4JTvhu_Va9SNXnMvKOir7'
 };
 
 export const PROFESSIONAL_INFO: Professional = {

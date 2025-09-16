@@ -77,6 +77,7 @@ export interface ContactInfo {
     facebook?: string;
     linkedin?: string;
   };
+  calendarBooking?: string;
 }
 
 export interface Testimonial {
