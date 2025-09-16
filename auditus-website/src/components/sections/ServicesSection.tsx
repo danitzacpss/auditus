@@ -187,9 +187,9 @@ const ServicesSection: React.FC = () => {
 
         {/* Professional CTA Section */}
         <div className="relative">
-          <div className="rounded-3xl p-8 lg:p-12 text-white relative overflow-hidden shadow-2xl" 
+          <div className="rounded-3xl p-8 lg:p-12 text-white relative overflow-hidden shadow-2xl"
                style={{background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 50%, #06b6d4 100%)'}}>
-            
+
             {/* Professional background pattern */}
             <div className="absolute inset-0 opacity-10">
               <svg className="w-full h-full" viewBox="0 0 200 200" preserveAspectRatio="none">
@@ -204,7 +204,7 @@ const ServicesSection: React.FC = () => {
             </div>
 
             <div className="relative text-center">
-              <div className="mb-6">
+                <div className="mb-6">
                 <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium font-secondary mb-4" 
                      style={{
                        background: 'rgba(255, 255, 255, 0.2)',
@@ -216,7 +216,7 @@ const ServicesSection: React.FC = () => {
                 </div>
                 
                 <h3 className="text-2xl lg:text-4xl font-bold mb-4 font-primary">
-                  ¿Listo para cuidar tu salud auditiva?
+                  ¿Necesitas una evaluación profesional?
                 </h3>
                 
                 <p className="text-primary-100 mb-8 font-secondary max-w-2xl mx-auto text-lg leading-relaxed">
