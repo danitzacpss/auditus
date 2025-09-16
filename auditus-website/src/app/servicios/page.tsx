@@ -1,8 +1,10 @@
 'use client';
+import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { Card, CardContent, Button } from '@/components/ui';
-import { ClockIcon, CheckIcon, ArrowRightIcon, StarIcon, ShieldIcon, GraduationIcon } from '@/components/ui/Icon';
+import { ClockIcon, CheckIcon, ArrowRightIcon, StarIcon, ShieldIcon, GraduationIcon, CalendarIcon } from '@/components/ui/Icon';
+import { CalendarBookingModal } from '@/components/ui';
 import { SERVICES, SITE_CONFIG, PROFESSIONAL_INFO, CONTACT_INFO } from '@/data/constants';
 import { formatCurrency, getWhatsAppUrl } from '@/lib/utils';
 
@@ -14,6 +16,9 @@ const serviceImages = {
 };
 
 export default function ServicesPage() {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState<string>('');
+
   return (
     <main className="min-h-screen">
       {/* Enhanced Hero Section */}
@@ -233,15 +238,21 @@ export default function ServicesPage() {
                           </button>
                         </Link>
 
-                        <Link href={getWhatsAppUrl(CONTACT_INFO.whatsapp, `Hola, me interesa agendar una cita para ${service.name}`)}>
-                          <button className="btn-secondary w-full text-sm flex items-center justify-center space-x-2">
-                            <span>Agendar por WhatsApp</span>
-                            <ArrowRightIcon
+                        {CONTACT_INFO.calendarBooking && (
+                          <button
+                            onClick={() => {
+                              setSelectedService(service.name);
+                              setIsModalOpen(true);
+                            }}
+                            className="btn-secondary w-full text-sm flex items-center justify-center space-x-2"
+                          >
+                            <span>Reservar Cita</span>
+                            <CalendarIcon
                               size="sm"
                               className="group-hover:translate-x-1 transition-transform"
                             />
                           </button>
-                        </Link>
+                        )}
                       </div>
                     </div>
 
@@ -501,6 +512,14 @@ export default function ServicesPage() {
           </div>
         </div>
       </section>
+
+      {/* Calendar Booking Modal */}
+      <CalendarBookingModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        calendarUrl={CONTACT_INFO.calendarBooking}
+        serviceName={selectedService || "Evaluación Auditiva"}
+      />
     </main>
   );
 }

@@ -1,11 +1,23 @@
-import React from 'react';
+'use client';
+import React, { useState } from 'react';
 import { Button } from '@/components/ui';
 import { CalendarIcon, PhoneIcon, WhatsAppIcon, StarIcon, CheckIcon } from '@/components/ui/Icon';
+import { CalendarBookingModal } from '@/components/ui';
 import { CONTACT_INFO, PROFESSIONAL_INFO } from '@/data/constants';
 import { getWhatsAppUrl } from '@/lib/utils';
 
 const HeroSection: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const scrollToServices = () => {
+    const servicesElement = document.getElementById('servicios');
+    if (servicesElement) {
+      servicesElement.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
+    <>
     <section className="relative hero-gradient overflow-hidden min-h-screen flex items-center">
       {/* Medical background pattern */}
       <div className="absolute inset-0 opacity-[0.02]">
@@ -73,15 +85,33 @@ const HeroSection: React.FC = () => {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start mb-8">
-              <button className="btn-primary flex items-center justify-center space-x-2 text-lg">
+              <button
+                onClick={scrollToServices}
+                className="btn-primary flex items-center justify-center space-x-2 text-lg"
+              >
                 <CalendarIcon size="sm" />
                 <span>Ver Servicios</span>
               </button>
-              
-              <button className="btn-secondary flex items-center justify-center space-x-2 text-lg">
-                <WhatsAppIcon size="sm" />
-                <span>Agendar Cita</span>
-              </button>
+
+              {CONTACT_INFO.calendarBooking ? (
+                <button
+                  onClick={() => setIsModalOpen(true)}
+                  className="btn-secondary flex items-center justify-center space-x-2 text-lg"
+                >
+                  <CalendarIcon size="sm" />
+                  <span>Agendar Cita</span>
+                </button>
+              ) : (
+                <a
+                  href={getWhatsAppUrl(CONTACT_INFO.whatsapp, `Hola, me gustaría agendar una cita para evaluación auditiva.`)}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-secondary flex items-center justify-center space-x-2 text-lg"
+                >
+                  <WhatsAppIcon size="sm" />
+                  <span>Agendar Cita</span>
+                </a>
+              )}
             </div>
 
             {/* Quick Contact Info */}
@@ -190,6 +220,15 @@ const HeroSection: React.FC = () => {
         </svg>
       </div>
     </section>
+
+    {/* Calendar Booking Modal */}
+    <CalendarBookingModal
+      isOpen={isModalOpen}
+      onClose={() => setIsModalOpen(false)}
+      calendarUrl={CONTACT_INFO.calendarBooking}
+      serviceName="Evaluación Auditiva"
+    />
+    </>
   );
 };
 

@@ -1,9 +1,10 @@
 'use client';
-import React from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 import { Card, CardContent, Button } from '@/components/ui';
-import { CheckIcon, ArrowRightIcon, ClockIcon, StarIcon } from '@/components/ui/Icon';
+import { CheckIcon, ArrowRightIcon, ClockIcon, StarIcon, CalendarIcon } from '@/components/ui/Icon';
+import { CalendarBookingModal } from '@/components/ui';
 import { SERVICES } from '@/data/constants';
 import { formatPrice, getWhatsAppUrl } from '@/lib/utils';
 import { CONTACT_INFO } from '@/data/constants';
@@ -15,8 +16,12 @@ const serviceImages = {
 };
 
 const ServicesSection: React.FC = () => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedService, setSelectedService] = useState<string>('');
+
   return (
-    <section id="servicios" className="py-16 lg:py-24 bg-gradient-to-b from-white to-gray-50">
+    <>
+      <section id="servicios" className="py-16 lg:py-24 bg-gradient-to-b from-white to-gray-50">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section header */}
@@ -138,9 +143,18 @@ const ServicesSection: React.FC = () => {
 
                     {/* Professional CTA buttons */}
                     <div className="flex flex-col space-y-3">
-                      <button className="btn-primary w-full text-sm">
-                        Agendar Consulta
-                      </button>
+                      {CONTACT_INFO.calendarBooking && (
+                        <button
+                          onClick={() => {
+                            setSelectedService(service.name);
+                            setIsModalOpen(true);
+                          }}
+                          className="btn-primary w-full text-sm flex items-center justify-center space-x-2"
+                        >
+                          <span>Reservar Cita</span>
+                          <CalendarIcon size="sm" />
+                        </button>
+                      )}
                       
                       <Link href={`/servicios/${service.slug}`}>
                         <button className="btn-secondary w-full text-sm flex items-center justify-center space-x-2">
@@ -227,45 +241,55 @@ const ServicesSection: React.FC = () => {
               </div>
               
               <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                <button className="font-semibold px-8 py-4 rounded-xl text-lg transition-all duration-200" 
-                        style={{
-                          background: 'white',
-                          color: '#3b82f6',
-                          border: 'none',
-                          boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.transform = 'translateY(-2px)';
-                          e.currentTarget.style.boxShadow = '0 35px 60px -12px rgba(0, 0, 0, 0.35)';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.transform = 'translateY(0)';
-                          e.currentTarget.style.boxShadow = '0 25px 50px -12px rgba(0, 0, 0, 0.25)';
-                        }}>
-                  Agendar Evaluación Profesional
-                </button>
-                
-                <button className="px-8 py-4 rounded-xl text-lg transition-all duration-200" 
-                        style={{
-                          background: 'transparent',
-                          color: 'white',
-                          border: '2px solid white',
-                          boxShadow: '0 10px 25px -12px rgba(0, 0, 0, 0.25)'
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.background = 'white';
-                          e.currentTarget.style.color = '#3b82f6';
-                          e.currentTarget.style.transform = 'translateY(-2px)';
-                          e.currentTarget.style.boxShadow = '0 20px 35px -12px rgba(0, 0, 0, 0.35)';
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.background = 'transparent';
-                          e.currentTarget.style.color = 'white';
-                          e.currentTarget.style.transform = 'translateY(0)';
-                          e.currentTarget.style.boxShadow = '0 10px 25px -12px rgba(0, 0, 0, 0.25)';
-                        }}>
+                {CONTACT_INFO.calendarBooking && (
+                  <button
+                    onClick={() => {
+                      setSelectedService('Evaluación Auditiva');
+                      setIsModalOpen(true);
+                    }}
+                    className="font-semibold px-8 py-4 rounded-xl text-lg transition-all duration-200"
+                    style={{
+                      background: 'white',
+                      color: '#3b82f6',
+                      border: 'none',
+                      boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.25)'
+                    }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.transform = 'translateY(-2px)';
+                      e.currentTarget.style.boxShadow = '0 35px 60px -12px rgba(0, 0, 0, 0.35)';
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.transform = 'translateY(0)';
+                      e.currentTarget.style.boxShadow = '0 25px 50px -12px rgba(0, 0, 0, 0.25)';
+                    }}>
+                    Agendar Evaluación Profesional
+                  </button>
+                )}
+
+                <a
+                  href={`tel:${CONTACT_INFO.phone}`}
+                  className="px-8 py-4 rounded-xl text-lg transition-all duration-200 inline-block text-center"
+                  style={{
+                    background: 'transparent',
+                    color: 'white',
+                    border: '2px solid white',
+                    boxShadow: '0 10px 25px -12px rgba(0, 0, 0, 0.25)',
+                    textDecoration: 'none'
+                  }}
+                  onMouseEnter={(e) => {
+                    e.currentTarget.style.background = 'white';
+                    e.currentTarget.style.color = '#3b82f6';
+                    e.currentTarget.style.transform = 'translateY(-2px)';
+                    e.currentTarget.style.boxShadow = '0 20px 35px -12px rgba(0, 0, 0, 0.35)';
+                  }}
+                  onMouseLeave={(e) => {
+                    e.currentTarget.style.background = 'transparent';
+                    e.currentTarget.style.color = 'white';
+                    e.currentTarget.style.transform = 'translateY(0)';
+                    e.currentTarget.style.boxShadow = '0 10px 25px -12px rgba(0, 0, 0, 0.25)';
+                  }}>
                   Llamar Directamente
-                </button>
+                </a>
               </div>
 
               {/* Professional trust indicators */}
@@ -291,7 +315,16 @@ const ServicesSection: React.FC = () => {
           </div>
         </div>
       </div>
-    </section>
+      </section>
+
+      {/* Calendar Booking Modal */}
+      <CalendarBookingModal
+        isOpen={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        calendarUrl={CONTACT_INFO.calendarBooking}
+        serviceName={selectedService || "Evaluación Auditiva"}
+      />
+    </>
   );
 };
 

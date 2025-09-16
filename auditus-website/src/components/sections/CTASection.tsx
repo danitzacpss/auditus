@@ -72,27 +72,30 @@ const CTASection: React.FC = () => {
               </button>
             )}
 
-            <button className="px-8 py-4 rounded-xl text-lg transition-all duration-200"
-                    style={{
-                      background: 'transparent',
-                      color: 'white',
-                      border: '2px solid white',
-                      boxShadow: '0 10px 25px -12px rgba(0, 0, 0, 0.25)'
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.background = 'white';
-                      e.currentTarget.style.color = '#3b82f6';
-                      e.currentTarget.style.transform = 'translateY(-2px)';
-                      e.currentTarget.style.boxShadow = '0 20px 35px -12px rgba(0, 0, 0, 0.35)';
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.background = 'transparent';
-                      e.currentTarget.style.color = 'white';
-                      e.currentTarget.style.transform = 'translateY(0)';
-                      e.currentTarget.style.boxShadow = '0 10px 25px -12px rgba(0, 0, 0, 0.25)';
-                    }}>
+            <a
+              href={`tel:${CONTACT_INFO.phone}`}
+              className="px-8 py-4 rounded-xl text-lg transition-all duration-200 inline-block text-center"
+              style={{
+                background: 'transparent',
+                color: 'white',
+                border: '2px solid white',
+                boxShadow: '0 10px 25px -12px rgba(0, 0, 0, 0.25)',
+                textDecoration: 'none'
+              }}
+              onMouseEnter={(e) => {
+                e.currentTarget.style.background = 'white';
+                e.currentTarget.style.color = '#3b82f6';
+                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.boxShadow = '0 20px 35px -12px rgba(0, 0, 0, 0.35)';
+              }}
+              onMouseLeave={(e) => {
+                e.currentTarget.style.background = 'transparent';
+                e.currentTarget.style.color = 'white';
+                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = '0 10px 25px -12px rgba(0, 0, 0, 0.25)';
+              }}>
               Llamar Directamente
-            </button>
+            </a>
           </div>
 
           {/* Professional trust indicators */}

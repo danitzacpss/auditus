@@ -123,15 +123,23 @@ const Header: React.FC = () => {
 
             {/* Desktop CTA Buttons */}
             <div className="hidden lg:flex items-center space-x-3">
-              <button className="btn-secondary flex items-center space-x-2 text-sm">
+              <a
+                href={`tel:${CONTACT_INFO.phone}`}
+                className="btn-secondary flex items-center space-x-2 text-sm"
+              >
                 <PhoneIcon size="sm" />
                 <span>Llamar</span>
-              </button>
-              
-              <button className="btn-primary flex items-center space-x-2 text-sm">
+              </a>
+
+              <a
+                href={getWhatsAppUrl(CONTACT_INFO.whatsapp, 'Hola, me interesa agendar una cita para evaluación auditiva.')}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary flex items-center space-x-2 text-sm"
+              >
                 <WhatsAppIcon size="sm" />
                 <span>WhatsApp</span>
-              </button>
+              </a>
             </div>
 
             {/* Mobile menu button */}
