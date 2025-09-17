@@ -2,10 +2,10 @@
 import React, { useState } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Card, CardContent, Button } from '@/components/ui';
+import { Card, CardContent } from '@/components/ui';
 import { ClockIcon, CheckIcon, ArrowRightIcon, StarIcon, ShieldIcon, GraduationIcon, CalendarIcon } from '@/components/ui/Icon';
 import { CalendarBookingModal } from '@/components/ui';
-import { SERVICES, SITE_CONFIG, PROFESSIONAL_INFO, CONTACT_INFO } from '@/data/constants';
+import { SERVICES, PROFESSIONAL_INFO, CONTACT_INFO } from '@/data/constants';
 import { formatCurrency, getWhatsAppUrl } from '@/lib/utils';
 
 
@@ -21,10 +21,10 @@ export default function ServicesPage() {
 
   return (
     <main className="min-h-screen">
-      {/* Enhanced Hero Section */}
+      {/* Enhanced Hero Section with Professional Image */}
       <section className="pt-24 pb-8 lg:pb-12 hero-gradient relative overflow-hidden">
-        {/* Medical background pattern */}
-        <div className="absolute inset-0 opacity-[0.02]">
+        {/* Subtle background pattern */}
+        <div className="absolute inset-0 opacity-[0.015]">
           <svg className="w-full h-full" viewBox="0 0 400 400" preserveAspectRatio="none">
             <defs>
               <pattern id="medical-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
@@ -37,8 +37,8 @@ export default function ServicesPage() {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          {/* Professional Badge */}
-          <div className="text-center mb-8">
+          {/* Professional Badge - Centered */}
+          <div className="text-center mb-12">
             <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-100 to-cyan-100 border border-blue-200 px-6 py-3 rounded-full text-sm font-semibold font-secondary shadow-lg">
               <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse shadow-lg"></div>
               <span className="text-blue-700">Servicios Especializados de Audiología</span>
@@ -46,46 +46,119 @@ export default function ServicesPage() {
             </div>
           </div>
 
-          {/* Hero Content */}
-          <div className="text-center mb-16">
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 font-primary max-w-4xl mx-auto leading-tight">
-              Cuidado Auditivo{' '}
-              <span className="text-primary-600 relative inline-block">
-                Profesional
-                <svg
-                  className="absolute -bottom-2 left-0 w-full h-3 text-blue-200"
-                  viewBox="0 0 100 12"
-                  preserveAspectRatio="none"
-                  fill="currentColor"
-                >
-                  <path d="M0,8 Q50,0 100,8 L100,12 L0,12 Z" />
-                </svg>
-              </span>
-            </h1>
+          {/* Main Hero Content - Split Layout */}
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-16">
 
-            <p className="text-xl lg:text-2xl text-gray-600 font-secondary max-w-4xl mx-auto leading-relaxed mb-10">
-              Servicios especializados en diagnóstico y cuidado auditivo con <strong className="text-gray-900">tecnología moderna</strong> y
-              atención profesional personalizada en Concepción.
-            </p>
+            {/* Content Column */}
+            <div className="order-2 lg:order-1 text-center lg:text-left">
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 font-primary leading-tight">
+                Cuidado Auditivo{' '}
+                <span className="text-primary-600 relative inline-block">
+                  Profesional
+                  <svg
+                    className="absolute -bottom-2 left-0 w-full h-3 text-blue-200"
+                    viewBox="0 0 100 12"
+                    preserveAspectRatio="none"
+                    fill="currentColor"
+                  >
+                    <path d="M0,8 Q50,0 100,8 L100,12 L0,12 Z" />
+                  </svg>
+                </span>
+              </h1>
 
-            {/* Professional Credentials */}
-            <div className="flex flex-wrap justify-center gap-6 text-gray-600 text-sm font-secondary mb-12">
-              <div className="flex items-center space-x-2">
-                <GraduationIcon size="sm" className="text-blue-500" />
-                <span>{PROFESSIONAL_INFO.name}</span>
+              <p className="text-xl lg:text-2xl text-gray-600 font-secondary leading-relaxed mb-8">
+                Servicios especializados en diagnóstico y cuidado auditivo con <strong className="text-gray-900">tecnología moderna</strong> y
+                atención profesional personalizada en Concepción.
+              </p>
+
+              {/* Professional Credentials */}
+              <div className="flex flex-wrap justify-center lg:justify-start gap-6 text-gray-600 text-sm font-secondary mb-8">
+                <div className="flex items-center space-x-2">
+                  <GraduationIcon size="sm" className="text-blue-500" />
+                  <span>{PROFESSIONAL_INFO.name}</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <ShieldIcon size="sm" className="text-green-500" />
+                  <span>Fonoaudióloga Certificada</span>
+                </div>
+                <div className="flex items-center space-x-2">
+                  <StarIcon size="sm" className="text-yellow-500" />
+                  <span>5+ Años de Experiencia</span>
+                </div>
               </div>
-              <div className="flex items-center space-x-2">
-                <ShieldIcon size="sm" className="text-green-500" />
-                <span>Fonoaudióloga Certificada</span>
+
+              {/* CTA Buttons */}
+              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
+                {CONTACT_INFO.calendarBooking && (
+                  <button
+                    onClick={() => {
+                      setSelectedService('Evaluación Auditiva Completa');
+                      setIsModalOpen(true);
+                    }}
+                    className="btn-primary text-lg px-8 py-4 flex items-center justify-center space-x-2"
+                  >
+                    <span>Reservar Evaluación</span>
+                    <CalendarIcon size="sm" className="group-hover:translate-x-1 transition-transform" />
+                  </button>
+                )}
+                <Link href={getWhatsAppUrl(CONTACT_INFO.whatsapp, 'Hola, me interesa información sobre sus servicios de audiología')}>
+                  <button className="btn-secondary text-lg px-8 py-4 flex items-center justify-center space-x-2">
+                    <span>Consultar por WhatsApp</span>
+                    <ArrowRightIcon size="sm" className="group-hover:translate-x-1 transition-transform" />
+                  </button>
+                </Link>
               </div>
-              <div className="flex items-center space-x-2">
-                <StarIcon size="sm" className="text-yellow-500" />
-                <span>5+ Años de Experiencia</span>
+            </div>
+
+            {/* Professional Image Column */}
+            <div className="order-1 lg:order-2 relative">
+              <div className="hero-professional-image p-2">
+                <Image
+                  src="/images/hero-professional-services.jpg"
+                  alt="Profesional de audiología realizando procedimiento con equipamiento moderno y medidas de seguridad, mostrando el uso correcto de EPP y tecnología avanzada"
+                  width={600}
+                  height={600}
+                  className="w-full h-80 lg:h-96 object-cover rounded-2xl"
+                  style={{ objectPosition: '50% 30%' }}
+                  priority
+                  sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
+                />
+
+                {/* Technology Overlay */}
+                <div className="absolute bottom-4 right-4 professional-overlay trust-indicator rounded-2xl p-4 shadow-xl">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
+                      <ShieldIcon size="sm" className="text-white" />
+                    </div>
+                    <div>
+                      <div className="text-sm font-bold text-gray-900 font-primary">Tecnología Moderna</div>
+                      <div className="text-xs text-blue-600 font-secondary">Equipos de Alta Precisión</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Professional credentials below image on mobile */}
+              <div className="lg:hidden mt-6 bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-blue-100/50">
+                <div className="grid grid-cols-2 gap-4 text-center">
+                  <div className="flex flex-col items-center space-y-2">
+                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center">
+                      <ShieldIcon size="sm" className="text-white" />
+                    </div>
+                    <span className="text-xs font-medium text-gray-700 font-secondary">Equipos Modernos</span>
+                  </div>
+                  <div className="flex flex-col items-center space-y-2">
+                    <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-500 rounded-xl flex items-center justify-center">
+                      <CheckIcon size="sm" className="text-white" />
+                    </div>
+                    <span className="text-xs font-medium text-gray-700 font-secondary">100% Seguro</span>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Quick Stats Cards */}
+          {/* Quick Stats Cards - Full Width Below */}
           <div className="grid md:grid-cols-3 gap-6 mb-8">
             <div className="bg-white/80 backdrop-blur-md rounded-2xl p-6 text-center shadow-xl border border-blue-100/50 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
               <div className="text-4xl font-bold text-blue-600 font-primary mb-2">3</div>

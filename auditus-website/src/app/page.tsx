@@ -1,5 +1,5 @@
 import type { Metadata } from 'next';
-import { HeroSection, ServicesSection, PressSection } from '@/components/sections';
+import { HeroSection, ServicesSection, GallerySection, PressSection } from '@/components/sections';
 import TestimonialsSectionWithModal from '@/components/sections/TestimonialsSectionWithModal';
 import QuickDiagnosis from '@/components/sections/QuickDiagnosis';
 import { SITE_CONFIG } from '@/data/constants';
@@ -20,6 +20,7 @@ export default function HomePage() {
       <ServicesSection />
       <QuickDiagnosis />
       <TestimonialsSectionWithModal />
+      <GallerySection />
       <PressSection />
     </div>
   );

@@ -3,6 +3,7 @@ import { Suspense } from 'react';
 import { Card, Button } from '@/components/ui';
 import { PhoneIcon, EmailIcon, LocationIcon, ClockIcon, WhatsAppIcon, InstagramIcon, FacebookIcon } from '@/components/ui/Icon';
 import ContactForm from '@/components/forms/ContactForm';
+import { LocationSection } from '@/components/sections';
 import { CONTACT_INFO, SITE_CONFIG, FAQ_DATA, BUSINESS_HOURS } from '@/data/constants';
 import { getWhatsAppUrl } from '@/lib/utils';
 
@@ -293,50 +294,8 @@ function ContactPageContent() {
         </div>
       </section>
 
-      {/* Map Section Placeholder */}
-      <section className="bg-gray-50 py-16 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-4xl mx-auto">
-          <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold text-gray-900 font-primary mb-4">
-              Nuestra Ubicación
-            </h2>
-            <p className="text-lg text-gray-600 font-secondary">
-              Nos encontramos en el centro de Concepción, con fácil acceso en transporte público y privado
-            </p>
-          </div>
-
-          <Card variant="flat" className="p-6">
-            <div className="bg-gray-100 rounded-lg h-96 flex items-center justify-center">
-              <div className="text-center text-gray-500">
-                <div className="w-16 h-16 bg-gray-200 rounded-full mx-auto mb-4 flex items-center justify-center">
-                  <LocationIcon size="lg" className="text-gray-400" />
-                </div>
-                <h3 className="text-lg font-medium text-gray-700 font-primary mb-2">
-                  Mapa Interactivo
-                </h3>
-                <p className="font-secondary">
-                  {CONTACT_INFO.address.street}, {CONTACT_INFO.address.office}<br />
-                  {CONTACT_INFO.address.city}, {CONTACT_INFO.address.region}
-                </p>
-                <p className="text-sm mt-4 text-gray-600">
-                  Mapa próximamente disponible
-                </p>
-              </div>
-            </div>
-            
-            <div className="mt-6 text-center">
-              <Button
-                variant="outline"
-                size="md"
-                href={`https://maps.google.com/?q=${encodeURIComponent(`${CONTACT_INFO.address.street}, ${CONTACT_INFO.address.city}`)}`}
-                external
-              >
-                Ver en Google Maps
-              </Button>
-            </div>
-          </Card>
-        </div>
-      </section>
+      {/* Location Section - Moved from Nosotros page */}
+      <LocationSection />
     </main>
   );
 }

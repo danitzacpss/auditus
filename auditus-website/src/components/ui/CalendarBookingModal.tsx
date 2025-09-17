@@ -1,9 +1,8 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { createPortal } from 'react-dom';
 import { CloseIcon } from './Icon';
-import { cn } from '@/lib/utils';
 
 interface CalendarBookingModalProps {
   isOpen: boolean;
@@ -18,12 +17,6 @@ export default function CalendarBookingModal({
   calendarUrl,
   serviceName
 }: CalendarBookingModalProps) {
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => {
-    setMounted(true);
-  }, []);
-
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = 'hidden';
@@ -36,28 +29,18 @@ export default function CalendarBookingModal({
     };
   }, [isOpen]);
 
-  if (!mounted) return null;
+  if (!isOpen) return null;
 
   const modal = (
-    <div
-      className={cn(
-        'fixed inset-0 z-50 flex items-center justify-center p-4 transition-all duration-300',
-        isOpen ? 'opacity-100 visible' : 'opacity-0 invisible'
-      )}
-    >
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4">
       {/* Backdrop */}
       <div
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity duration-300"
+        className="absolute inset-0 bg-black/60 backdrop-blur-sm"
         onClick={onClose}
       />
 
       {/* Modal Content */}
-      <div
-        className={cn(
-          'relative bg-white rounded-3xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden transition-all duration-300 border border-gray-200',
-          isOpen ? 'scale-100 translate-y-0' : 'scale-95 translate-y-8'
-        )}
-      >
+      <div className="relative bg-white rounded-3xl shadow-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden border border-gray-200">
         {/* Header */}
         <div className="flex items-center justify-between p-6 border-b border-gray-200 bg-gradient-to-r from-blue-50 to-cyan-50">
           <div>
@@ -78,27 +61,13 @@ export default function CalendarBookingModal({
         </div>
 
         {/* Calendar Content */}
-        <div className="relative h-[600px] bg-white">
-          {/* Loading State */}
-          <div className="absolute inset-0 flex items-center justify-center bg-gray-50 z-10">
-            <div className="text-center">
-              <div className="w-8 h-8 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
-              <p className="text-gray-600 font-secondary">Cargando calendario...</p>
-            </div>
-          </div>
-
-          {/* Google Calendar Iframe */}
+        <div className="h-[600px] bg-white">
           <iframe
             src={calendarUrl}
             className="w-full h-full border-0"
             title="Reservar Cita"
-            onLoad={(e) => {
-              // Hide loading state when iframe loads
-              const loadingDiv = e.currentTarget.parentElement?.querySelector('.absolute');
-              if (loadingDiv) {
-                (loadingDiv as HTMLElement).style.display = 'none';
-              }
-            }}
+            loading="eager"
+            sandbox="allow-same-origin allow-scripts allow-forms allow-top-navigation"
           />
         </div>
 

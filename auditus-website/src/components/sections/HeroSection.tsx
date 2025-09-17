@@ -1,5 +1,6 @@
 'use client';
 import React, { useState } from 'react';
+import Image from 'next/image';
 import { Button } from '@/components/ui';
 import { CalendarIcon, PhoneIcon, WhatsAppIcon, StarIcon, CheckIcon } from '@/components/ui/Icon';
 import { CalendarBookingModal } from '@/components/ui';
@@ -134,22 +135,23 @@ const HeroSection: React.FC = () => {
           {/* Visual - Right side (5 columns) */}
           <div className="lg:col-span-5 relative">
             <div className="relative max-w-lg mx-auto">
-              
+
               {/* Main Professional Card */}
-              <div className="professional-card relative">
+              <div className="professional-card relative py-8">
                 
-                {/* Professional Photo Placeholder */}
-                <div className="w-32 h-32 mx-auto mb-6 relative">
-                  <div className="w-full h-full rounded-full flex items-center justify-center shadow-lg" style={{background: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)'}}>
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-primary-blue">VC</div>
-                      <div className="text-xs text-secondary-turquoise mt-1">Fonoaudióloga</div>
-                    </div>
-                  </div>
-                  
+                {/* Professional Photo */}
+                <div className="w-48 h-48 lg:w-56 lg:h-56 mx-auto mb-8 relative">
+                  <Image
+                    src="/images/hero-professional.jpg"
+                    alt="Valeska Campos Sovino - Fonoaudióloga Especialista"
+                    fill
+                    className="object-cover rounded-3xl shadow-xl"
+                    priority
+                  />
+
                   {/* Verification Badge */}
-                  <div className="absolute -bottom-2 -right-2 w-10 h-10 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
-                    <CheckIcon size="sm" className="text-white" />
+                  <div className="absolute -bottom-3 -right-3 w-12 h-12 lg:w-14 lg:h-14 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
+                    <CheckIcon size="md" className="text-white" />
                   </div>
                 </div>
 
@@ -187,19 +189,19 @@ const HeroSection: React.FC = () => {
               </div>
 
               {/* Floating Stats */}
-              <div className="absolute -top-6 -left-6 bg-primary-blue text-white rounded-2xl p-4 shadow-lg" style={{background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)', boxShadow: '0 10px 25px -5px rgba(59, 130, 246, 0.25)'}}>
+              <div className="absolute -top-8 -left-8 bg-primary-blue text-white rounded-2xl p-5 shadow-lg" style={{background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)', boxShadow: '0 10px 25px -5px rgba(59, 130, 246, 0.25)'}}>
                 <div className="text-center">
-                  <div className="text-2xl font-bold">5+</div>
-                  <div className="text-xs">Años</div>
-                  <div className="text-xs">Experiencia</div>
+                  <div className="text-3xl font-bold">5+</div>
+                  <div className="text-sm">Años</div>
+                  <div className="text-sm">Experiencia</div>
                 </div>
               </div>
 
-              <div className="absolute -bottom-6 -right-6 bg-secondary-turquoise text-white rounded-2xl p-4 shadow-lg" style={{background: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 100%)', boxShadow: '0 10px 25px -5px rgba(6, 182, 212, 0.25)'}}>
+              <div className="absolute -bottom-8 -right-8 bg-secondary-turquoise text-white rounded-2xl p-5 shadow-lg" style={{background: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 100%)', boxShadow: '0 10px 25px -5px rgba(6, 182, 212, 0.25)'}}>
                 <div className="text-center">
-                  <div className="text-lg font-bold">UC</div>
-                  <div className="text-xs">Universidad</div>
-                  <div className="text-xs">Concepción</div>
+                  <div className="text-2xl font-bold">UC</div>
+                  <div className="text-sm">Universidad</div>
+                  <div className="text-sm">Concepción</div>
                 </div>
               </div>
 

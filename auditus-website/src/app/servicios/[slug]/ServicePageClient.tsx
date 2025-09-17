@@ -2,7 +2,8 @@
 
 import { useState } from 'react';
 import Link from 'next/link';
-import { Card, Button, ClockIcon, CheckIcon, ArrowRightIcon, WhatsAppIcon, CalendarIcon, CalendarBookingModal } from '@/components/ui';
+import Image from 'next/image';
+import { Card, Button, ClockIcon, CheckIcon, ArrowRightIcon, WhatsAppIcon, CalendarIcon, CalendarBookingModal, ShieldIcon } from '@/components/ui';
 import StructuredData from '@/components/seo/StructuredData';
 import { CONTACT_INFO } from '@/data/constants';
 import { formatCurrency, formatDuration, getWhatsAppUrl } from '@/lib/utils';
@@ -64,125 +65,482 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
               </Link>
             </div>
           </nav>
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+          {/* Conditional Layout for Videotoscopia and Lavado de Oídos */}
+          {service.id === 'videotoscopia' ? (
+            /* Enhanced Layout for Videotoscopia with Professional Image */
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
 
-            {/* Left Content - 8/12 columns */}
-            <div className="lg:col-span-8 space-y-6">
-              {/* Floating Badge */}
-              <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/60 backdrop-blur-md border border-blue-200/50 shadow-lg">
-                <div className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse" />
-                <span className="text-blue-700 font-medium text-sm">Servicios Especializados de Audiología</span>
-              </div>
+              {/* Left Content Column */}
+              <div className="order-2 lg:order-1 space-y-6">
+                {/* Floating Badge */}
+                <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/60 backdrop-blur-md border border-blue-200/50 shadow-lg">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse" />
+                  <span className="text-blue-700 font-medium text-sm">Videotoscopía Profesional</span>
+                </div>
 
-              {/* Main Title */}
-              <div className="space-y-4">
-                <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
-                  {service.name}
-                  <span className="block text-xl lg:text-2xl font-normal text-gray-600 mt-2">
-                    Tecnología moderna y atención profesional personalizada
-                  </span>
-                </h1>
+                {/* Main Title */}
+                <div className="space-y-4">
+                  <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+                    {service.name}
+                    <span className="block text-xl lg:text-2xl font-normal text-gray-600 mt-2">
+                      Visualización en alta definición y registro profesional
+                    </span>
+                  </h1>
 
-                <p className="text-lg text-gray-700 leading-relaxed max-w-2xl">
-                  {service.description}
-                </p>
-              </div>
+                  <p className="text-lg text-gray-700 leading-relaxed">
+                    {service.description}
+                  </p>
+                </div>
 
-
-              {/* Primary Actions */}
-              <div className="flex flex-col sm:flex-row gap-4">
-                {CONTACT_INFO.calendarBooking && (
-                  <Button
-                    variant="primary"
-                    size="lg"
-                    onClick={() => setIsModalOpen(true)}
-                    className="group flex items-center justify-center space-x-3 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 px-8 py-4 rounded-2xl font-semibold text-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300"
-                  >
-                    <CalendarIcon size="sm" className="text-white group-hover:scale-110 transition-transform" />
-                    <span>Reservar Ahora</span>
-                  </Button>
-                )}
-
-                <Button
-                  variant="outline"
-                  size="lg"
-                  href={getWhatsAppUrl(CONTACT_INFO.whatsapp, appointmentMessage)}
-                  external
-                  className="flex items-center justify-center space-x-3 border-2 border-gray-300 text-gray-700 hover:border-gray-400 hover:bg-gray-50 px-8 py-4 rounded-2xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
-                >
-                  <WhatsAppIcon size="sm" className="text-green-500" />
-                  <span>Consultar por WhatsApp</span>
-                </Button>
-              </div>
-            </div>
-
-            {/* Right Content - 4/12 columns */}
-            <div className="lg:col-span-4 relative">
-              {/* Compact Info Cards */}
-              <div className="space-y-4">
-                {/* Quick Stats */}
-                <div className="bg-white/70 backdrop-blur-md rounded-2xl p-6 border border-white/50 shadow-lg">
-                  <div className="flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
-                      <ClockIcon size="sm" className="text-white" />
+                {/* Key Benefits for Videotoscopia */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="flex items-center space-x-2 bg-white/50 rounded-lg p-3">
+                    <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
+                      <span className="text-white text-xs font-bold">HD</span>
                     </div>
-                    <div>
-                      <p className="text-sm text-gray-600">Duración</p>
-                      <p className="font-bold text-gray-900">{formatDuration(service.duration)}</p>
+                    <span className="text-sm font-medium text-gray-700">Alta Resolución</span>
+                  </div>
+                  <div className="flex items-center space-x-2 bg-white/50 rounded-lg p-3">
+                    <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center">
+                      <CheckIcon size="sm" className="text-white" />
                     </div>
+                    <span className="text-sm font-medium text-gray-700">Sin Dolor</span>
+                  </div>
+                  <div className="flex items-center space-x-2 bg-white/50 rounded-lg p-3">
+                    <div className="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center">
+                      <span className="text-white text-xs">📷</span>
+                    </div>
+                    <span className="text-sm font-medium text-gray-700">Con Registro</span>
+                  </div>
+                  <div className="flex items-center space-x-2 bg-white/50 rounded-lg p-3">
+                    <div className="w-8 h-8 bg-cyan-500 rounded-lg flex items-center justify-center">
+                      <span className="text-white text-xs">⚡</span>
+                    </div>
+                    <span className="text-sm font-medium text-gray-700">Proceso Rápido</span>
                   </div>
                 </div>
 
-                {service.price > 0 && (
+                {/* Primary Actions */}
+                <div className="flex flex-col sm:flex-row gap-4">
+                  {CONTACT_INFO.calendarBooking && (
+                    <Button
+                      variant="primary"
+                      size="lg"
+                      onClick={() => setIsModalOpen(true)}
+                      className="group flex items-center justify-center space-x-3 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 px-8 py-4 rounded-2xl font-semibold text-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300"
+                    >
+                      <CalendarIcon size="sm" className="text-white group-hover:scale-110 transition-transform" />
+                      <span>Reservar Ahora</span>
+                    </Button>
+                  )}
+
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    href={getWhatsAppUrl(CONTACT_INFO.whatsapp, appointmentMessage)}
+                    external
+                    className="flex items-center justify-center space-x-3 border-2 border-gray-300 text-gray-700 hover:border-gray-400 hover:bg-gray-50 px-8 py-4 rounded-2xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
+                  >
+                    <WhatsAppIcon size="sm" className="text-green-500" />
+                    <span>Consultar por WhatsApp</span>
+                  </Button>
+                </div>
+
+                {/* Quick Info Row */}
+                <div className="flex items-center space-x-6 text-sm text-gray-600">
+                  <div className="flex items-center space-x-2">
+                    <ClockIcon size="sm" className="text-blue-500" />
+                    <span>{formatDuration(service.duration)}</span>
+                  </div>
+                  {service.price > 0 && (
+                    <div className="flex items-center space-x-2">
+                      <span className="text-green-600 font-bold">$</span>
+                      <span className="font-semibold">{formatCurrency(service.price)}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Right Image Column */}
+              <div className="order-1 lg:order-2 relative">
+                <div className="hero-professional-image relative">
+                  <Image
+                    src="/images/hero-videotoscopia.jpg"
+                    alt="Profesional realizando videotoscopía con equipamiento moderno, mostrando procedimiento en tiempo real con tecnología de alta definición"
+                    width={600}
+                    height={400}
+                    className="w-full h-80 lg:h-96 object-cover object-center rounded-2xl shadow-2xl"
+                    priority
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
+                  />
+
+                  {/* Professional certification badge */}
+                  <div className="absolute top-4 right-4 professional-badge-certified text-white px-3 py-1 rounded-full text-xs font-bold font-secondary">
+                    <div className="flex items-center space-x-1">
+                      <span className="text-yellow-300">✨</span>
+                      <span>Profesional</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : service.id === 'lavado-oidos' ? (
+            /* Enhanced Layout for Lavado de Oídos with Professional Image */
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+
+              {/* Left Content Column */}
+              <div className="order-2 lg:order-1 space-y-6">
+                {/* Floating Badge */}
+                <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/60 backdrop-blur-md border border-green-200/50 shadow-lg">
+                  <div className="w-2 h-2 bg-green-500 rounded-full mr-2 animate-pulse" />
+                  <span className="text-green-700 font-medium text-sm">Limpieza Profesional de Oídos</span>
+                </div>
+
+                {/* Main Title */}
+                <div className="space-y-4">
+                  <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+                    {service.name}
+                    <span className="block text-xl lg:text-2xl font-normal text-gray-600 mt-2">
+                      Procedimiento seguro y profesional con tecnología avanzada
+                    </span>
+                  </h1>
+
+                  <p className="text-lg text-gray-700 leading-relaxed">
+                    {service.description}
+                  </p>
+                </div>
+
+                {/* Key Benefits for Lavado de Oídos */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="flex items-center space-x-2 bg-white/50 rounded-lg p-3">
+                    <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center">
+                      <CheckIcon size="sm" className="text-white" />
+                    </div>
+                    <span className="text-sm font-medium text-gray-700">Sin Dolor</span>
+                  </div>
+                  <div className="flex items-center space-x-2 bg-white/50 rounded-lg p-3">
+                    <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
+                      <span className="text-white text-xs">🔬</span>
+                    </div>
+                    <span className="text-sm font-medium text-gray-700">Con Videotoscopía</span>
+                  </div>
+                  <div className="flex items-center space-x-2 bg-white/50 rounded-lg p-3">
+                    <div className="w-8 h-8 bg-cyan-500 rounded-lg flex items-center justify-center">
+                      <span className="text-white text-xs">💧</span>
+                    </div>
+                    <span className="text-sm font-medium text-gray-700">Limpieza Profunda</span>
+                  </div>
+                  <div className="flex items-center space-x-2 bg-white/50 rounded-lg p-3">
+                    <div className="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center">
+                      <span className="text-white text-xs">🛡️</span>
+                    </div>
+                    <span className="text-sm font-medium text-gray-700">100% Seguro</span>
+                  </div>
+                </div>
+
+                {/* Primary Actions */}
+                <div className="flex flex-col sm:flex-row gap-4">
+                  {CONTACT_INFO.calendarBooking && (
+                    <Button
+                      variant="primary"
+                      size="lg"
+                      onClick={() => setIsModalOpen(true)}
+                      className="group flex items-center justify-center space-x-3 bg-gradient-to-r from-green-600 to-emerald-600 hover:from-green-700 hover:to-emerald-700 px-8 py-4 rounded-2xl font-semibold text-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300"
+                    >
+                      <CalendarIcon size="sm" className="text-white group-hover:scale-110 transition-transform" />
+                      <span>Reservar Ahora</span>
+                    </Button>
+                  )}
+
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    href={getWhatsAppUrl(CONTACT_INFO.whatsapp, appointmentMessage)}
+                    external
+                    className="flex items-center justify-center space-x-3 border-2 border-gray-300 text-gray-700 hover:border-gray-400 hover:bg-gray-50 px-8 py-4 rounded-2xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
+                  >
+                    <WhatsAppIcon size="sm" className="text-green-500" />
+                    <span>Consultar por WhatsApp</span>
+                  </Button>
+                </div>
+
+                {/* Quick Info Row */}
+                <div className="flex items-center space-x-6 text-sm text-gray-600">
+                  <div className="flex items-center space-x-2">
+                    <ClockIcon size="sm" className="text-green-500" />
+                    <span>{formatDuration(service.duration)}</span>
+                  </div>
+                  {service.price > 0 && (
+                    <div className="flex items-center space-x-2">
+                      <span className="text-green-600 font-bold">$</span>
+                      <span className="font-semibold">{formatCurrency(service.price)}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Right Image Column */}
+              <div className="order-1 lg:order-2 relative">
+                <div className="hero-professional-image relative">
+                  <Image
+                    src="/images/hero-lavado-oidos.jpg"
+                    alt="Profesional realizando lavado de oídos con equipamiento especializado en ambiente clínico profesional"
+                    width={600}
+                    height={400}
+                    className="w-full h-80 lg:h-96 object-cover object-center rounded-2xl shadow-2xl"
+                    priority
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
+                  />
+
+                  {/* Professional certification badge */}
+                  <div className="absolute top-4 right-4 professional-badge-certified text-white px-3 py-1 rounded-full text-xs font-bold font-secondary">
+                    <div className="flex items-center space-x-1">
+                      <span className="text-green-300">✨</span>
+                      <span>Profesional</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : service.id === 'audiometria' ? (
+            /* Enhanced Layout for Audiometría with Professional Image */
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-center">
+
+              {/* Left Content Column */}
+              <div className="order-2 lg:order-1 space-y-6">
+                {/* Floating Badge */}
+                <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/60 backdrop-blur-md border border-purple-200/50 shadow-lg">
+                  <div className="w-2 h-2 bg-purple-500 rounded-full mr-2 animate-pulse" />
+                  <span className="text-purple-700 font-medium text-sm">Evaluación Auditiva Completa</span>
+                </div>
+
+                {/* Main Title */}
+                <div className="space-y-4">
+                  <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+                    {service.name}
+                    <span className="block text-xl lg:text-2xl font-normal text-gray-600 mt-2">
+                      Diagnóstico preciso con tecnología de última generación
+                    </span>
+                  </h1>
+
+                  <p className="text-lg text-gray-700 leading-relaxed">
+                    {service.description}
+                  </p>
+                </div>
+
+                {/* Key Benefits for Audiometría */}
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="flex items-center space-x-2 bg-white/50 rounded-lg p-3">
+                    <div className="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center">
+                      <span className="text-white text-xs">🎧</span>
+                    </div>
+                    <span className="text-sm font-medium text-gray-700">Evaluación Completa</span>
+                  </div>
+                  <div className="flex items-center space-x-2 bg-white/50 rounded-lg p-3">
+                    <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center">
+                      <CheckIcon size="sm" className="text-white" />
+                    </div>
+                    <span className="text-sm font-medium text-gray-700">Sin Dolor</span>
+                  </div>
+                  <div className="flex items-center space-x-2 bg-white/50 rounded-lg p-3">
+                    <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
+                      <span className="text-white text-xs">📊</span>
+                    </div>
+                    <span className="text-sm font-medium text-gray-700">Resultados Precisos</span>
+                  </div>
+                  <div className="flex items-center space-x-2 bg-white/50 rounded-lg p-3">
+                    <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center">
+                      <span className="text-white text-xs">⚡</span>
+                    </div>
+                    <span className="text-sm font-medium text-gray-700">Tecnología Avanzada</span>
+                  </div>
+                </div>
+
+                {/* Primary Actions */}
+                <div className="flex flex-col sm:flex-row gap-4">
+                  {CONTACT_INFO.calendarBooking && (
+                    <Button
+                      variant="primary"
+                      size="lg"
+                      onClick={() => setIsModalOpen(true)}
+                      className="group flex items-center justify-center space-x-3 bg-gradient-to-r from-purple-600 to-indigo-600 hover:from-purple-700 hover:to-indigo-700 px-8 py-4 rounded-2xl font-semibold text-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300"
+                    >
+                      <CalendarIcon size="sm" className="text-white group-hover:scale-110 transition-transform" />
+                      <span>Reservar Ahora</span>
+                    </Button>
+                  )}
+
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    href={getWhatsAppUrl(CONTACT_INFO.whatsapp, appointmentMessage)}
+                    external
+                    className="flex items-center justify-center space-x-3 border-2 border-gray-300 text-gray-700 hover:border-gray-400 hover:bg-gray-50 px-8 py-4 rounded-2xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
+                  >
+                    <WhatsAppIcon size="sm" className="text-green-500" />
+                    <span>Consultar por WhatsApp</span>
+                  </Button>
+                </div>
+
+                {/* Quick Info Row */}
+                <div className="flex items-center space-x-6 text-sm text-gray-600">
+                  <div className="flex items-center space-x-2">
+                    <ClockIcon size="sm" className="text-purple-500" />
+                    <span>{formatDuration(service.duration)}</span>
+                  </div>
+                  {service.price > 0 && (
+                    <div className="flex items-center space-x-2">
+                      <span className="text-green-600 font-bold">$</span>
+                      <span className="font-semibold">{formatCurrency(service.price)}</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {/* Right Image Column */}
+              <div className="order-1 lg:order-2 relative">
+                <div className="hero-professional-image relative">
+                  <Image
+                    src="/images/hero-audiometria.jpg"
+                    alt="Profesional realizando audiometría con equipamiento de diagnóstico auditivo avanzado en ambiente clínico especializado"
+                    width={600}
+                    height={400}
+                    className="w-full h-80 lg:h-96 object-cover object-center rounded-2xl shadow-2xl"
+                    priority
+                    sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 600px"
+                  />
+
+                  {/* Professional certification badge */}
+                  <div className="absolute top-4 right-4 professional-badge-certified text-white px-3 py-1 rounded-full text-xs font-bold font-secondary">
+                    <div className="flex items-center space-x-1">
+                      <span className="text-purple-300">✨</span>
+                      <span>Profesional</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ) : (
+            /* Default Layout for Other Services */
+            <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+
+              {/* Left Content - 8/12 columns */}
+              <div className="lg:col-span-8 space-y-6">
+                {/* Floating Badge */}
+                <div className="inline-flex items-center px-4 py-2 rounded-full bg-white/60 backdrop-blur-md border border-blue-200/50 shadow-lg">
+                  <div className="w-2 h-2 bg-blue-500 rounded-full mr-2 animate-pulse" />
+                  <span className="text-blue-700 font-medium text-sm">Servicios Especializados de Audiología</span>
+                </div>
+
+                {/* Main Title */}
+                <div className="space-y-4">
+                  <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 leading-tight">
+                    {service.name}
+                    <span className="block text-xl lg:text-2xl font-normal text-gray-600 mt-2">
+                      Tecnología moderna y atención profesional personalizada
+                    </span>
+                  </h1>
+
+                  <p className="text-lg text-gray-700 leading-relaxed max-w-2xl">
+                    {service.description}
+                  </p>
+                </div>
+
+                {/* Primary Actions */}
+                <div className="flex flex-col sm:flex-row gap-4">
+                  {CONTACT_INFO.calendarBooking && (
+                    <Button
+                      variant="primary"
+                      size="lg"
+                      onClick={() => setIsModalOpen(true)}
+                      className="group flex items-center justify-center space-x-3 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 px-8 py-4 rounded-2xl font-semibold text-lg shadow-xl hover:shadow-2xl transform hover:-translate-y-1 transition-all duration-300"
+                    >
+                      <CalendarIcon size="sm" className="text-white group-hover:scale-110 transition-transform" />
+                      <span>Reservar Ahora</span>
+                    </Button>
+                  )}
+
+                  <Button
+                    variant="outline"
+                    size="lg"
+                    href={getWhatsAppUrl(CONTACT_INFO.whatsapp, appointmentMessage)}
+                    external
+                    className="flex items-center justify-center space-x-3 border-2 border-gray-300 text-gray-700 hover:border-gray-400 hover:bg-gray-50 px-8 py-4 rounded-2xl font-semibold text-lg shadow-lg hover:shadow-xl transform hover:-translate-y-1 transition-all duration-300"
+                  >
+                    <WhatsAppIcon size="sm" className="text-green-500" />
+                    <span>Consultar por WhatsApp</span>
+                  </Button>
+                </div>
+              </div>
+
+              {/* Right Content - 4/12 columns */}
+              <div className="lg:col-span-4 relative">
+                {/* Compact Info Cards */}
+                <div className="space-y-4">
+                  {/* Quick Stats */}
                   <div className="bg-white/70 backdrop-blur-md rounded-2xl p-6 border border-white/50 shadow-lg">
                     <div className="flex items-center space-x-4">
-                      <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center shadow-lg">
-                        <span className="text-white font-bold text-lg">$</span>
+                      <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
+                        <ClockIcon size="sm" className="text-white" />
                       </div>
                       <div>
-                        <p className="text-sm text-gray-600">Precio</p>
-                        <p className="font-bold text-gray-900">{formatCurrency(service.price)}</p>
+                        <p className="text-sm text-gray-600">Duración</p>
+                        <p className="font-bold text-gray-900">{formatDuration(service.duration)}</p>
                       </div>
                     </div>
                   </div>
-                )}
 
-                {/* Benefits Grid */}
-                <div className="bg-white/70 backdrop-blur-md rounded-2xl p-6 border border-white/50 shadow-lg">
-                  <h3 className="text-lg font-bold text-gray-900 mb-4">Beneficios</h3>
-                  <div className="grid grid-cols-2 gap-3">
-                    <div className="text-center">
-                      <div className="w-10 h-10 bg-green-500 rounded-lg mx-auto mb-2 flex items-center justify-center">
-                        <CheckIcon size="xs" className="text-white" />
+                  {service.price > 0 && (
+                    <div className="bg-white/70 backdrop-blur-md rounded-2xl p-6 border border-white/50 shadow-lg">
+                      <div className="flex items-center space-x-4">
+                        <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center shadow-lg">
+                          <span className="text-white font-bold text-lg">$</span>
+                        </div>
+                        <div>
+                          <p className="text-sm text-gray-600">Precio</p>
+                          <p className="font-bold text-gray-900">{formatCurrency(service.price)}</p>
+                        </div>
                       </div>
-                      <p className="text-xs font-medium text-gray-800">Sin Dolor</p>
                     </div>
+                  )}
 
-                    <div className="text-center">
-                      <div className="w-10 h-10 bg-blue-500 rounded-lg mx-auto mb-2 flex items-center justify-center">
-                        <span className="text-white text-xs font-bold">HD</span>
+                  {/* Benefits Grid */}
+                  <div className="bg-white/70 backdrop-blur-md rounded-2xl p-6 border border-white/50 shadow-lg">
+                    <h3 className="text-lg font-bold text-gray-900 mb-4">Beneficios</h3>
+                    <div className="grid grid-cols-2 gap-3">
+                      <div className="text-center">
+                        <div className="w-10 h-10 bg-green-500 rounded-lg mx-auto mb-2 flex items-center justify-center">
+                          <CheckIcon size="sm" className="text-white" />
+                        </div>
+                        <p className="text-xs font-medium text-gray-800">Sin Dolor</p>
                       </div>
-                      <p className="text-xs font-medium text-gray-800">Alta Resolución</p>
-                    </div>
 
-                    <div className="text-center">
-                      <div className="w-10 h-10 bg-purple-500 rounded-lg mx-auto mb-2 flex items-center justify-center">
-                        <span className="text-white text-xs">⚡</span>
+                      <div className="text-center">
+                        <div className="w-10 h-10 bg-blue-500 rounded-lg mx-auto mb-2 flex items-center justify-center">
+                          <span className="text-white text-xs font-bold">HD</span>
+                        </div>
+                        <p className="text-xs font-medium text-gray-800">Alta Resolución</p>
                       </div>
-                      <p className="text-xs font-medium text-gray-800">Rápido</p>
-                    </div>
 
-                    <div className="text-center">
-                      <div className="w-10 h-10 bg-cyan-500 rounded-lg mx-auto mb-2 flex items-center justify-center">
-                        <span className="text-white text-xs">📷</span>
+                      <div className="text-center">
+                        <div className="w-10 h-10 bg-purple-500 rounded-lg mx-auto mb-2 flex items-center justify-center">
+                          <span className="text-white text-xs">⚡</span>
+                        </div>
+                        <p className="text-xs font-medium text-gray-800">Rápido</p>
                       </div>
-                      <p className="text-xs font-medium text-gray-800">Con Registro</p>
+
+                      <div className="text-center">
+                        <div className="w-10 h-10 bg-cyan-500 rounded-lg mx-auto mb-2 flex items-center justify-center">
+                          <span className="text-white text-xs">📷</span>
+                        </div>
+                        <p className="text-xs font-medium text-gray-800">Con Registro</p>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
+          )}
         </div>
       </section>
 
@@ -225,7 +583,7 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
                   {service.features.map((feature, index) => (
                     <div key={index} className="flex items-start space-x-3 group/item">
                       <div className="p-1.5 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full mt-1 flex-shrink-0 group-hover/item:scale-110 transition-transform duration-200">
-                        <CheckIcon size="xs" className="text-white" />
+                        <CheckIcon size="sm" className="text-white" />
                       </div>
                       <span className="text-gray-700 leading-relaxed text-sm lg:text-base">{feature}</span>
                     </div>

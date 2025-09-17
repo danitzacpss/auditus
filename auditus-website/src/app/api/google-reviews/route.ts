@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server';
 import {
   GooglePlaceResponseSchema,
+  GooglePlaceResponse,
   EnhancedTestimonial,
   GooglePlaceReview,
 } from '@/types/google-reviews';
@@ -8,7 +9,7 @@ import {
 export async function GET(request: NextRequest) {
   try {
     const { searchParams } = new URL(request.url);
-    const forceRefresh = searchParams.get('forceRefresh') === 'true';
+    // const forceRefresh = searchParams.get('forceRefresh') === 'true';
     const page = parseInt(searchParams.get('page') || '1');
     const limit = parseInt(searchParams.get('limit') || '50'); // Default to 50 to get more reviews
     const minRating = parseInt(searchParams.get('minRating') || '1');
@@ -115,7 +116,7 @@ export async function GET(request: NextRequest) {
  * Transform Google Place reviews to Enhanced Testimonials with pagination
  */
 function transformGoogleReviews(
-  placeData: any,
+  placeData: GooglePlaceResponse,
   options: { page: number; limit: number; minRating: number }
 ): { reviews: EnhancedTestimonial[]; total: number; hasMore: boolean } {
   if (!placeData.reviews) {

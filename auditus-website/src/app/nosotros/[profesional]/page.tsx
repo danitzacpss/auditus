@@ -1,9 +1,10 @@
-'use client';
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { notFound } from 'next/navigation';
-import { PROFESSIONALS } from '@/data/constants';
+import { PROFESSIONALS, CONTACT_INFO } from '@/data/constants';
 import { CheckIcon, StarIcon, ArrowRightIcon, PhoneIcon, CalendarIcon } from '@/components/ui/Icon';
+import ProfessionalPageClient from './ProfessionalPageClient';
 
 interface ProfessionalPageProps {
   params: Promise<{ profesional: string }>;
@@ -38,71 +39,8 @@ export default async function ProfessionalPage({ params }: ProfessionalPageProps
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
-          
-          {/* Sidebar con información básica */}
-          <div className="lg:col-span-4">
-            <div className="bg-white rounded-3xl shadow-lg p-8 sticky top-8">
-              
-              {/* Foto del profesional */}
-              <div className="text-center mb-8">
-                <div className="w-32 h-32 mx-auto mb-6 relative">
-                  <div className="w-full h-full rounded-full flex items-center justify-center shadow-lg" 
-                       style={{background: 'linear-gradient(135deg, #dbeafe 0%, #bfdbfe 100%)'}}>
-                    <div className="text-center">
-                      <div className="text-3xl font-bold text-primary-blue">VC</div>
-                      <div className="text-xs text-secondary-turquoise mt-1">Fonoaudióloga</div>
-                    </div>
-                  </div>
-                  
-                  {/* Badge de verificación */}
-                  <div className="absolute -bottom-2 -right-2 w-10 h-10 bg-green-500 rounded-full flex items-center justify-center shadow-lg">
-                    <CheckIcon size="sm" className="text-white" />
-                  </div>
-                </div>
 
-                <h1 className="text-2xl font-bold text-gray-900 font-primary mb-2">
-                  {professional.name}
-                </h1>
-                
-                <p className="text-primary-blue font-medium font-secondary mb-4">
-                  {professional.title}
-                </p>
-
-                {/* Rating */}
-                <div className="flex items-center justify-center space-x-1 mb-6">
-                  {[...Array(5)].map((_, i) => (
-                    <StarIcon key={i} size="sm" className="text-yellow-400 fill-current" />
-                  ))}
-                  <span className="text-sm text-gray-600 ml-2 font-secondary">5.0 • Excelencia</span>
-                </div>
-              </div>
-
-              {/* Estadísticas */}
-              <div className="grid grid-cols-2 gap-4 mb-8">
-                <div className="text-center p-4 bg-gradient-to-br from-primary-blue to-blue-600 rounded-2xl text-white">
-                  <div className="text-2xl font-bold">{professional.yearsExperience}+</div>
-                  <div className="text-sm">Años Experiencia</div>
-                </div>
-                <div className="text-center p-4 bg-gradient-to-br from-secondary-turquoise to-cyan-600 rounded-2xl text-white">
-                  <div className="text-2xl font-bold">{professional.satisfaction}%</div>
-                  <div className="text-sm">Satisfacción</div>
-                </div>
-              </div>
-
-              {/* Botones de acción */}
-              <div className="space-y-3">
-                <button className="btn-primary w-full flex items-center justify-center space-x-2">
-                  <CalendarIcon size="sm" />
-                  <span>Agendar Cita</span>
-                </button>
-                
-                <button className="btn-secondary w-full flex items-center justify-center space-x-2">
-                  <PhoneIcon size="sm" />
-                  <span>Llamar Ahora</span>
-                </button>
-              </div>
-            </div>
-          </div>
+          <ProfessionalPageClient professional={professional} />
 
           {/* Contenido principal */}
           <div className="lg:col-span-8">
@@ -188,32 +126,6 @@ export default async function ProfessionalPage({ params }: ProfessionalPageProps
                 </div>
               </section>
 
-              {/* CTA Final */}
-              <section className="bg-gradient-to-r from-primary-blue to-secondary-turquoise rounded-3xl p-8 lg:p-12 text-white">
-                <div className="text-center">
-                  <h3 className="text-2xl lg:text-3xl font-bold mb-4 font-primary">
-                    ¿Listo para cuidar tu salud auditiva?
-                  </h3>
-                  
-                  <p className="text-blue-100 mb-8 font-secondary max-w-2xl mx-auto text-lg leading-relaxed">
-                    Agenda tu cita con {professional.name.split(' ')[0]} y recibe atención profesional 
-                    especializada con tecnología moderna.
-                  </p>
-                  
-                  <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <button className="bg-white text-primary-blue hover:bg-gray-100 font-semibold px-8 py-4 rounded-xl text-lg transition-all duration-200">
-                      Agendar Cita Ahora
-                    </button>
-                    
-                    <Link href="/servicios">
-                      <button className="border-2 border-white text-white hover:bg-white hover:text-primary-blue px-8 py-4 rounded-xl text-lg transition-all duration-200 flex items-center justify-center space-x-2">
-                        <span>Ver Servicios</span>
-                        <ArrowRightIcon size="sm" />
-                      </button>
-                    </Link>
-                  </div>
-                </div>
-              </section>
             </div>
           </div>
         </div>

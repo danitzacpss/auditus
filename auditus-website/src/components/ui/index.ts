@@ -28,5 +28,13 @@ export {
   CloseIcon,
   ArrowRightIcon,
   CalendarIcon,
-  QuoteIcon
+  QuoteIcon,
+  AlertIcon,
+  AwardIcon,
+  GraduationIcon,
+  HeartIcon,
+  ShieldIcon,
+  InstagramIcon,
+  FacebookIcon,
+  TargetIcon
 } from './Icon';
