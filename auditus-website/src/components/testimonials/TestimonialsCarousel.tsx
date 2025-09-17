@@ -268,7 +268,7 @@ const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({
             {/* Verification badge */}
             {review.verified && (
               <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full flex items-center justify-center ring-2 ring-white">
-                <CheckIcon size="xs" className="text-white" />
+                <CheckIcon size="sm" className="text-white" />
               </div>
             )}
           </div>

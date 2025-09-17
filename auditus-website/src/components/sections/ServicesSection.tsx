@@ -318,12 +318,14 @@ const ServicesSection: React.FC = () => {
       </section>
 
       {/* Calendar Booking Modal */}
-      <CalendarBookingModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        calendarUrl={CONTACT_INFO.calendarBooking}
-        serviceName={selectedService || "Evaluación Auditiva"}
-      />
+      {CONTACT_INFO.calendarBooking && (
+        <CalendarBookingModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          calendarUrl={CONTACT_INFO.calendarBooking}
+          serviceName={selectedService || "Evaluación Auditiva"}
+        />
+      )}
     </>
   );
 };
