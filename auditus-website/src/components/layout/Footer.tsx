@@ -8,7 +8,7 @@ const Footer: React.FC = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="relative bg-gradient-to-br from-blue-800 via-blue-900 to-cyan-800 text-white overflow-hidden">
+    <footer className="relative text-white overflow-hidden" style={{background: 'linear-gradient(135deg, #1e3a8a 0%, #1e40af 25%, #312e81 50%, #0e7490 75%, #155e75 100%)'}}>
 
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
                     </div>
                   </div>
                   <div>
-                    <h2 className="text-2xl lg:text-3xl font-bold font-primary !text-white">
+                    <h2 className="text-2xl lg:text-3xl font-bold font-primary text-white">
                       Centro Auditus
                     </h2>
                     <p className="text-cyan-300 font-medium font-secondary">
@@ -45,7 +45,7 @@ const Footer: React.FC = () => {
 
                 {/* Google Maps */}
                 <div className="bg-blue-800/30 backdrop-blur-sm rounded-2xl p-3 border border-blue-400/30">
-                  <h4 className="text-sm font-semibold !text-white mb-2 font-primary">Nuestra Ubicación</h4>
+                  <h4 className="text-sm font-semibold text-white mb-2 font-primary">Nuestra Ubicación</h4>
                   <div className="relative">
                     <iframe
                       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3174.123!2d-73.0504123!3d-36.8264456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9669b5e6c0123456%3A0x789abcdef0123456!2sAn%C3%ADbal%20Pinto%20486%2C%20Concepci%C3%B3n%2C%20Regi%C3%B3n%20del%20Biob%C3%ADo%2C%20Chile!5e0!3m2!1ses!2scl!4v1732645890"
@@ -60,7 +60,7 @@ const Footer: React.FC = () => {
                     ></iframe>
                     <div className="absolute inset-0 bg-blue-500/10 rounded-lg pointer-events-none"></div>
                   </div>
-                  <p className="text-xs !text-gray-300 mt-1 font-secondary">
+                  <p className="text-xs text-gray-300 mt-1 font-secondary">
                     Aníbal Pinto 486, Oficina 403, Concepción
                   </p>
                 </div>
@@ -70,7 +70,7 @@ const Footer: React.FC = () => {
             {/* Quick Links */}
             <div className="lg:col-span-3">
               <div className="bg-blue-800/30 backdrop-blur-sm rounded-2xl p-6 border border-blue-400/30 h-fit">
-                <h3 className="text-lg font-bold font-primary !text-white mb-6 flex items-center">
+                <h3 className="text-lg font-bold font-primary text-white mb-6 flex items-center">
                   <span className="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
                   Navegación
                 </h3>
@@ -107,7 +107,7 @@ const Footer: React.FC = () => {
             {/* Contact Information */}
             <div className="lg:col-span-4">
               <div className="bg-gradient-to-br from-blue-800/30 to-slate-800/40 backdrop-blur-sm rounded-2xl p-6 border border-blue-400/30">
-                <h3 className="text-lg font-bold font-primary !text-white mb-6 flex items-center">
+                <h3 className="text-lg font-bold font-primary text-white mb-6 flex items-center">
                   <span className="w-2 h-2 bg-secondary-500 rounded-full mr-3"></span>
                   Información de Contacto
                 </h3>
@@ -119,9 +119,9 @@ const Footer: React.FC = () => {
                       <LocationIcon size="sm" className="text-primary-400" />
                     </div>
                     <div className="text-gray-100 font-secondary">
-                      <p className="font-medium !text-white">{CONTACT_INFO.address.street}</p>
-                      <p className="text-sm !text-gray-200">{CONTACT_INFO.address.office}</p>
-                      <p className="text-sm !text-gray-200">{CONTACT_INFO.address.city}, {CONTACT_INFO.address.region}</p>
+                      <p className="font-medium text-white">{CONTACT_INFO.address.street}</p>
+                      <p className="text-sm text-gray-200">{CONTACT_INFO.address.office}</p>
+                      <p className="text-sm text-gray-200">{CONTACT_INFO.address.city}, {CONTACT_INFO.address.region}</p>
                     </div>
                   </div>
 
@@ -135,10 +135,10 @@ const Footer: React.FC = () => {
                         <PhoneIcon size="sm" className="text-secondary-400" />
                       </div>
                       <div>
-                        <p className="font-medium !text-white font-secondary">
+                        <p className="font-medium text-white font-secondary">
                           {formatPhoneNumber(CONTACT_INFO.phone)}
                         </p>
-                        <p className="text-xs !text-gray-300">Llámanos directamente</p>
+                        <p className="text-xs text-gray-300">Llámanos directamente</p>
                       </div>
                     </Link>
                   </div>
@@ -153,10 +153,10 @@ const Footer: React.FC = () => {
                         <EmailIcon size="sm" className="text-primary-400" />
                       </div>
                       <div>
-                        <p className="font-medium !text-white font-secondary break-all">
+                        <p className="font-medium text-white font-secondary break-all">
                           {CONTACT_INFO.email}
                         </p>
-                        <p className="text-xs !text-gray-300">Envíanos un correo</p>
+                        <p className="text-xs text-gray-300">Envíanos un correo</p>
                       </div>
                     </Link>
                   </div>
@@ -168,9 +168,9 @@ const Footer: React.FC = () => {
                         <ClockIcon size="sm" className="text-secondary-400" />
                       </div>
                       <div className="text-gray-100 font-secondary">
-                        <p className="font-medium !text-white mb-2">Horarios</p>
-                        <p className="text-sm !text-gray-200">{CONTACT_INFO.hours.weekdays}</p>
-                        <p className="text-sm !text-gray-200">{CONTACT_INFO.hours.saturday}</p>
+                        <p className="font-medium text-white mb-2">Horarios</p>
+                        <p className="text-sm text-gray-200">{CONTACT_INFO.hours.weekdays}</p>
+                        <p className="text-sm text-gray-200">{CONTACT_INFO.hours.saturday}</p>
                       </div>
                     </div>
                   </div>
@@ -189,10 +189,10 @@ const Footer: React.FC = () => {
                       <span className="text-white font-bold text-lg font-primary">V</span>
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold !text-white font-primary">
+                      <h3 className="text-lg font-bold text-white font-primary">
                         {PROFESSIONAL_INFO.name}
                       </h3>
-                      <p className="!text-cyan-300 font-medium font-secondary text-sm">
+                      <p className="text-cyan-300 font-medium font-secondary text-sm">
                         {PROFESSIONAL_INFO.title} • {PROFESSIONAL_INFO.experience}
                       </p>
                     </div>
@@ -200,7 +200,7 @@ const Footer: React.FC = () => {
 
                   {/* Social Media */}
                   <div className="flex items-center space-x-3">
-                    <p className="!text-gray-200 font-secondary text-sm mr-2">Síguenos:</p>
+                    <p className="text-gray-200 font-secondary text-sm mr-2">Síguenos:</p>
                     {CONTACT_INFO.social?.instagram && (
                       <Link
                         href={`https://instagram.com/${CONTACT_INFO.social.instagram.replace('@', '')}`}
