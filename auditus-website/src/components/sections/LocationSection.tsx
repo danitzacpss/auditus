@@ -1,30 +1,21 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { 
-  LocationIcon, 
-  ClockIcon, 
-  PhoneIcon, 
+import React from 'react';
+import {
+  LocationIcon,
+  ClockIcon,
+  PhoneIcon,
   EmailIcon,
-  ArrowRightIcon
+  ArrowRightIcon,
+  InstagramIcon,
+  FacebookIcon
 } from '@/components/ui/Icon';
-import GoogleMap from '@/components/ui/GoogleMap';
+import ContactForm from '@/components/forms/ContactForm';
+import { CONTACT_INFO } from '@/data/constants';
 
 export default function LocationSection() {
-  const [isMounted, setIsMounted] = useState(false);
-
-  // Business location coordinates
-  const businessLocation = {
-    lat: -36.8264923,
-    lng: -73.0495834
-  };
-
-  useEffect(() => {
-    setIsMounted(true);
-  }, []);
-
   const openGoogleMaps = () => {
-    if (isMounted && typeof window !== 'undefined') {
+    if (typeof window !== 'undefined') {
       const url = "https://maps.app.goo.gl/PPzuQeh5kFkF9HHe7";
       window.open(url, '_blank');
     }
@@ -38,16 +29,16 @@ export default function LocationSection() {
         <div className="text-center mb-16">
           <div className="professional-badge inline-flex items-center gap-2 text-sm font-medium font-secondary mb-6">
             <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
-            <span>Nuestra Ubicación</span>
+            <span>Contacto y Ubicación</span>
           </div>
-          
+
           <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6 font-primary leading-tight">
-            Ubicación{' '}
+            Contáctanos y{' '}
             <span className="text-primary-blue relative inline-block">
-              Estratégica
-              <svg 
-                className="absolute -bottom-2 left-0 w-full h-3 text-blue-200" 
-                viewBox="0 0 100 12" 
+              Visítanos
+              <svg
+                className="absolute -bottom-2 left-0 w-full h-3 text-blue-200"
+                viewBox="0 0 100 12"
                 preserveAspectRatio="none"
                 fill="currentColor"
               >
@@ -55,49 +46,28 @@ export default function LocationSection() {
               </svg>
             </span>
           </h2>
-          
+
           <p className="text-xl text-gray-700 font-secondary max-w-3xl mx-auto leading-relaxed">
-            En el corazón de Concepción, fácil acceso para tu comodidad y tranquilidad
+            Completa nuestro formulario o visita nuestra consulta en el centro de Concepción
           </p>
         </div>
 
         {/* Main Content Grid */}
         <div className="grid lg:grid-cols-2 gap-12 items-start">
           
-          {/* Google Maps Embed */}
+          {/* Contact Form */}
           <div className="order-2 lg:order-1">
-            <div className="bg-white rounded-3xl p-6 shadow-lg border border-gray-100">
-              <div className="mb-4">
-                <h3 className="text-xl font-bold text-gray-900 font-primary mb-2">
-                  Encuéntranos Fácilmente
+            <div className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
+              <div className="mb-6">
+                <h3 className="text-2xl font-bold text-gray-900 font-primary mb-2">
+                  Envíanos un Mensaje
                 </h3>
-                <p className="text-gray-600 font-secondary text-sm">
-                  Haz clic en el mapa para abrir en Google Maps y obtener direcciones
+                <p className="text-gray-600 font-secondary">
+                  Completa el formulario y nos pondremos en contacto contigo en el menor tiempo posible.
                 </p>
               </div>
-              
-              {/* Interactive Google Maps */}
-              <GoogleMap
-                center={businessLocation}
-                zoom={16}
-                className="transition-all duration-300 hover:scale-[1.02]"
-                onMapClick={openGoogleMaps}
-                showMarker={true}
-                markerTitle="Centro Auditus - Lavado de Oídos en Concepción"
-                height="300px"
-              />
-              
-              {/* Quick directions button */}
-              <button
-                onClick={isMounted ? openGoogleMaps : undefined}
-                disabled={!isMounted}
-                className="w-full mt-4 bg-primary-blue hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 flex items-center justify-center space-x-2 disabled:opacity-50"
-                aria-label={isMounted ? "Obtener direcciones en Google Maps" : undefined}
-              >
-                <LocationIcon size="sm" className="text-white" />
-                <span>Obtener Direcciones</span>
-                <ArrowRightIcon size="sm" className="text-white" />
-              </button>
+
+              <ContactForm />
             </div>
           </div>
 
@@ -121,7 +91,7 @@ export default function LocationSection() {
                 </div>
               </div>
               
-              <div className="space-y-3 text-sm text-gray-600">
+              <div className="space-y-3 text-sm text-gray-600 mb-6">
                 <div className="flex items-center space-x-3">
                   <div className="w-2 h-2 bg-green-500 rounded-full"></div>
                   <span>Centro de Concepción</span>
@@ -135,6 +105,17 @@ export default function LocationSection() {
                   <span>Estacionamiento disponible</span>
                 </div>
               </div>
+
+              {/* Get Directions Button */}
+              <button
+                onClick={openGoogleMaps}
+                className="w-full bg-primary-blue hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 flex items-center justify-center space-x-2"
+                aria-label="Obtener direcciones en Google Maps"
+              >
+                <LocationIcon size="sm" className="text-white" />
+                <span>Obtener Direcciones</span>
+                <ArrowRightIcon size="sm" className="text-white" />
+              </button>
             </div>
 
             {/* Business Hours */}
@@ -174,100 +155,122 @@ export default function LocationSection() {
             </div>
 
             {/* Quick Contact */}
-            <div className="bg-gradient-to-br from-primary-blue to-secondary-turquoise rounded-3xl p-8 text-white">
-              <h3 className="text-xl font-bold mb-4 font-primary">Contacto Rápido</h3>
-              <p className="text-blue-100 mb-6 font-secondary">
-                ¿Tienes dudas sobre cómo llegar? Contáctanos
-              </p>
-              
-              <div className="space-y-4">
-                <a 
-                  href="tel:+56412345678" 
-                  className="flex items-center space-x-3 text-white hover:text-blue-100 transition-colors duration-200"
-                  aria-label="Llamar a Centro Auditus"
-                >
-                  <div className="w-10 h-10 bg-white bg-opacity-20 rounded-lg flex items-center justify-center">
-                    <PhoneIcon size="sm" className="text-white" />
-                  </div>
-                  <div>
-                    <div className="font-semibold">+56 41 234 5678</div>
-                    <div className="text-sm text-blue-100">Llamar ahora</div>
-                  </div>
-                </a>
-                
-                <a 
-                  href="mailto:contacto@centroauditus.cl" 
-                  className="flex items-center space-x-3 text-white hover:text-blue-100 transition-colors duration-200"
-                  aria-label="Enviar email a Centro Auditus"
-                >
-                  <div className="w-10 h-10 bg-white bg-opacity-20 rounded-lg flex items-center justify-center">
-                    <EmailIcon size="sm" className="text-white" />
-                  </div>
-                  <div>
-                    <div className="font-semibold">contacto@centroauditus.cl</div>
-                    <div className="text-sm text-blue-100">Enviar consulta</div>
-                  </div>
-                </a>
+            <div className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
+              <div className="flex items-start space-x-4 mb-6">
+                <div className="w-12 h-12 bg-green-500 rounded-xl flex items-center justify-center flex-shrink-0">
+                  <PhoneIcon size="md" className="text-white" />
+                </div>
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900 font-primary mb-2">Contacto Rápido</h3>
+                  <p className="text-gray-600 font-secondary text-sm">
+                    ¿Tienes dudas sobre cómo llegar? Contáctanos
+                  </p>
+                </div>
               </div>
-              
-              <div className="mt-6 pt-6 border-t border-white border-opacity-20">
-                <a 
-                  href="/contacto"
-                  className="inline-flex items-center justify-center w-full bg-white text-primary-blue hover:bg-gray-100 font-semibold py-3 px-4 rounded-xl transition-all duration-200"
-                >
-                  Agendar Cita Online
-                </a>
+
+              <div className="space-y-3">
+                <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                  <span className="text-gray-700 font-medium">Teléfono</span>
+                  <a
+                    href={`tel:${CONTACT_INFO.phone}`}
+                    className="text-primary-blue font-semibold hover:text-primary-700 transition-colors"
+                  >
+                    {CONTACT_INFO.phone}
+                  </a>
+                </div>
+                <div className="flex justify-between items-center py-2 border-b border-gray-100">
+                  <span className="text-gray-700 font-medium">Email</span>
+                  <a
+                    href={`mailto:${CONTACT_INFO.email}`}
+                    className="text-primary-blue font-semibold hover:text-primary-700 transition-colors text-sm"
+                  >
+                    {CONTACT_INFO.email}
+                  </a>
+                </div>
+                <div className="flex justify-between items-center py-2">
+                  <span className="text-gray-700 font-medium">Síguenos</span>
+                  <div className="flex space-x-3">
+                    {CONTACT_INFO.social?.instagram && (
+                      <a
+                        href={`https://instagram.com/${CONTACT_INFO.social.instagram.replace('@', '')}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-400 hover:text-pink-500 transition-colors"
+                        aria-label="Síguenos en Instagram"
+                      >
+                        <InstagramIcon size="sm" />
+                      </a>
+                    )}
+                    {CONTACT_INFO.social?.facebook && (
+                      <a
+                        href={`https://facebook.com/${CONTACT_INFO.social.facebook.replace(' ', '')}`}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-gray-400 hover:text-blue-600 transition-colors"
+                        aria-label="Síguenos en Facebook"
+                      >
+                        <FacebookIcon size="sm" />
+                      </a>
+                    )}
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-4 p-3 bg-blue-50 rounded-xl border border-blue-100">
+                <p className="text-blue-800 text-sm font-medium">
+                  💡 Respuesta garantizada en menos de 30 minutos
+                </p>
               </div>
             </div>
           </div>
         </div>
 
-        {/* Transportation Information */}
+
+        {/* Map Section */}
         <div className="mt-16">
           <div className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
-            <h3 className="text-2xl font-bold text-gray-900 font-primary mb-6 text-center">
-              Cómo Llegar
-            </h3>
-            
-            <div className="grid md:grid-cols-3 gap-8">
-              {/* By Public Transport */}
-              <div className="text-center">
-                <div className="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <div className="text-2xl">🚌</div>
-                </div>
-                <h4 className="text-lg font-bold text-gray-900 font-primary mb-3">Transporte Público</h4>
-                <ul className="text-gray-600 font-secondary text-sm space-y-1">
-                  <li>• Micro: Líneas que pasan por Aníbal Pinto</li>
-                  <li>• Metro: Estación Plaza de la Independencia</li>
-                  <li>• Colectivos: Línea Centro</li>
-                </ul>
-              </div>
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-bold text-gray-900 font-primary mb-4">
+                Ubicación de la Consulta
+              </h3>
+              <p className="text-gray-600 font-secondary">
+                Haz clic en el mapa para abrir en Google Maps y obtener direcciones
+              </p>
+            </div>
 
-              {/* By Car */}
-              <div className="text-center">
-                <div className="w-16 h-16 bg-blue-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <div className="text-2xl">🚗</div>
-                </div>
-                <h4 className="text-lg font-bold text-gray-900 font-primary mb-3">En Automóvil</h4>
-                <ul className="text-gray-600 font-secondary text-sm space-y-1">
-                  <li>• Estacionamiento disponible</li>
-                  <li>• Acceso desde Autopista A-160</li>
-                  <li>• Centro de Concepción</li>
-                </ul>
+            {/* Interactive Google Maps */}
+            <div className="max-w-4xl mx-auto">
+              <div className="relative">
+                <iframe
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3174.123!2d-73.0504123!3d-36.8264456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9669b5e6c0123456%3A0x789abcdef0123456!2sAn%C3%ADbal%20Pinto%20486%2C%20Concepci%C3%B3n%2C%20Regi%C3%B3n%20del%20Biob%C3%ADo%2C%20Chile!5e0!3m2!1ses!2scl!4v1732645890"
+                  width="100%"
+                  height="400"
+                  style={{ border: 0 }}
+                  allowFullScreen
+                  loading="lazy"
+                  referrerPolicy="no-referrer-when-downgrade"
+                  className="rounded-2xl"
+                  title="Ubicación Centro Auditus"
+                ></iframe>
+                <div
+                  className="absolute inset-0 bg-transparent rounded-2xl cursor-pointer"
+                  onClick={openGoogleMaps}
+                  aria-label="Abrir en Google Maps"
+                ></div>
               </div>
+            </div>
 
-              {/* Walking */}
-              <div className="text-center">
-                <div className="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mx-auto mb-4">
-                  <div className="text-2xl">🚶‍♂️</div>
-                </div>
-                <h4 className="text-lg font-bold text-gray-900 font-primary mb-3">Caminando</h4>
-                <ul className="text-gray-600 font-secondary text-sm space-y-1">
-                  <li>• 5 min desde Plaza de Armas</li>
-                  <li>• 10 min desde Universidad de Concepción</li>
-                  <li>• Zona peatonal accesible</li>
-                </ul>
-              </div>
+            {/* Quick directions button */}
+            <div className="text-center mt-6">
+              <button
+                onClick={openGoogleMaps}
+                className="bg-primary-blue hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-xl transition-all duration-200 inline-flex items-center space-x-2"
+                aria-label="Obtener direcciones en Google Maps"
+              >
+                <LocationIcon size="sm" className="text-white" />
+                <span>Ver en Google Maps</span>
+                <ArrowRightIcon size="sm" className="text-white" />
+              </button>
             </div>
           </div>
         </div>
