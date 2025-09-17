@@ -1,0 +1,6 @@
+{
+  "buildCommand": "cd auditus-website && npm run build",
+  "outputDirectory": "auditus-website/.next",
+  "installCommand": "cd auditus-website && npm install",
+  "framework": "nextjs"
+}
