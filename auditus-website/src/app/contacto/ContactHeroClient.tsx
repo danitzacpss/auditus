@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { PhoneIcon, EmailIcon, ClockIcon, WhatsAppIcon, CalendarIcon, CheckIcon, StarIcon, HeartIcon, ShieldIcon } from '@/components/ui/Icon';
+import { PhoneIcon, EmailIcon, ClockIcon, WhatsAppIcon, CalendarIcon, ShieldIcon } from '@/components/ui/Icon';
 import { CalendarBookingModal } from '@/components/ui';
 import { CONTACT_INFO } from '@/data/constants';
 import { getWhatsAppUrl } from '@/lib/utils';
@@ -154,12 +154,14 @@ export default function ContactHeroClient() {
       </section>
 
       {/* Calendar Booking Modal */}
-      <CalendarBookingModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        calendarUrl={CONTACT_INFO.calendarBooking}
-        serviceName="Consulta General"
-      />
+      {CONTACT_INFO.calendarBooking && (
+        <CalendarBookingModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          calendarUrl={CONTACT_INFO.calendarBooking}
+          serviceName="Consulta General"
+        />
+      )}
     </>
   );
 }

@@ -106,9 +106,11 @@ const PhotoCard: React.FC<PhotoCardProps> = ({ photo, index, className = '' }) =
       {/* Lightbox */}
       {isLightboxOpen && (
         <PhotoLightbox
-          photo={photo}
+          photos={[photo]}
+          currentPhotoIndex={0}
           isOpen={isLightboxOpen}
           onClose={handleCloseLightbox}
+          onNavigate={() => {}}
         />
       )}
     </>

@@ -1,11 +1,7 @@
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
-import { Card, Button } from '@/components/ui';
-import { PhoneIcon, EmailIcon, LocationIcon, ClockIcon, WhatsAppIcon, InstagramIcon, FacebookIcon, CalendarIcon, CheckIcon, StarIcon, HeartIcon, ShieldIcon } from '@/components/ui/Icon';
-import ContactForm from '@/components/forms/ContactForm';
 import { LocationSection } from '@/components/sections';
-import { CONTACT_INFO, SITE_CONFIG, FAQ_DATA, BUSINESS_HOURS } from '@/data/constants';
-import { getWhatsAppUrl } from '@/lib/utils';
+import { SITE_CONFIG } from '@/data/constants';
 import ContactHeroClient from './ContactHeroClient';
 
 export const metadata: Metadata = {

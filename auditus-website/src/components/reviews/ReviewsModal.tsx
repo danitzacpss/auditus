@@ -95,15 +95,15 @@ const ReviewsModal: React.FC<ReviewsModalProps> = ({
     const modal = modalRef.current;
     if (!modal || !modal.contains(event.target as Node)) {
       // Focus escaped the modal, bring it back
-      const focusableElements = modal.querySelectorAll(
+      const focusableElements = modal?.querySelectorAll(
         'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])'
       );
-      const firstElement = focusableElements[0] as HTMLElement;
-      const lastElement = focusableElements[focusableElements.length - 1] as HTMLElement;
+      const firstElement = focusableElements?.[0] as HTMLElement;
+      const lastElement = focusableElements?.[focusableElements.length - 1] as HTMLElement;
 
       if (event.target === modal && firstElement) {
         firstElement.focus();
-      } else if (!modal.contains(event.target as Node)) {
+      } else if (!modal?.contains(event.target as Node)) {
         firstElement?.focus();
       }
     }

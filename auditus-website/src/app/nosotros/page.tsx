@@ -519,12 +519,14 @@ export default function NosotrosPage() {
       </section>
 
       {/* Calendar Booking Modal */}
-      <CalendarBookingModal
-        isOpen={isModalOpen}
-        onClose={() => setIsModalOpen(false)}
-        calendarUrl={CONTACT_INFO.calendarBooking}
-        serviceName="Evaluación Auditiva"
-      />
+      {CONTACT_INFO.calendarBooking && (
+        <CalendarBookingModal
+          isOpen={isModalOpen}
+          onClose={() => setIsModalOpen(false)}
+          calendarUrl={CONTACT_INFO.calendarBooking}
+          serviceName="Evaluación Auditiva"
+        />
+      )}
 
     </div>
   );

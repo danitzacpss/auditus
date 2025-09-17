@@ -9,7 +9,13 @@ import { formatCurrency } from '@/lib/utils';
 import type { Professional } from '@/types';
 
 interface ProfessionalPageClientProps {
-  professional: Professional;
+  professional: Professional & {
+    id: string;
+    slug: string;
+    photo?: string;
+    yearsExperience: number;
+    satisfaction: number;
+  };
 }
 
 export default function ProfessionalPageClient({ professional }: ProfessionalPageClientProps) {
