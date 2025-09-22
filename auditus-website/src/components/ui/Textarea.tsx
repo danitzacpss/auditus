@@ -44,7 +44,7 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
             htmlFor={textareaId}
             className={cn(
               'block text-sm font-medium mb-2 font-secondary',
-              'text-gray-700 dark:text-gray-300',
+              'text-gray-700 dark:text-gray-700',
               required && 'after:content-["*"] after:ml-0.5 after:text-red-500'
             )}
           >
@@ -72,13 +72,13 @@ const Textarea = React.forwardRef<HTMLTextAreaElement, TextareaProps>(
               resize ? 'resize-y' : 'resize-none',
               // Default state
               'bg-gray-50 border-gray-200 text-gray-900',
-              'dark:bg-gray-800 dark:border-gray-600 dark:text-gray-100',
+              'dark:bg-gray-50 dark:border-gray-200 dark:text-gray-900',
               // Focus state
-              isFocused && 'bg-white border-primary-400 dark:bg-gray-700',
+              isFocused && 'bg-white border-primary-400 dark:bg-white dark:border-primary-400',
               // Error state
-              error && 'border-red-500 bg-red-50 dark:bg-red-900/20',
+              error && 'border-red-500 bg-red-50 dark:bg-red-50 dark:border-red-500',
               // Disabled state
-              disabled && 'opacity-50 cursor-not-allowed bg-gray-100 dark:bg-gray-900',
+              disabled && 'opacity-50 cursor-not-allowed bg-gray-100 dark:bg-gray-100',
               className
             )}
             {...props}

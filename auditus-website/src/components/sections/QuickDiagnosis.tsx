@@ -139,7 +139,7 @@ const QuickDiagnosis: React.FC<QuickDiagnosisProps> = ({
         </div>
 
         {/* Disclaimer */}
-        <Card className="bg-yellow-50 border-yellow-200 border-2">
+        <Card className="bg-yellow-50 border-yellow-200 border-2 dark:bg-yellow-50 dark:border-yellow-200">
           <div className="flex items-start space-x-3">
             <span className="text-2xl">{t('quickDiagnosis.disclaimer.icon')}</span>
             <div>
@@ -154,13 +154,13 @@ const QuickDiagnosis: React.FC<QuickDiagnosisProps> = ({
         </Card>
 
         {/* Form */}
-        <Card className="space-y-6">
+        <Card className="space-y-6 bg-white dark:bg-white border-gray-200 dark:border-gray-200">
           {/* Symptoms Selection */}
           <div className="space-y-4">
-            <h3 className="text-xl font-semibold text-gray-900 font-poppins">
+            <h3 className="text-xl font-semibold text-gray-900 dark:text-gray-900 font-poppins">
               {t('quickDiagnosis.form.title')}
             </h3>
-            <p className="text-gray-600 font-lato">
+            <p className="text-gray-600 dark:text-gray-600 font-lato">
               {t('quickDiagnosis.form.subtitle')}
             </p>
 
@@ -184,11 +184,11 @@ const QuickDiagnosis: React.FC<QuickDiagnosisProps> = ({
                       'hover:shadow-md hover:-translate-y-0.5',
                       isSelected
                         ? isWarning
-                          ? 'bg-red-50 border-red-300 text-red-900'
+                          ? 'bg-red-50 dark:bg-red-50 border-red-300 dark:border-red-300 text-red-900 dark:text-red-900'
                           : isExposure
-                          ? 'bg-orange-50 border-orange-300 text-orange-900'
-                          : 'bg-primary-50 border-primary-300 text-primary-900'
-                        : 'bg-white border-gray-200 text-gray-700 hover:border-gray-300'
+                          ? 'bg-orange-50 dark:bg-orange-50 border-orange-300 dark:border-orange-300 text-orange-900 dark:text-orange-900'
+                          : 'bg-primary-50 dark:bg-primary-50 border-primary-300 dark:border-primary-300 text-primary-900 dark:text-primary-900'
+                        : 'bg-white dark:bg-white border-gray-200 dark:border-gray-200 text-gray-700 dark:text-gray-700 hover:border-gray-300 dark:hover:border-gray-300'
                     )}
                   >
                     <input
@@ -223,7 +223,7 @@ const QuickDiagnosis: React.FC<QuickDiagnosisProps> = ({
 
           {/* Additional Information */}
           <div className="space-y-3">
-            <label className="block text-sm font-medium text-gray-900 font-montserrat">
+            <label className="block text-sm font-medium text-gray-900 dark:text-gray-900 font-montserrat">
               {t('quickDiagnosis.additionalInfo.title')}
             </label>
             <textarea
@@ -235,8 +235,8 @@ const QuickDiagnosis: React.FC<QuickDiagnosisProps> = ({
                 'w-full px-4 py-3 border-2 rounded-xl transition-colors font-lato',
                 'focus:ring-4 focus:ring-primary-200 focus:border-primary-400 focus:outline-none',
                 validationErrors.additionalInfo
-                  ? 'border-red-300 bg-red-50'
-                  : 'border-gray-300 bg-gray-50 focus:bg-white'
+                  ? 'border-red-300 dark:border-red-300 bg-red-50 dark:bg-red-50'
+                  : 'border-gray-300 dark:border-gray-300 bg-gray-50 dark:bg-gray-50 focus:bg-white dark:focus:bg-white'
               )}
             />
             {validationErrors.additionalInfo && (
@@ -244,7 +244,7 @@ const QuickDiagnosis: React.FC<QuickDiagnosisProps> = ({
                 {validationErrors.additionalInfo}
               </p>
             )}
-            <p className="text-xs text-gray-500 font-lato">
+            <p className="text-xs text-gray-500 dark:text-gray-500 font-lato">
               {t('quickDiagnosis.additionalInfo.label')}
             </p>
           </div>
@@ -475,11 +475,11 @@ const QuickDiagnosisResults: React.FC<QuickDiagnosisResultsProps> = ({
           </div>
 
           {/* Primary Recommendation */}
-          <div className="bg-blue-50 border border-blue-200 rounded-xl p-6">
-            <h4 className="font-semibold text-blue-900 font-montserrat mb-3">
+          <div className="bg-blue-50 dark:bg-blue-50 border border-blue-200 dark:border-blue-200 rounded-xl p-6">
+            <h4 className="font-semibold text-blue-900 dark:text-blue-900 font-montserrat mb-3">
               Recomendación Principal
             </h4>
-            <p className="text-blue-800 font-lato leading-relaxed">
+            <p className="text-blue-800 dark:text-blue-800 font-lato leading-relaxed">
               {t(result.primaryRecommendation)}
             </p>
           </div>
@@ -503,8 +503,8 @@ const QuickDiagnosisResults: React.FC<QuickDiagnosisResultsProps> = ({
 
           {/* Price Information */}
           {result.estimatedPrice && result.estimatedPrice > 0 && (
-            <div className="bg-green-50 border border-green-200 rounded-xl p-4">
-              <p className="text-green-800 font-medium font-montserrat">
+            <div className="bg-green-50 dark:bg-green-50 border border-green-200 dark:border-green-200 rounded-xl p-4">
+              <p className="text-green-800 dark:text-green-800 font-medium font-montserrat">
                 {t('quickDiagnosis.results.estimatedPrice', {
                   price: result.estimatedPrice.toLocaleString('es-CL')
                 })}
@@ -596,7 +596,7 @@ const QuickDiagnosisResults: React.FC<QuickDiagnosisResultsProps> = ({
 
         {/* Disclaimer for Results */}
         {result.disclaimerRequired && (
-          <Card className="bg-yellow-50 border-yellow-200 border-2">
+          <Card className="bg-yellow-50 dark:bg-yellow-50 border-yellow-200 dark:border-yellow-200 border-2">
             <div className="flex items-start space-x-3">
               <span className="text-2xl">{t('quickDiagnosis.disclaimer.icon')}</span>
               <div>

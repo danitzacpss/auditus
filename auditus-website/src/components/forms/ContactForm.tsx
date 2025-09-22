@@ -115,14 +115,14 @@ Email: ${formData.email}`;
 
   if (formState.success) {
     return (
-      <div className="bg-green-50 border border-green-200 rounded-lg p-8 text-center">
+      <div className="bg-green-50 dark:bg-green-50 border border-green-200 dark:border-green-200 rounded-lg p-8 text-center">
         <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
           <CheckIcon size="lg" className="text-green-600" />
         </div>
-        <h3 className="text-xl font-semibold text-green-800 font-primary mb-2">
+        <h3 className="text-xl font-semibold text-green-800 dark:text-green-800 font-primary mb-2">
           ¡Mensaje enviado exitosamente!
         </h3>
-        <p className="text-green-700 font-secondary">
+        <p className="text-green-700 dark:text-green-700 font-secondary">
           Hemos redirigido tu consulta a WhatsApp. Te contactaremos pronto para coordinar tu cita.
         </p>
       </div>
@@ -132,10 +132,10 @@ Email: ${formData.email}`;
   return (
     <form onSubmit={handleSubmit} className="space-y-6">
       {formState.error && (
-        <div className="bg-red-50 border border-red-200 rounded-lg p-4">
+        <div className="bg-red-50 dark:bg-red-50 border border-red-200 dark:border-red-200 rounded-lg p-4">
           <div className="flex items-start space-x-3">
             <AlertIcon size="sm" className="text-red-500 mt-1 flex-shrink-0" />
-            <p className="text-red-700 font-secondary text-sm">{formState.error}</p>
+            <p className="text-red-700 dark:text-red-700 font-secondary text-sm">{formState.error}</p>
           </div>
         </div>
       )}
