@@ -1,25 +1,49 @@
-'use client';
-import React, { useState } from 'react';
-import Link from 'next/link';
-import Image from 'next/image';
-import { PROFESSIONALS, CONTACT_INFO } from '@/data/constants';
-import { CheckIcon, StarIcon, ArrowRightIcon, EarIcon, HeartIcon, TargetIcon, ShieldIcon, AwardIcon, CalendarIcon } from '@/components/ui/Icon';
-import { CalendarBookingModal } from '@/components/ui';
+"use client";
+import React, { useState } from "react";
+import Link from "next/link";
+import Image from "next/image";
+import { PROFESSIONALS, CONTACT_INFO } from "@/data/constants";
+import {
+  CheckIcon,
+  StarIcon,
+  ArrowRightIcon,
+  EarIcon,
+  HeartIcon,
+  TargetIcon,
+  ShieldIcon,
+  AwardIcon,
+  CalendarIcon,
+} from "@/components/ui/Icon";
+import { CalendarBookingModal } from "@/components/ui";
 
 export default function NosotrosPage() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   return (
     <div className="min-h-screen bg-gradient-to-b from-white to-gray-50">
-      
       {/* Enhanced Hero Section - Similar to Services */}
-      <section className="pt-24 pb-8 lg:pb-12 hero-gradient relative overflow-hidden">
+      <section className="pt-16 pb-8 lg:pt-20 lg:pb-12 hero-gradient relative overflow-hidden">
         {/* Subtle background pattern */}
         <div className="absolute inset-0 opacity-[0.015]">
-          <svg className="w-full h-full" viewBox="0 0 400 400" preserveAspectRatio="none">
+          <svg
+            className="w-full h-full"
+            viewBox="0 0 400 400"
+            preserveAspectRatio="none"
+          >
             <defs>
-              <pattern id="medical-pattern" x="0" y="0" width="40" height="40" patternUnits="userSpaceOnUse">
-                <path d="M20 5 L20 35 M5 20 L35 20" stroke="currentColor" strokeWidth="1" />
+              <pattern
+                id="medical-pattern"
+                x="0"
+                y="0"
+                width="40"
+                height="40"
+                patternUnits="userSpaceOnUse"
+              >
+                <path
+                  d="M20 5 L20 35 M5 20 L35 20"
+                  stroke="currentColor"
+                  strokeWidth="1"
+                />
                 <circle cx="20" cy="20" r="2" fill="currentColor" />
               </pattern>
             </defs>
@@ -29,34 +53,35 @@ export default function NosotrosPage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           {/* Professional Badge - Centered */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-100 to-cyan-100 border border-blue-200 px-6 py-3 rounded-full text-sm font-semibold font-secondary shadow-lg">
-              <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse shadow-lg"></div>
-              <span className="text-blue-700">Centro de Audiología Profesional</span>
-              <ShieldIcon size="sm" className="text-blue-600" />
+          <div className="text-center mb-6 lg:mb-12">
+            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500 to-cyan-500 px-8 py-4 rounded-full text-sm font-semibold font-secondary shadow-lg text-white">
+              <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+              <span>Centro de Audiología Profesional</span>
             </div>
           </div>
 
           {/* Main Hero Content - Centered Layout without Image */}
           <div className="text-center mb-16">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 font-primary leading-tight max-w-4xl mx-auto">
-              Acerca de{' '}
-              <span className="text-primary-600 relative inline-block">
+              Acerca de{" "}
+              <span className="text-primary-blue relative inline-block">
                 Centro Auditus
                 <svg
-                  className="absolute -bottom-2 left-0 w-full h-4 text-blue-200"
-                  viewBox="0 0 200 16"
+                  className="absolute -bottom-2 left-0 w-full h-3 text-blue-200"
+                  viewBox="0 0 100 12"
                   preserveAspectRatio="none"
                   fill="currentColor"
                 >
-                  <path d="M0,12 Q100,2 200,12 L200,16 L0,16 Z" />
+                  <path d="M0,8 Q50,0 100,8 L100,12 L0,12 Z" />
                 </svg>
               </span>
             </h1>
 
             <p className="text-xl lg:text-2xl text-gray-600 font-secondary leading-relaxed mb-8 max-w-4xl mx-auto">
-              Centro especializado en diagnóstico y cuidado auditivo profesional en Concepción,
-              comprometidos con brindarte <strong className="text-gray-900">atención de excelencia</strong> con tecnología moderna.
+              Centro especializado en diagnóstico y cuidado auditivo profesional
+              en Concepción, comprometidos con brindarte{" "}
+              <strong className="text-gray-900">atención de excelencia</strong>{" "}
+              con tecnología moderna.
             </p>
 
             {/* Professional Credentials */}
@@ -81,25 +106,31 @@ export default function NosotrosPage() {
 
             {/* CTA Buttons */}
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link href="/servicios">
-                <button className="btn-primary text-lg px-8 py-4 flex items-center justify-center space-x-2">
+              <Link href="/servicios" className="w-full sm:w-auto">
+                <button className="btn-primary text-lg px-8 py-4 flex items-center justify-center space-x-2 w-full sm:w-auto">
                   <span>Conocer Servicios</span>
-                  <ArrowRightIcon size="sm" className="group-hover:translate-x-1 transition-transform" />
+                  <ArrowRightIcon
+                    size="sm"
+                    className="group-hover:translate-x-1 transition-transform"
+                  />
                 </button>
               </Link>
               {CONTACT_INFO.calendarBooking ? (
                 <button
                   onClick={() => setIsModalOpen(true)}
-                  className="btn-secondary text-lg px-8 py-4 flex items-center justify-center space-x-2"
+                  className="btn-secondary text-lg px-8 py-4 flex items-center justify-center space-x-2 w-full sm:w-auto"
                 >
                   <CalendarIcon size="sm" />
                   <span>Agendar Cita</span>
                 </button>
               ) : (
-                <Link href="/contacto">
-                  <button className="btn-secondary text-lg px-8 py-4 flex items-center justify-center space-x-2">
+                <Link href="/contacto" className="w-full sm:w-auto">
+                  <button className="btn-secondary text-lg px-8 py-4 flex items-center justify-center space-x-2 w-full sm:w-auto">
                     <span>Agendar Cita</span>
-                    <ArrowRightIcon size="sm" className="group-hover:translate-x-1 transition-transform" />
+                    <ArrowRightIcon
+                      size="sm"
+                      className="group-hover:translate-x-1 transition-transform"
+                    />
                   </button>
                 </Link>
               )}
@@ -107,36 +138,60 @@ export default function NosotrosPage() {
           </div>
 
           {/* Professional Highlights - Similar to Services Layout */}
-          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto">
+          <div className="grid md:grid-cols-3 gap-6 max-w-4xl mx-auto mb-12">
             <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-blue-100/50 text-center">
               <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center mx-auto mb-4">
                 <EarIcon size="sm" className="text-white" />
               </div>
-              <h3 className="font-bold text-gray-900 mb-2 font-primary">Especialización</h3>
-              <p className="text-sm text-gray-600 font-secondary">Fonoaudiología especializada en salud auditiva</p>
+              <h3 className="font-bold text-gray-900 mb-2 font-primary">
+                Especialización
+              </h3>
+              <p className="text-sm text-gray-600 font-secondary">
+                Fonoaudiología especializada en salud auditiva
+              </p>
             </div>
 
             <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-blue-100/50 text-center">
               <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-emerald-500 rounded-xl flex items-center justify-center mx-auto mb-4">
                 <ShieldIcon size="sm" className="text-white" />
               </div>
-              <h3 className="font-bold text-gray-900 mb-2 font-primary">Tecnología</h3>
-              <p className="text-sm text-gray-600 font-secondary">Equipos modernos de alta precisión</p>
+              <h3 className="font-bold text-gray-900 mb-2 font-primary">
+                Tecnología
+              </h3>
+              <p className="text-sm text-gray-600 font-secondary">
+                Equipos modernos de alta precisión
+              </p>
             </div>
 
             <div className="bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-blue-100/50 text-center">
               <div className="w-12 h-12 bg-gradient-to-br from-pink-400 to-rose-500 rounded-xl flex items-center justify-center mx-auto mb-4">
                 <HeartIcon size="sm" className="text-white" />
               </div>
-              <h3 className="font-bold text-gray-900 mb-2 font-primary">Calidez Humana</h3>
-              <p className="text-sm text-gray-600 font-secondary">Atención personalizada y cercana</p>
+              <h3 className="font-bold text-gray-900 mb-2 font-primary">
+                Calidez Humana
+              </h3>
+              <p className="text-sm text-gray-600 font-secondary">
+                Atención personalizada y cercana
+              </p>
             </div>
           </div>
+        </div>
+
+        {/* Professional Wave Separator */}
+        <div className="absolute bottom-0 left-0 right-0">
+          <svg
+            className="w-full h-16 text-white"
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none"
+            fill="currentColor"
+          >
+            <path d="M0,60 C300,100 900,20 1200,60 L1200,120 L0,120 Z" />
+          </svg>
         </div>
       </section>
 
       {/* Nuestra Historia - Reestructurada y Mejorada */}
-      <section className="py-20 bg-white">
+      <section className="pt-12 pb-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header Section */}
           <div className="text-center mb-16">
@@ -144,14 +199,14 @@ export default function NosotrosPage() {
               <div className="w-2 h-2 bg-secondary-turquoise rounded-full animate-pulse"></div>
               <span>Nuestra Historia</span>
             </div>
-            
+
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-6 font-primary leading-tight">
-              El Origen de{' '}
+              El Origen de{" "}
               <span className="text-primary-blue relative inline-block">
                 Centro Auditus
-                <svg 
-                  className="absolute -bottom-2 left-0 w-full h-3 text-blue-200" 
-                  viewBox="0 0 100 12" 
+                <svg
+                  className="absolute -bottom-2 left-0 w-full h-3 text-blue-200"
+                  viewBox="0 0 100 12"
                   preserveAspectRatio="none"
                   fill="currentColor"
                 >
@@ -159,30 +214,36 @@ export default function NosotrosPage() {
                 </svg>
               </span>
             </h2>
-            
+
             <p className="text-xl text-gray-700 font-secondary max-w-3xl mx-auto leading-relaxed">
-              Una historia de compromiso profesional y dedicación al cuidado auditivo especializado
+              Una historia de compromiso profesional y dedicación al cuidado
+              auditivo especializado
             </p>
           </div>
-          
+
           {/* Main Content Grid */}
           <div className="grid lg:grid-cols-5 gap-12 items-start">
-            
             {/* Story Content */}
             <div className="lg:col-span-3 space-y-8">
-              
               {/* Foundation Story */}
               <div className="bg-gradient-to-br from-blue-50 to-cyan-50 rounded-2xl p-8 border border-blue-100">
                 <div className="flex items-center mb-4">
                   <div className="w-10 h-10 bg-primary-blue rounded-xl flex items-center justify-center mr-4">
                     <div className="w-3 h-3 bg-white rounded-full"></div>
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 font-primary">Nuestros Inicios</h3>
+                  <h3 className="text-xl font-bold text-gray-900 font-primary">
+                    Nuestros Inicios
+                  </h3>
                 </div>
                 <p className="text-gray-700 font-secondary leading-relaxed text-base">
-                  Centro Auditus nació en <strong className="text-primary-blue">Concepción</strong> con una visión clara: 
-                  crear un espacio especializado donde la <strong className="text-gray-900">fonoaudiología profesional</strong> 
-                  se combinara con tecnología avanzada para ofrecer diagnósticos precisos y tratamientos efectivos.
+                  Centro Auditus nació en{" "}
+                  <strong className="text-primary-blue">Concepción</strong> con
+                  una visión clara: crear un espacio especializado donde la{" "}
+                  <strong className="text-gray-900">
+                    fonoaudiología profesional{" "}
+                  </strong>
+                  se combinara con tecnología avanzada para ofrecer diagnósticos
+                  precisos y tratamientos efectivos.
                 </p>
               </div>
 
@@ -192,13 +253,21 @@ export default function NosotrosPage() {
                   <div className="w-10 h-10 bg-secondary-turquoise rounded-xl flex items-center justify-center mr-4">
                     <EarIcon size="sm" className="text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 font-primary">Experiencia y Especialización</h3>
+                  <h3 className="text-xl font-bold text-gray-900 font-primary">
+                    Experiencia y Especialización
+                  </h3>
                 </div>
                 <p className="text-gray-700 font-secondary leading-relaxed text-base">
-                  Bajo el liderazgo de <strong className="text-secondary-turquoise">Valeska Campos Sovino</strong>, 
-                  fonoaudióloga titulada de la Universidad de Concepción, hemos desarrollado protocolos especializados 
-                  en <strong className="text-gray-900">videotoscopía, lavado de oídos y audiometría</strong> que garantizan 
-                  la más alta calidad en cada procedimiento.
+                  Bajo el liderazgo de{" "}
+                  <strong className="text-secondary-turquoise">
+                    Valeska Campos Sovino
+                  </strong>
+                  , fonoaudióloga titulada de la Universidad de Concepción,
+                  hemos desarrollado protocolos especializados en{" "}
+                  <strong className="text-gray-900">
+                    videotoscopía, lavado de oídos y audiometría
+                  </strong>{" "}
+                  que garantizan la más alta calidad en cada procedimiento.
                 </p>
               </div>
 
@@ -208,27 +277,37 @@ export default function NosotrosPage() {
                   <div className="w-10 h-10 bg-pink-400 rounded-xl flex items-center justify-center mr-4">
                     <HeartIcon size="sm" className="text-white" />
                   </div>
-                  <h3 className="text-xl font-bold text-gray-900 font-primary">Compromiso Humano</h3>
+                  <h3 className="text-xl font-bold text-gray-900 font-primary">
+                    Compromiso Humano
+                  </h3>
                 </div>
                 <p className="text-gray-700 font-secondary leading-relaxed text-base">
-                  Más que un centro médico, somos un espacio donde la <strong className="text-pink-500">calidez humana</strong> 
-                  se encuentra con la <strong className="text-gray-900">excelencia profesional</strong>. Cada paciente recibe 
-                  atención personalizada, explicaciones claras y el tiempo necesario para comprender su salud auditiva.
+                  Más que un centro médico, somos un espacio donde la{" "}
+                  <strong className="text-pink-500">calidez humana </strong>
+                  se encuentra con la{" "}
+                  <strong className="text-gray-900">
+                    excelencia profesional
+                  </strong>
+                  . Cada paciente recibe atención personalizada, explicaciones
+                  claras y el tiempo necesario para comprender su salud
+                  auditiva.
                 </p>
               </div>
-              
             </div>
-            
+
             {/* Enhanced Sidebar */}
             <div className="lg:col-span-2 space-y-6">
-              
               {/* Key Numbers - Redesigned */}
               <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 sticky top-8">
                 <div className="text-center mb-6">
-                  <h3 className="text-lg font-bold text-gray-900 mb-2">Nuestra Trayectoria</h3>
-                  <p className="text-gray-600 text-sm">En números que reflejan nuestro compromiso</p>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">
+                    Nuestra Trayectoria
+                  </h3>
+                  <p className="text-gray-600 text-sm">
+                    En números que reflejan nuestro compromiso
+                  </p>
                 </div>
-                
+
                 <div className="space-y-4">
                   <div className="flex items-center justify-between p-3 bg-blue-50 rounded-xl border border-blue-100">
                     <div className="flex items-center">
@@ -236,39 +315,52 @@ export default function NosotrosPage() {
                         <AwardIcon size="sm" className="text-white" />
                       </div>
                       <div>
-                        <div className="text-lg font-bold text-gray-900">5+</div>
-                        <div className="text-xs text-gray-600">Años de Experiencia</div>
+                        <div className="text-lg font-bold text-gray-900">
+                          5+
+                        </div>
+                        <div className="text-xs text-gray-600">
+                          Años de Experiencia
+                        </div>
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center justify-between p-3 bg-cyan-50 rounded-xl border border-cyan-100">
                     <div className="flex items-center">
                       <div className="w-8 h-8 bg-secondary-turquoise rounded-lg flex items-center justify-center mr-3">
-                        <StarIcon size="sm" className="text-white fill-current" />
+                        <StarIcon
+                          size="sm"
+                          className="text-white fill-current"
+                        />
                       </div>
                       <div>
-                        <div className="text-lg font-bold text-gray-900">500+</div>
-                        <div className="text-xs text-gray-600">Pacientes Atendidos</div>
+                        <div className="text-lg font-bold text-gray-900">
+                          500+
+                        </div>
+                        <div className="text-xs text-gray-600">
+                          Pacientes Atendidos
+                        </div>
                       </div>
                     </div>
                   </div>
-                  
+
                   <div className="flex items-center justify-between p-3 bg-green-50 rounded-xl border border-green-100">
                     <div className="flex items-center">
                       <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center mr-3">
                         <CheckIcon size="sm" className="text-white" />
                       </div>
                       <div>
-                        <div className="text-lg font-bold text-gray-900">100%</div>
-                        <div className="text-xs text-gray-600">Profesionalismo</div>
+                        <div className="text-lg font-bold text-gray-900">
+                          100%
+                        </div>
+                        <div className="text-xs text-gray-600">
+                          Profesionalismo
+                        </div>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
-
-              
             </div>
           </div>
 
@@ -276,10 +368,17 @@ export default function NosotrosPage() {
           <div className="mt-16 text-center">
             <div className="max-w-4xl mx-auto">
               <p className="text-lg text-gray-700 font-secondary leading-relaxed">
-                Hoy, Centro Auditus se consolida como un referente en <strong className="text-primary-blue">cuidado auditivo</strong> 
-                en la región del Biobío, manteniendo nuestro compromiso original: brindar atención de excelencia con 
-                <strong className="text-secondary-turquoise"> tecnología avanzada</strong> y 
-                <strong className="text-pink-500"> trato humano cercano</strong>.
+                Hoy, Centro Auditus se consolida como un referente en{" "}
+                <strong className="text-primary-blue">cuidado auditivo </strong>
+                en la región del Biobío, manteniendo nuestro compromiso
+                original: brindar atención de excelencia con
+                <strong className="text-secondary-turquoise">
+                  {" "}
+                  tecnología avanzada
+                </strong>{" "}
+                y
+                <strong className="text-pink-500"> trato humano cercano</strong>
+                .
               </p>
             </div>
           </div>
@@ -287,14 +386,15 @@ export default function NosotrosPage() {
       </section>
 
       {/* Misión y Visión */}
-      <section className="py-16 bg-gradient-to-b from-gray-50 to-white">
+      <section className="pt-8 pb-16 bg-gradient-to-b from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4 font-primary">
               Misión y Visión
             </h2>
             <p className="text-lg text-gray-600 font-secondary max-w-2xl mx-auto">
-              Los valores que nos guían en nuestro compromiso con la excelencia en salud auditiva
+              Los valores que nos guían en nuestro compromiso con la excelencia
+              en salud auditiva
             </p>
           </div>
 
@@ -303,11 +403,14 @@ export default function NosotrosPage() {
               <div className="w-16 h-16 bg-gradient-to-br from-primary-blue to-blue-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
                 <TargetIcon size="lg" className="text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4 font-primary text-center">Misión</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4 font-primary text-center">
+                Misión
+              </h3>
               <p className="text-gray-600 font-secondary leading-relaxed text-center">
-                Proporcionar servicios especializados en audiología de la más alta calidad, 
-                utilizando tecnología moderna y un enfoque personalizado para mejorar la calidad 
-                de vida de nuestros pacientes a través del cuidado integral de su salud auditiva.
+                Proporcionar servicios especializados en audiología de la más
+                alta calidad, utilizando tecnología moderna y un enfoque
+                personalizado para mejorar la calidad de vida de nuestros
+                pacientes a través del cuidado integral de su salud auditiva.
               </p>
             </div>
 
@@ -315,11 +418,14 @@ export default function NosotrosPage() {
               <div className="w-16 h-16 bg-gradient-to-br from-secondary-turquoise to-cyan-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
                 <EarIcon size="lg" className="text-white" />
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-4 font-primary text-center">Visión</h3>
+              <h3 className="text-2xl font-bold text-gray-900 mb-4 font-primary text-center">
+                Visión
+              </h3>
               <p className="text-gray-600 font-secondary leading-relaxed text-center">
-                Ser el centro de referencia en audiología en la región del Biobío, reconocidos 
-                por nuestra excelencia profesional, innovación tecnológica y compromiso con la 
-                prevención y tratamiento de los trastornos auditivos.
+                Ser el centro de referencia en audiología en la región del
+                Biobío, reconocidos por nuestra excelencia profesional,
+                innovación tecnológica y compromiso con la prevención y
+                tratamiento de los trastornos auditivos.
               </p>
             </div>
           </div>
@@ -327,21 +433,21 @@ export default function NosotrosPage() {
       </section>
 
       {/* Conoce a Nuestro Equipo Section */}
-      <section className="py-16 bg-white">
+      <section className="pt-4 pb-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <div className="professional-badge inline-flex items-center gap-2 text-sm font-medium font-secondary mb-6">
               <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
               <span>Profesionales Especializados</span>
             </div>
-            
+
             <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4 font-primary">
-              Conoce a{' '}
+              Conoce a{" "}
               <span className="text-primary-blue relative inline-block">
                 Nuestro Equipo
-                <svg 
-                  className="absolute -bottom-2 left-0 w-full h-3 text-blue-200" 
-                  viewBox="0 0 100 12" 
+                <svg
+                  className="absolute -bottom-2 left-0 w-full h-3 text-blue-200"
+                  viewBox="0 0 100 12"
                   preserveAspectRatio="none"
                   fill="currentColor"
                 >
@@ -349,7 +455,7 @@ export default function NosotrosPage() {
                 </svg>
               </span>
             </h2>
-            
+
             <p className="text-lg text-gray-600 font-secondary max-w-2xl mx-auto">
               Profesionales comprometidos con brindarte atención de excelencia
             </p>
@@ -357,8 +463,10 @@ export default function NosotrosPage() {
 
           <div className="flex justify-center">
             {PROFESSIONALS.map((professional) => (
-              <div key={professional.id} className="bg-white rounded-3xl shadow-lg p-8 text-center hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 max-w-md">
-                
+              <div
+                key={professional.id}
+                className="bg-white rounded-3xl shadow-lg p-8 text-center hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 max-w-md"
+              >
                 {/* Foto del profesional */}
                 <div className="relative mb-6">
                   <div className="w-32 h-32 mx-auto relative">
@@ -382,7 +490,7 @@ export default function NosotrosPage() {
                 <h3 className="text-xl font-bold text-gray-900 font-primary mb-2">
                   {professional.name}
                 </h3>
-                
+
                 <p className="text-primary-blue font-medium font-secondary mb-4">
                   {professional.title}
                 </p>
@@ -390,19 +498,29 @@ export default function NosotrosPage() {
                 {/* Rating */}
                 <div className="flex items-center justify-center space-x-1 mb-4">
                   {[...Array(5)].map((_, i) => (
-                    <StarIcon key={i} size="sm" className="text-yellow-400 fill-current" />
+                    <StarIcon
+                      key={i}
+                      size="sm"
+                      className="text-yellow-400 fill-current"
+                    />
                   ))}
-                  <span className="text-sm text-gray-600 ml-2 font-secondary">5.0</span>
+                  <span className="text-sm text-gray-600 ml-2 font-secondary">
+                    5.0
+                  </span>
                 </div>
 
                 {/* Estadísticas rápidas */}
                 <div className="grid grid-cols-2 gap-4 mb-6">
                   <div className="text-center">
-                    <div className="text-lg font-bold text-primary-blue">{professional.yearsExperience}+</div>
+                    <div className="text-lg font-bold text-primary-blue">
+                      {professional.yearsExperience}+
+                    </div>
                     <div className="text-xs text-gray-600">Años</div>
                   </div>
                   <div className="text-center">
-                    <div className="text-lg font-bold text-secondary-turquoise">{professional.satisfaction}%</div>
+                    <div className="text-lg font-bold text-secondary-turquoise">
+                      {professional.satisfaction}%
+                    </div>
                     <div className="text-xs text-gray-600">Satisfacción</div>
                   </div>
                 </div>
@@ -425,16 +543,28 @@ export default function NosotrosPage() {
         </div>
       </section>
 
-
       {/* Por Qué Elegirnos */}
-      <section className="py-16 bg-white">
+      <section className="pt-4 pb-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4 font-primary">
-              ¿Por Qué Elegir Centro Auditus?
+              ¿Por Qué Elegir{" "}
+              <span className="text-primary-blue relative inline-block">
+                Centro Auditus
+                <svg
+                  className="absolute -bottom-2 left-0 w-full h-3 text-blue-200"
+                  viewBox="0 0 100 12"
+                  preserveAspectRatio="none"
+                  fill="currentColor"
+                >
+                  <path d="M0,8 Q50,0 100,8 L100,12 L0,12 Z" />
+                </svg>
+              </span>
+              ?
             </h2>
             <p className="text-lg text-gray-600 font-secondary max-w-2xl mx-auto">
-              Razones que nos convierten en tu mejor opción para el cuidado auditivo
+              Razones que nos convierten en tu mejor opción para el cuidado
+              auditivo
             </p>
           </div>
 
@@ -444,9 +574,12 @@ export default function NosotrosPage() {
                 <AwardIcon size="md" className="text-white" />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2 font-primary">Profesional Certificada</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-2 font-primary">
+                  Profesional Certificada
+                </h3>
                 <p className="text-gray-600 font-secondary text-sm">
-                  Fonoaudióloga titulada con registro profesional y formación especializada
+                  Fonoaudióloga titulada con registro profesional y formación
+                  especializada
                 </p>
               </div>
             </div>
@@ -456,7 +589,9 @@ export default function NosotrosPage() {
                 <EarIcon size="md" className="text-white" />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2 font-primary">Tecnología Avanzada</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-2 font-primary">
+                  Tecnología Avanzada
+                </h3>
                 <p className="text-gray-600 font-secondary text-sm">
                   Videotoscopía de alta resolución y equipamiento especializado
                 </p>
@@ -468,9 +603,12 @@ export default function NosotrosPage() {
                 <CheckIcon size="md" className="text-white" />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2 font-primary">Procedimientos Seguros</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-2 font-primary">
+                  Procedimientos Seguros
+                </h3>
                 <p className="text-gray-600 font-secondary text-sm">
-                  Protocolos médicos estrictos y técnicas profesionales especializadas
+                  Protocolos médicos estrictos y técnicas profesionales
+                  especializadas
                 </p>
               </div>
             </div>
@@ -480,9 +618,12 @@ export default function NosotrosPage() {
                 <HeartIcon size="md" className="text-white" />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2 font-primary">Atención Personalizada</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-2 font-primary">
+                  Atención Personalizada
+                </h3>
                 <p className="text-gray-600 font-secondary text-sm">
-                  Evaluación individual y recomendaciones específicas para cada caso
+                  Evaluación individual y recomendaciones específicas para cada
+                  caso
                 </p>
               </div>
             </div>
@@ -492,7 +633,9 @@ export default function NosotrosPage() {
                 <TargetIcon size="md" className="text-white" />
               </div>
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2 font-primary">Ubicación Conveniente</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-2 font-primary">
+                  Ubicación Conveniente
+                </h3>
                 <p className="text-gray-600 font-secondary text-sm">
                   Centro de Concepción, fácil acceso y horarios flexibles
                 </p>
@@ -503,14 +646,21 @@ export default function NosotrosPage() {
               <div className="w-12 h-12 bg-yellow-500 rounded-xl flex items-center justify-center flex-shrink-0">
                 <div className="flex space-x-0.5">
                   {[...Array(3)].map((_, i) => (
-                    <StarIcon key={i} size="sm" className="text-white fill-current" />
+                    <StarIcon
+                      key={i}
+                      size="sm"
+                      className="text-white fill-current"
+                    />
                   ))}
                 </div>
               </div>
               <div>
-                <h3 className="text-lg font-bold text-gray-900 mb-2 font-primary">Satisfacción Garantizada</h3>
+                <h3 className="text-lg font-bold text-gray-900 mb-2 font-primary">
+                  Satisfacción Garantizada
+                </h3>
                 <p className="text-gray-600 font-secondary text-sm">
-                  Compromiso con resultados excepcionales y seguimiento post-atención
+                  Compromiso con resultados excepcionales y seguimiento
+                  post-atención
                 </p>
               </div>
             </div>
@@ -527,7 +677,6 @@ export default function NosotrosPage() {
           serviceName="Evaluación Auditiva"
         />
       )}
-
     </div>
   );
 }

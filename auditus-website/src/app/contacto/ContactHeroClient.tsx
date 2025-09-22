@@ -151,6 +151,18 @@ export default function ContactHeroClient() {
           </div>
 
         </div>
+
+        {/* Professional Wave Separator */}
+        <div className="absolute bottom-0 left-0 right-0">
+          <svg
+            className="w-full h-16 text-white"
+            viewBox="0 0 1200 120"
+            preserveAspectRatio="none"
+            fill="currentColor"
+          >
+            <path d="M0,60 C300,100 900,20 1200,60 L1200,120 L0,120 Z" />
+          </svg>
+        </div>
       </section>
 
       {/* Calendar Booking Modal */}
