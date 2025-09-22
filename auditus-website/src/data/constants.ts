@@ -161,7 +161,9 @@ export const SERVICES: Service[] = [
       'Evaluación completa de la audición',
       'Pruebas en cabina audiométrica',
       'Audiograma detallado',
-      'Recomendaciones profesionales'
+      'Recomendaciones profesionales',
+      'Logoaudiometría',
+      'Pruebas supraliminares'
     ],
     preparation: [
       'Descansar bien la noche anterior',

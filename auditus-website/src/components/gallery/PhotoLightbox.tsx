@@ -107,7 +107,7 @@ const PhotoLightbox: React.FC<PhotoLightboxProps> = ({
 
       {/* Image Container */}
       <div
-        className="relative max-w-[90vw] max-h-[90vh]"
+        className="relative flex items-center justify-center w-[90vw] h-[90vh]"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Loading indicator */}
@@ -122,7 +122,7 @@ const PhotoLightbox: React.FC<PhotoLightboxProps> = ({
           key={currentPhoto.id} // Force re-render on photo change
           src={currentPhoto.large}
           alt={currentPhoto.alt}
-          className={`max-w-full max-h-full w-auto h-auto object-contain rounded-lg shadow-2xl transition-opacity duration-300 ${
+          className={`max-w-[90vw] max-h-[80vh] w-auto h-auto object-contain rounded-lg shadow-2xl transition-opacity duration-300 ${
             isLoading ? 'opacity-0' : 'opacity-100'
           }`}
           onLoad={() => setIsLoading(false)}

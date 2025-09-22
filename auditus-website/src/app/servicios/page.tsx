@@ -254,7 +254,7 @@ export default function ServicesPage() {
                       <div className="bg-gray-50 rounded-2xl p-2 sm:p-3 mb-3 sm:mb-4">
                         <h4 className="text-sm font-semibold text-gray-900 mb-2 sm:mb-3 font-primary">Incluye:</h4>
                         <ul className="space-y-2">
-                          {service.features.slice(0, 3).map((feature, index) => (
+                          {service.features.map((feature, index) => (
                             <li key={index} className="flex items-start space-x-3">
                               <div className="w-1.5 h-1.5 bg-primary-blue rounded-full mt-2 flex-shrink-0"></div>
                               <span className="text-sm text-gray-700 font-secondary leading-relaxed">
