@@ -57,15 +57,21 @@ const PressSection: React.FC = () => {
               <div className="flex flex-col lg:flex-row h-full">
                 {/* Media Image - Full width on mobile, left side on desktop */}
                 <div className="w-full lg:w-1/3 flex-shrink-0 relative overflow-hidden rounded-t-3xl lg:rounded-t-none lg:rounded-l-3xl bg-white flex items-center justify-center">
-                  <Image
-                    src={article.image}
-                    alt={`Imagen de cobertura mediática: ${article.title}`}
-                    width={320}
-                    height={240}
-                    className="w-full h-80 sm:h-80 lg:h-full object-contain transition-transform duration-300 group-hover:scale-105"
-                    sizes="(max-width: 1024px) 100vw, 33vw"
-                    priority
-                  />
+                  {article.image ? (
+                    <Image
+                      src={article.image}
+                      alt={`Imagen de cobertura mediática: ${article.title}`}
+                      width={320}
+                      height={240}
+                      className="w-full h-80 sm:h-80 lg:h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                      sizes="(max-width: 1024px) 100vw, 33vw"
+                      priority
+                    />
+                  ) : (
+                    <div className="w-full h-80 sm:h-80 lg:h-full bg-gray-100 flex items-center justify-center">
+                      <span className="text-gray-400 text-sm">Sin imagen</span>
+                    </div>
+                  )}
                 </div>
 
                 {/* Content - Right side */}
