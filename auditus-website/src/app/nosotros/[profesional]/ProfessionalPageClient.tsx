@@ -2,10 +2,9 @@
 
 import React, { useState } from 'react';
 import Image from 'next/image';
-import { CheckIcon, StarIcon, PhoneIcon, CalendarIcon } from '@/components/ui';
+import { CheckIcon, StarIcon, PhoneIcon, CalendarIcon } from '@/components/ui/Icon';
 import { CalendarBookingModal } from '@/components/ui';
 import { CONTACT_INFO } from '@/data/constants';
-import { formatCurrency } from '@/lib/utils';
 import type { Professional } from '@/types';
 
 interface ProfessionalPageClientProps {

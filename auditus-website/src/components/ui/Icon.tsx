@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { cn } from '@/lib/utils';
 
@@ -48,6 +50,9 @@ const Icon = React.forwardRef<SVGSVGElement, IconProps>(
         )}
         fill="currentColor"
         viewBox="0 0 24 24"
+        role="img"
+        aria-hidden="true"
+        suppressHydrationWarning
         {...props}
       >
         {children}

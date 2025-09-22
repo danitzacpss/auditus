@@ -1,14 +1,9 @@
 import React from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { notFound } from "next/navigation";
-import { PROFESSIONALS, CONTACT_INFO } from "@/data/constants";
+import { PROFESSIONALS } from "@/data/constants";
 import {
   CheckIcon,
-  StarIcon,
-  ArrowRightIcon,
-  PhoneIcon,
-  CalendarIcon,
 } from "@/components/ui/Icon";
 import ProfessionalPageClient from "./ProfessionalPageClient";
 

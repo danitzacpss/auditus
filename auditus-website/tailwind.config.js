@@ -5,6 +5,82 @@ export default {
     './src/components/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
+  safelist: [
+    // Custom badge classes
+    'professional-badge',
+    'professional-badge-light',
+    'professional-badge-certified',
+    'hero-gradient',
+    // Common gradient combinations that might be purged
+    'bg-gradient-to-r',
+    'bg-gradient-to-br',
+    'bg-gradient-to-b',
+    'bg-gradient-to-t',
+    'from-blue-50',
+    'to-cyan-50',
+    'from-blue-100',
+    'to-cyan-100',
+    'from-blue-500',
+    'to-cyan-500',
+    'from-blue-600',
+    'to-cyan-600',
+    'from-green-50',
+    'to-emerald-50',
+    'from-green-500',
+    'to-emerald-500',
+    'from-pink-50',
+    'to-rose-50',
+    'from-purple-50',
+    'to-pink-50',
+    'from-purple-100',
+    'to-pink-100',
+    'from-purple-500',
+    'to-pink-500',
+    'from-cyan-50',
+    'to-teal-50',
+    'from-cyan-500',
+    'to-teal-500',
+    // Primary colors that might not be detected
+    'bg-primary-blue',
+    'text-primary-blue',
+    'bg-secondary-turquoise',
+    'text-secondary-turquoise',
+    // Border colors
+    'border-blue-100',
+    'border-blue-200',
+    'border-green-100',
+    'border-cyan-100',
+    'border-pink-100',
+    'border-purple-200',
+    // Shadow effects
+    'shadow-primary',
+    'shadow-secondary',
+    // Button classes
+    'btn-primary',
+    'btn-secondary',
+    'btn-cta-primary',
+    // Professional card and sections
+    'professional-card',
+    'professional-cta-section',
+    // Background clip text
+    'bg-clip-text',
+    'text-transparent',
+    // Hover states that might be purged
+    'hover:from-blue-700',
+    'hover:to-cyan-700',
+    'hover:from-green-700',
+    'hover:to-emerald-700',
+    'hover:from-purple-700',
+    'hover:to-indigo-700',
+    // Animation classes
+    'animate-pulse',
+    'animate-bounce',
+    // Additional gradient combinations
+    'from-f59e0b',
+    'to-f97316',
+    'from-orange-500',
+    'to-amber-500',
+  ],
   theme: {
     extend: {
       // Auditus Design System Colors - Nueva paleta azul predominante
