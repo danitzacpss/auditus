@@ -1026,8 +1026,6 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
                   </h3>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                  {/* DEBUG: Check features length */}
-                  {console.log('Service features:', service.features)}
                   {service.features.map((feature, index) => (
                     <div key={index} className="flex items-start space-x-3 group/item">
                       <div className="p-1.5 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full mt-1 flex-shrink-0 group-hover/item:scale-110 transition-transform duration-200">
