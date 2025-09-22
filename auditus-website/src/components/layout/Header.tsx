@@ -145,7 +145,7 @@ const Header: React.FC = () => {
             {/* Mobile menu button */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="lg:hidden p-2 rounded-lg text-gray-700 hover:text-primary-600 hover:bg-gray-100 transition-colors"
+              className="lg:hidden p-2 rounded-lg text-gray-700 hover:text-primary-600 hover:bg-gray-100 transition-colors relative z-[70]"
               aria-label="Toggle menu"
             >
               {isMenuOpen ? <CloseIcon size="md" /> : <MenuIcon size="md" />}
@@ -155,7 +155,7 @@ const Header: React.FC = () => {
 
         {/* Mobile Navigation Overlay */}
         {isMenuOpen && (
-          <div className="lg:hidden fixed inset-0 top-16 bg-white z-40 overflow-y-auto">
+          <div className="lg:hidden fixed left-0 right-0 top-16 bg-white border-t border-gray-200 shadow-lg z-[60] max-h-[calc(100vh-4rem)] overflow-y-auto">
             <nav className="px-4 py-6 space-y-4">
               {NAVIGATION.map((item) => (
                 <div key={item.href} className="space-y-2">

@@ -20,9 +20,9 @@ export default function ServicesPage() {
   const [selectedService, setSelectedService] = useState<string>('');
 
   return (
-    <main className="min-h-screen">
+    <>
       {/* Enhanced Hero Section with Professional Image */}
-      <section className="pt-24 pb-8 lg:pb-12 hero-gradient relative overflow-hidden">
+      <section className="pt-16 pb-8 lg:pt-20 lg:pb-12 hero-gradient relative overflow-hidden">
         {/* Subtle background pattern */}
         <div className="absolute inset-0 opacity-[0.015]">
           <svg className="w-full h-full" viewBox="0 0 400 400" preserveAspectRatio="none">
@@ -38,22 +38,21 @@ export default function ServicesPage() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           {/* Professional Badge - Centered */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-100 to-cyan-100 border border-blue-200 px-6 py-3 rounded-full text-sm font-semibold font-secondary shadow-lg">
-              <div className="w-3 h-3 bg-blue-500 rounded-full animate-pulse shadow-lg"></div>
-              <span className="text-blue-700">Servicios Especializados de Audiología</span>
-              <ShieldIcon size="sm" className="text-blue-600" />
+          <div className="text-center mb-6 lg:mb-12">
+            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500 to-cyan-500 px-8 py-4 rounded-full text-sm font-semibold font-secondary shadow-lg text-white">
+              <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+              <span>Servicios Especializados de Audiología</span>
             </div>
           </div>
 
           {/* Main Hero Content - Split Layout */}
-          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center mb-16">
+          <div className="grid lg:grid-cols-2 gap-6 lg:gap-16 items-center mb-8">
 
             {/* Content Column */}
-            <div className="order-2 lg:order-1 text-center lg:text-left">
+            <div className="order-1 lg:order-1 text-center lg:text-left">
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 font-primary leading-tight">
                 Cuidado Auditivo{' '}
-                <span className="text-primary-600 relative inline-block">
+                <span className="text-primary-blue relative inline-block">
                   Profesional
                   <svg
                     className="absolute -bottom-2 left-0 w-full h-3 text-blue-200"
@@ -87,31 +86,10 @@ export default function ServicesPage() {
                 </div>
               </div>
 
-              {/* CTA Buttons */}
-              <div className="flex flex-col sm:flex-row gap-4 justify-center lg:justify-start">
-                {CONTACT_INFO.calendarBooking && (
-                  <button
-                    onClick={() => {
-                      setSelectedService('Evaluación Auditiva Completa');
-                      setIsModalOpen(true);
-                    }}
-                    className="btn-primary text-lg px-8 py-4 flex items-center justify-center space-x-2"
-                  >
-                    <span>Reservar Evaluación</span>
-                    <CalendarIcon size="sm" className="group-hover:translate-x-1 transition-transform" />
-                  </button>
-                )}
-                <Link href={getWhatsAppUrl(CONTACT_INFO.whatsapp, 'Hola, me interesa información sobre sus servicios de audiología')}>
-                  <button className="btn-secondary text-lg px-8 py-4 flex items-center justify-center space-x-2">
-                    <span>Consultar por WhatsApp</span>
-                    <ArrowRightIcon size="sm" className="group-hover:translate-x-1 transition-transform" />
-                  </button>
-                </Link>
-              </div>
             </div>
 
             {/* Professional Image Column */}
-            <div className="order-1 lg:order-2 relative">
+            <div className="order-2 lg:order-2 relative">
               <div className="hero-professional-image p-2">
                 <Image
                   src="/images/hero-professional-services.jpg"
@@ -125,41 +103,24 @@ export default function ServicesPage() {
                 />
 
                 {/* Technology Overlay */}
-                <div className="absolute bottom-4 right-4 professional-overlay trust-indicator rounded-2xl p-4 shadow-xl">
-                  <div className="flex items-center space-x-3">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg">
+                <div className="absolute bottom-4 left-6 right-6 lg:bottom-4 lg:right-4 lg:left-auto lg:max-w-xs professional-overlay trust-indicator rounded-xl px-6 py-3 lg:p-4 shadow-xl">
+                  <div className="flex items-center space-x-2">
+                    <div className="w-10 h-10 lg:w-12 lg:h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center shadow-lg flex-shrink-0">
                       <ShieldIcon size="sm" className="text-white" />
                     </div>
-                    <div>
-                      <div className="text-sm font-bold text-gray-900 font-primary">Tecnología Moderna</div>
-                      <div className="text-xs text-blue-600 font-secondary">Equipos de Alta Precisión</div>
+                    <div className="flex-1">
+                      <div className="text-sm lg:text-sm font-bold text-gray-900 font-primary whitespace-nowrap leading-none">Tecnología Moderna</div>
+                      <div className="text-xs text-blue-600 font-secondary whitespace-nowrap leading-none -mt-2">Equipos de Precisión</div>
                     </div>
                   </div>
                 </div>
               </div>
 
-              {/* Professional credentials below image on mobile */}
-              <div className="lg:hidden mt-6 bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-blue-100/50">
-                <div className="grid grid-cols-2 gap-4 text-center">
-                  <div className="flex flex-col items-center space-y-2">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-cyan-500 rounded-xl flex items-center justify-center">
-                      <ShieldIcon size="sm" className="text-white" />
-                    </div>
-                    <span className="text-xs font-medium text-gray-700 font-secondary">Equipos Modernos</span>
-                  </div>
-                  <div className="flex flex-col items-center space-y-2">
-                    <div className="w-12 h-12 bg-gradient-to-br from-green-500 to-teal-500 rounded-xl flex items-center justify-center">
-                      <CheckIcon size="sm" className="text-white" />
-                    </div>
-                    <span className="text-xs font-medium text-gray-700 font-secondary">100% Seguro</span>
-                  </div>
-                </div>
-              </div>
             </div>
           </div>
 
           {/* Quick Stats Cards - Full Width Below */}
-          <div className="grid md:grid-cols-3 gap-6 mb-8">
+          <div className="grid md:grid-cols-3 gap-6 mb-6 -mt-4">
             <div className="bg-white/80 backdrop-blur-md rounded-2xl p-6 text-center shadow-xl border border-blue-100/50 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
               <div className="text-4xl font-bold text-blue-600 font-primary mb-2">3</div>
               <div className="text-gray-700 font-secondary">Servicios Especializados</div>
@@ -172,6 +133,28 @@ export default function ServicesPage() {
               <div className="text-4xl font-bold text-cyan-600 font-primary mb-2">24h</div>
               <div className="text-gray-700 font-secondary">Respuesta Promedio</div>
             </div>
+          </div>
+
+          {/* CTA Buttons - After Stats */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            {CONTACT_INFO.calendarBooking && (
+              <button
+                onClick={() => {
+                  setSelectedService('Evaluación Auditiva Completa');
+                  setIsModalOpen(true);
+                }}
+                className="btn-primary text-lg px-8 py-4 flex items-center justify-center space-x-2"
+              >
+                <span>Reservar Evaluación</span>
+                <CalendarIcon size="sm" className="group-hover:translate-x-1 transition-transform" />
+              </button>
+            )}
+            <Link href={getWhatsAppUrl(CONTACT_INFO.whatsapp, 'Hola, me interesa información sobre sus servicios de audiología')} className="flex-1 sm:flex-initial">
+              <button className="btn-secondary text-lg px-8 py-4 flex items-center justify-center space-x-2 w-full">
+                <span>Consultar por WhatsApp</span>
+                <ArrowRightIcon size="sm" className="group-hover:translate-x-1 transition-transform" />
+              </button>
+            </Link>
           </div>
         </div>
 
@@ -189,14 +172,14 @@ export default function ServicesPage() {
       </section>
 
       {/* Enhanced Services Grid */}
-      <section className="pt-8 pb-16 lg:pt-12 lg:pb-24 bg-gradient-to-b from-white to-gray-50">
+      <section className="pt-8 pb-4 lg:pt-12 lg:pb-6 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Section Header */}
           <div className="text-center mb-12 lg:mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 font-primary max-w-4xl mx-auto leading-tight">
               Nuestros{' '}
-              <span className="text-primary-600 relative inline-block">
+              <span className="text-primary-blue relative inline-block">
                 Servicios
                 <svg
                   className="absolute -bottom-2 left-0 w-full h-3 text-blue-200"
@@ -223,10 +206,10 @@ export default function ServicesPage() {
                   key={service.id}
                   className="professional-card group relative hover:bg-gradient-to-br hover:from-white hover:to-blue-50 border border-gray-200 hover:border-blue-200 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 rounded-3xl overflow-hidden h-full flex flex-col"
                 >
-                  <CardContent className="p-8 h-full flex flex-col relative">
+                  <CardContent className="p-3 sm:p-5 lg:p-8 h-full flex flex-col relative">
 
                     {/* Service Icon */}
-                    <div className="mb-8 relative">
+                    <div className="mb-3 sm:mb-5 lg:mb-8 relative">
                       <div className="w-20 h-20 rounded-2xl flex items-center justify-center transition-all duration-300 shadow-lg p-3 bg-white"
                            style={{
                              border: '2px solid #3b82f6'
@@ -251,8 +234,8 @@ export default function ServicesPage() {
                     </div>
 
                     {/* Service Header */}
-                    <div className="mb-6 flex-1">
-                      <div className="flex items-start justify-between mb-4">
+                    <div className="mb-3 sm:mb-5 flex-1">
+                      <div className="flex items-start justify-between mb-2">
                         <h3 className="text-2xl font-bold text-gray-900 font-primary">
                           {service.name}
                         </h3>
@@ -263,13 +246,13 @@ export default function ServicesPage() {
                         </div>
                       </div>
 
-                      <p className="text-gray-600 font-secondary mb-6 leading-relaxed">
+                      <p className="text-gray-600 font-secondary mb-3 sm:mb-4 leading-relaxed">
                         {service.description}
                       </p>
 
                       {/* Professional features */}
-                      <div className="bg-gray-50 rounded-2xl p-4 mb-6">
-                        <h4 className="text-sm font-semibold text-gray-900 mb-3 font-primary">Incluye:</h4>
+                      <div className="bg-gray-50 rounded-2xl p-2 sm:p-3 mb-3 sm:mb-4">
+                        <h4 className="text-sm font-semibold text-gray-900 mb-2 sm:mb-3 font-primary">Incluye:</h4>
                         <ul className="space-y-2">
                           {service.features.slice(0, 3).map((feature, index) => (
                             <li key={index} className="flex items-start space-x-3">
@@ -285,7 +268,7 @@ export default function ServicesPage() {
 
                     {/* Enhanced Pricing Section */}
                     <div className="space-y-4">
-                      <div className="rounded-2xl p-4 border border-blue-100" style={{background: 'linear-gradient(135deg, #eff6ff 0%, #ecfeff 100%)'}}>
+                      <div className="rounded-2xl p-2 sm:p-3 border border-blue-100" style={{background: 'linear-gradient(135deg, #eff6ff 0%, #ecfeff 100%)'}}>
                         <div className="flex items-center justify-between">
                           <div>
                             <div className="text-3xl font-bold text-primary-blue font-primary">
@@ -342,11 +325,11 @@ export default function ServicesPage() {
       </section>
 
       {/* Trust & Credibility Section */}
-<section className="pt-8 pb-16 lg:pt-12 lg:pb-20 bg-gradient-to-br from-blue-50/50 to-cyan-50/30">
+<section className="pt-2 pb-4 lg:pt-4 lg:pb-6 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* Professional Credentials */}
-          <div className="text-center mb-16">
+          <div className="text-center mb-8 lg:mb-12">
             <div className="inline-flex items-center gap-3 bg-gradient-to-r from-green-100 to-teal-100 border border-green-200 px-6 py-3 rounded-full text-sm font-semibold font-secondary mb-6 shadow-lg">
               <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse shadow-lg"></div>
               <span className="text-green-700">Profesional Certificada</span>
@@ -355,7 +338,7 @@ export default function ServicesPage() {
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 font-primary max-w-4xl mx-auto leading-tight">
               Atención de{' '}
-              <span className="text-primary-600 relative inline-block">
+              <span className="text-primary-blue relative inline-block">
                 Excelencia
                 <svg
                   className="absolute -bottom-2 left-0 w-full h-3 text-blue-200"
@@ -426,13 +409,13 @@ export default function ServicesPage() {
       </section>
 
       {/* Enhanced Pricing Strategy */}
-      <section className="pt-8 pb-16 lg:pt-12 lg:pb-24 bg-gradient-to-b from-gray-50 to-white">
+      <section className="pt-2 pb-2 lg:pt-4 lg:pb-4 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           <div className="text-center mb-12 lg:mb-16">
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 font-primary max-w-4xl mx-auto leading-tight">
               Precios{' '}
-              <span className="text-primary-600 relative inline-block">
+              <span className="text-primary-blue relative inline-block">
                 Transparentes
                 <svg
                   className="absolute -bottom-2 left-0 w-full h-3 text-blue-200"
@@ -505,7 +488,7 @@ export default function ServicesPage() {
       </section>
 
       {/* Professional CTA Section */}
-      <section className="pt-4 pb-16 lg:pt-6 lg:pb-24 bg-gradient-to-b from-white to-gray-50">
+      <section className="pt-1 pb-8 lg:pt-2 lg:pb-12 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="relative">
             <div className="rounded-3xl p-8 lg:p-12 text-white relative overflow-hidden shadow-2xl"
@@ -548,11 +531,23 @@ export default function ServicesPage() {
                 </div>
 
                 <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                  <Link href={getWhatsAppUrl(CONTACT_INFO.whatsapp, 'Hola, me interesa agendar una evaluación profesional')}>
-                    <button className="font-semibold px-8 py-4 rounded-xl text-lg transition-all duration-200 bg-white text-blue-600 border-none shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+                  {CONTACT_INFO.calendarBooking ? (
+                    <button
+                      onClick={() => {
+                        setSelectedService('Evaluación Auditiva Profesional');
+                        setIsModalOpen(true);
+                      }}
+                      className="font-semibold px-8 py-4 rounded-xl text-lg transition-all duration-200 bg-white text-blue-600 border-none shadow-2xl hover:shadow-3xl hover:-translate-y-1"
+                    >
                       Agendar Evaluación Profesional
                     </button>
-                  </Link>
+                  ) : (
+                    <Link href={getWhatsAppUrl(CONTACT_INFO.whatsapp, 'Hola, me interesa agendar una evaluación profesional')}>
+                      <button className="font-semibold px-8 py-4 rounded-xl text-lg transition-all duration-200 bg-white text-blue-600 border-none shadow-2xl hover:shadow-3xl hover:-translate-y-1">
+                        Agendar Evaluación Profesional
+                      </button>
+                    </Link>
+                  )}
 
                   <Link href={`tel:${CONTACT_INFO.phone}`}>
                     <button className="px-8 py-4 rounded-xl text-lg transition-all duration-200 bg-transparent text-white border-2 border-white shadow-lg hover:bg-white hover:text-blue-600 hover:-translate-y-1 hover:shadow-xl">
@@ -595,6 +590,6 @@ export default function ServicesPage() {
           serviceName={selectedService || "Evaluación Auditiva"}
         />
       )}
-    </main>
+    </>
   );
 }
