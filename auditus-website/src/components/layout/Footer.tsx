@@ -13,7 +13,7 @@ const Footer: React.FC = () => {
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Main footer content */}
-        <div className="py-6 lg:py-8">
+        <div className="py-6 lg:py-8 pb-20 lg:pb-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-8">
 
             {/* Company branding section */}
@@ -256,18 +256,23 @@ const Footer: React.FC = () => {
 
                 {/* Legal Links */}
                 <div className="flex flex-wrap justify-center lg:justify-end items-center space-x-4 text-sm">
-                  <Link
-                    href="/politica-privacidad"
-                    className="text-gray-200 hover:text-cyan-300 transition-colors font-secondary hover:underline underline-offset-4"
-                  >
-                    Política de Privacidad
-                  </Link>
-                  <Link
-                    href="/terminos-condiciones"
-                    className="text-gray-200 hover:text-cyan-300 transition-colors font-secondary hover:underline underline-offset-4"
-                  >
-                    Términos y Condiciones
-                  </Link>
+                  {/* Temporarily hidden legal links */}
+                  {false && (
+                    <>
+                      <Link
+                        href="/politica-privacidad"
+                        className="text-gray-200 hover:text-cyan-300 transition-colors font-secondary hover:underline underline-offset-4"
+                      >
+                        Política de Privacidad
+                      </Link>
+                      <Link
+                        href="/terminos-condiciones"
+                        className="text-gray-200 hover:text-cyan-300 transition-colors font-secondary hover:underline underline-offset-4"
+                      >
+                        Términos y Condiciones
+                      </Link>
+                    </>
+                  )}
                   <div className="flex items-center space-x-2 text-gray-300">
                     <div className="w-1 h-1 bg-gray-300 rounded-full"></div>
                     <span className="text-xs">Hecho en Chile</span>
