@@ -344,10 +344,12 @@ const QuickDiagnosisResults: React.FC<QuickDiagnosisResultsProps> = ({
       setIsModalOpen(true);
     } else {
       // Fallback to original href behavior
-      if (result.nextSteps.primary.external) {
-        window.open(result.nextSteps.primary.href, '_blank');
-      } else {
-        window.location.href = result.nextSteps.primary.href;
+      if (result.nextSteps.primary.href) {
+        if (result.nextSteps.primary.external) {
+          window.open(result.nextSteps.primary.href, '_blank');
+        } else {
+          window.location.href = result.nextSteps.primary.href;
+        }
       }
     }
   };

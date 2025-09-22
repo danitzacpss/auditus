@@ -239,7 +239,7 @@ export function createGoogleReviewsConfig(overrides: Partial<GoogleReviewsConfig
   return {
     placeId: process.env.NEXT_PUBLIC_GOOGLE_PLACE_ID || '',
     apiKey: process.env.NEXT_PUBLIC_GOOGLE_PLACES_API_KEY || '',
-    cacheTTL: parseInt(process.env.GOOGLE_REVIEWS_CACHE_TTL || '14400000'), // 4 hours
+    cacheTTL: parseInt(process.env.GOOGLE_REVIEWS_CACHE_TTL || '86400000'), // 24 hours (1 day)
     maxReviews: 10,
     minRating: 4,
     languages: ['es', 'en'],
