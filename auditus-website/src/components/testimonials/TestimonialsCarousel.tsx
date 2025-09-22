@@ -209,6 +209,62 @@ const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({
     return time.replace(/hace/, 'hace').replace(/ago/, 'hace');
   };
 
+  // Avatar component with robust error handling for Google images
+  const AvatarWithFallback: React.FC<{ review: EnhancedTestimonial }> = ({ review }) => {
+    const [imageError, setImageError] = useState(false);
+    const [imageLoaded, setImageLoaded] = useState(false);
+    const [retryCount, setRetryCount] = useState(0);
+
+    const handleImageError = (e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+      const error = e.nativeEvent as ErrorEvent;
+      console.log(`Image load failed for ${review.name} (attempt ${retryCount + 1}):`, {
+        url: review.authorPhoto,
+        error: error.message || 'Unknown error'
+      });
+
+      // Don't retry for Google images due to rate limiting
+      setImageError(true);
+    };
+
+    const handleImageLoad = () => {
+      setImageLoaded(true);
+    };
+
+    // Always show initials for now due to Google's rate limiting
+    // This provides a consistent and reliable user experience
+    const shouldShowImage = false; // Temporarily disabled due to 429 errors
+
+    return (
+      <div className="w-14 h-14 bg-gradient-to-br from-blue-100 via-turquoise-100 to-pink-100 rounded-full flex items-center justify-center text-blue-600 font-bold text-base ring-2 ring-blue-200 ring-opacity-50 group-hover:ring-opacity-100 transition-all duration-300 shadow-md">
+        {shouldShowImage && review.authorPhoto && !imageError ? (
+          <>
+            <img
+              src={review.authorPhoto}
+              alt={review.name}
+              className={`w-full h-full rounded-full object-cover transition-opacity duration-300 ${
+                imageLoaded ? 'opacity-100' : 'opacity-0'
+              }`}
+              onError={handleImageError}
+              onLoad={handleImageLoad}
+              loading="lazy"
+              referrerPolicy="no-referrer"
+            />
+            {!imageLoaded && (
+              <div className="absolute inset-0 flex items-center justify-center">
+                <div className="w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+              </div>
+            )}
+          </>
+        ) : (
+          // Always show beautiful initials with enhanced styling
+          <div className="text-blue-600 font-bold text-base select-none">
+            {getAuthorInitials(review.name)}
+          </div>
+        )}
+      </div>
+    );
+  };
+
   // Render review card component
   const renderReviewCard = (review: EnhancedTestimonial, isCenter: boolean) => (
     <div className={`group relative bg-white rounded-2xl p-6 flex flex-col transform transition-all duration-500 border-2 border-transparent shadow-lg animate-fadeInUp ${
@@ -254,17 +310,7 @@ const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({
         <div className="flex flex-col items-center space-y-3 pt-4 border-t border-gray-100 group-hover:border-blue-100 transition-colors duration-300" style={{ minHeight: '160px' }}>
           {/* Avatar with enhanced styling */}
           <div className="relative">
-            <div className="w-14 h-14 bg-gradient-to-br from-blue-100 via-turquoise-100 to-pink-100 rounded-full flex items-center justify-center text-blue-600 font-bold text-base ring-2 ring-blue-200 ring-opacity-50 group-hover:ring-opacity-100 transition-all duration-300 shadow-md">
-              {review.authorPhoto ? (
-                <img
-                  src={review.authorPhoto}
-                  alt={review.name}
-                  className="w-full h-full rounded-full object-cover"
-                />
-              ) : (
-                getAuthorInitials(review.name)
-              )}
-            </div>
+            <AvatarWithFallback review={review} />
             {/* Verification badge */}
             {review.verified && (
               <div className="absolute -bottom-1 -right-1 w-5 h-5 bg-green-500 rounded-full flex items-center justify-center ring-2 ring-white">
@@ -333,19 +379,10 @@ const TestimonialsCarousel: React.FC<TestimonialsCarouselProps> = ({
         </div>
 
         {/* Main Title */}
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 font-primary max-w-4xl mx-auto leading-tight">
-          {t('title')}
-          <span className="text-blue-600 relative inline-block ml-3">
-            <svg
-              className="absolute -bottom-2 left-0 w-full h-3 text-blue-200"
-              viewBox="0 0 100 12"
-              preserveAspectRatio="none"
-              fill="currentColor"
-            >
-              <path d="M0,8 Q50,0 100,8 L100,12 L0,12 Z" />
-            </svg>
-          </span>
-        </h2>
+        <h2
+          className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 font-primary max-w-4xl mx-auto leading-tight"
+          dangerouslySetInnerHTML={{ __html: t('title') }}
+        />
 
         {/* Subtitle */}
         <p className="text-xl text-gray-600 font-secondary max-w-3xl mx-auto leading-relaxed">

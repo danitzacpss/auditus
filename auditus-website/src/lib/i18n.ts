@@ -5,7 +5,7 @@ import LanguageDetector from 'i18next-browser-languagedetector';
 const resources = {
   es: {
     testimonials: {
-      title: "Lo que dicen nuestros Pacientes",
+      title: "Lo que dicen nuestros <span class='text-primary-blue relative inline-block'>Pacientes<svg class='absolute -bottom-2 left-0 w-full h-3 text-blue-200' viewBox='0 0 100 12' preserveAspectRatio='none' fill='currentColor'><path d='M0,8 Q50,0 100,8 L100,12 L0,12 Z' /></svg></span>",
       subtitle: "La confianza de nuestros pacientes es nuestro mayor orgullo. Conoce las experiencias de quienes han confiado en {{centerName}} para su cuidado auditivo.",
       centerName: "Centro Auditus",
       verifiedTestimonials: "Testimonios Verificados",
@@ -104,7 +104,7 @@ const resources = {
     },
     translation: {
     quickDiagnosis: {
-      title: "Diagnóstico Rápido de Orientación",
+      title: "Diagnóstico Rápido de <span class='text-primary-blue relative inline-block'>Orientación<svg class='absolute -bottom-2 left-0 w-full h-3 text-blue-200' viewBox='0 0 100 12' preserveAspectRatio='none' fill='currentColor'><path d='M0,8 Q50,0 100,8 L100,12 L0,12 Z' /></svg></span>",
       subtitle: "Herramienta de orientación para entender qué tipo de consulta podrías necesitar según tus síntomas",
       disclaimer: {
         title: "Importante",

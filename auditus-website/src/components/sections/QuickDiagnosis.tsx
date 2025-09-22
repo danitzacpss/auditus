@@ -7,6 +7,8 @@ import { useQuickDiagnosis } from '@/hooks/useQuickDiagnosis';
 import { quickDiagnosisSchemaEnhanced } from '@/lib/validations';
 import Button from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
+import { CalendarBookingModal } from '@/components/ui';
+import { CONTACT_INFO } from '@/data/constants';
 import { BaseComponentProps, QuickDiagnosisResult } from '@/types';
 
 interface QuickDiagnosisProps extends BaseComponentProps {
@@ -90,7 +92,7 @@ const QuickDiagnosis: React.FC<QuickDiagnosisProps> = ({
   if (!ready) {
     return (
       <section className={cn(
-        'w-full max-w-4xl mx-auto',
+        'w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8',
         variant === 'compact' ? 'py-8' : 'py-12',
         className
       )}>
@@ -114,19 +116,20 @@ const QuickDiagnosis: React.FC<QuickDiagnosisProps> = ({
 
   return (
     <section className={cn(
-      'w-full max-w-4xl mx-auto',
+      'w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8',
       variant === 'compact' ? 'py-8' : 'py-12',
       className
     )}>
       <div className="space-y-8">
         {/* Header */}
         <div className="text-center space-y-4">
-          <h2 className={cn(
-            'font-poppins font-semibold text-gray-900',
-            variant === 'compact' ? 'text-2xl' : 'text-3xl lg:text-4xl'
-          )}>
-            {t('quickDiagnosis.title')}
-          </h2>
+          <h2
+            className={cn(
+              'font-poppins font-semibold text-gray-900',
+              variant === 'compact' ? 'text-2xl' : 'text-3xl lg:text-4xl'
+            )}
+            dangerouslySetInnerHTML={{ __html: t('quickDiagnosis.title') }}
+          />
           <p className={cn(
             'text-gray-600 font-lato max-w-2xl mx-auto',
             variant === 'compact' ? 'text-base' : 'text-lg'
@@ -301,12 +304,91 @@ const QuickDiagnosisResults: React.FC<QuickDiagnosisResultsProps> = ({
   variant = 'full'
 }) => {
   const { t, ready } = useTranslation();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  // Check if it's a medical emergency that shouldn't show appointment buttons
+  const isMedicalUrgent = result.type === 'medical_urgent' ||
+                         result.severity === 'urgent' ||
+                         result.nextSteps.primary.label.includes('médica urgente') ||
+                         result.nextSteps.primary.label.includes('urgente') ||
+                         result.nextSteps.primary.label.includes('emergencia');
+
+  // Determine if primary button should use calendar booking
+  const shouldUseCalendar = !isMedicalUrgent && CONTACT_INFO.calendarBooking && (
+    result.type === 'audiometry' ||
+    result.type === 'videotoscopy' ||
+    result.nextSteps.primary.label.includes('audiometría') ||
+    result.nextSteps.primary.label.includes('Audiometría') ||
+    result.nextSteps.primary.label.includes('videotoscopía') ||
+    result.nextSteps.primary.label.includes('Videotoscopía') ||
+    result.nextSteps.primary.label.includes('agendar') ||
+    result.nextSteps.primary.label.includes('Agendar') ||
+    result.nextSteps.primary.label.includes('cita') ||
+    result.nextSteps.primary.label.includes('Cita')
+  );
+
+  // Determine if secondary button should use calendar booking
+  const shouldUseCalendarSecondary = CONTACT_INFO.calendarBooking && result.nextSteps.secondary && (
+    result.nextSteps.secondary.label.includes('audiometría') ||
+    result.nextSteps.secondary.label.includes('Audiometría') ||
+    result.nextSteps.secondary.label.includes('videotoscopía') ||
+    result.nextSteps.secondary.label.includes('Videotoscopía') ||
+    result.nextSteps.secondary.label.includes('agendar') ||
+    result.nextSteps.secondary.label.includes('Agendar') ||
+    result.nextSteps.secondary.label.includes('cita') ||
+    result.nextSteps.secondary.label.includes('Cita')
+  );
+
+  const handlePrimaryAction = () => {
+    if (shouldUseCalendar) {
+      setIsModalOpen(true);
+    } else {
+      // Fallback to original href behavior
+      if (result.nextSteps.primary.external) {
+        window.open(result.nextSteps.primary.href, '_blank');
+      } else {
+        window.location.href = result.nextSteps.primary.href;
+      }
+    }
+  };
+
+  const handleSecondaryAction = () => {
+    if (shouldUseCalendarSecondary) {
+      setIsModalOpen(true);
+    } else {
+      // Fallback to original href behavior
+      if (result.nextSteps.secondary?.external) {
+        window.open(result.nextSteps.secondary.href, '_blank');
+      } else if (result.nextSteps.secondary?.href) {
+        window.location.href = result.nextSteps.secondary.href;
+      }
+    }
+  };
+
+  // Determine service name for calendar modal
+  const getServiceName = () => {
+    if (result.type === 'audiometry' ||
+        result.nextSteps.primary.label.includes('audiometría') ||
+        result.nextSteps.primary.label.includes('Audiometría')) {
+      return 'Audiometría';
+    } else if (result.type === 'videotoscopy' ||
+               result.nextSteps.primary.label.includes('videotoscopía') ||
+               result.nextSteps.primary.label.includes('Videotoscopía')) {
+      return 'Videotoscopía';
+    } else if (result.type === 'cleaning' ||
+               result.nextSteps.primary.label.includes('lavado') ||
+               result.nextSteps.primary.label.includes('Lavado')) {
+      return 'Lavado de Oídos';
+    } else {
+      return 'Evaluación Auditiva';
+    }
+  };
 
   // Wait for i18n to be ready
   if (!ready) {
     return (
       <section className={cn(
-        'w-full max-w-4xl mx-auto',
+        'w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8',
         variant === 'compact' ? 'py-8' : 'py-12',
         className
       )}>
@@ -349,7 +431,7 @@ const QuickDiagnosisResults: React.FC<QuickDiagnosisResultsProps> = ({
 
   return (
     <section className={cn(
-      'w-full max-w-4xl mx-auto',
+      'w-full max-w-4xl mx-auto px-4 sm:px-6 lg:px-8',
       variant === 'compact' ? 'py-8' : 'py-12',
       className
     )}>
@@ -437,27 +519,66 @@ const QuickDiagnosisResults: React.FC<QuickDiagnosisResultsProps> = ({
           )}
 
           {/* Action Buttons */}
-          <div className="flex flex-col sm:flex-row gap-3 pt-4">
-            <Button
-              href={result.nextSteps.primary.href}
-              external={result.nextSteps.primary.external}
-              className="flex-1 h-12 text-lg font-semibold"
-              variant="primary"
-            >
-              {t(result.nextSteps.primary.label)}
-            </Button>
+          {isMedicalUrgent ? (
+            <div className="space-y-4">
+              <div className="bg-red-50 border border-red-200 rounded-2xl p-6 mt-4">
+                <div className="flex items-start space-x-3">
+                  <span className="text-2xl">🏥</span>
+                  <div>
+                    <h3 className="font-semibold text-red-800 font-primary text-lg mb-2">
+                      Importante: Busca atención médica inmediata
+                    </h3>
+                    <p className="text-red-700 font-secondary leading-relaxed mb-4">
+                      Los síntomas que has descrito requieren evaluación médica urgente.
+                      Te recomendamos acudir directamente a un médico otorrinolaringólogo
+                      o centro de salud especializado.
+                    </p>
+                    <p className="text-red-600 font-secondary text-sm">
+                      Este centro se especializa en procedimientos de audiología preventiva,
+                      no en atención médica urgente.
+                    </p>
+                  </div>
+                </div>
+              </div>
 
-            {result.nextSteps.secondary && (
+              {/* WhatsApp contact for urgent consultations */}
+              <div className="flex justify-center">
+                <Button
+                  href={result.nextSteps.primary.href}
+                  external={result.nextSteps.primary.external}
+                  variant="secondary"
+                  className="flex items-center space-x-2"
+                >
+                  <span>💬</span>
+                  <span>Consultar por WhatsApp</span>
+                </Button>
+              </div>
+            </div>
+          ) : (
+            <div className="flex flex-col sm:flex-row gap-3 pt-4">
               <Button
-                href={result.nextSteps.secondary.href}
-                external={result.nextSteps.secondary.external}
-                variant="secondary"
-                className="sm:w-auto h-12"
+                onClick={shouldUseCalendar ? handlePrimaryAction : undefined}
+                href={shouldUseCalendar ? undefined : result.nextSteps.primary.href}
+                external={shouldUseCalendar ? undefined : result.nextSteps.primary.external}
+                className="flex-1 h-12 text-lg font-semibold"
+                variant="primary"
               >
-                {t(result.nextSteps.secondary.label)}
+                {t(result.nextSteps.primary.label)}
               </Button>
-            )}
-          </div>
+
+              {result.nextSteps.secondary && (
+                <Button
+                  onClick={shouldUseCalendarSecondary ? handleSecondaryAction : undefined}
+                  href={shouldUseCalendarSecondary ? undefined : result.nextSteps.secondary.href}
+                  external={shouldUseCalendarSecondary ? undefined : result.nextSteps.secondary.external}
+                  variant="secondary"
+                  className="sm:w-auto h-12"
+                >
+                  {t(result.nextSteps.secondary.label)}
+                </Button>
+              )}
+            </div>
+          )}
 
           {/* New Diagnosis Button */}
           <div className="pt-4 border-t border-gray-200">
@@ -486,6 +607,16 @@ const QuickDiagnosisResults: React.FC<QuickDiagnosisResultsProps> = ({
               </div>
             </div>
           </Card>
+        )}
+
+        {/* Calendar Booking Modal */}
+        {CONTACT_INFO.calendarBooking && (
+          <CalendarBookingModal
+            isOpen={isModalOpen}
+            onClose={() => setIsModalOpen(false)}
+            calendarUrl={CONTACT_INFO.calendarBooking}
+            serviceName={getServiceName()}
+          />
         )}
       </div>
     </section>

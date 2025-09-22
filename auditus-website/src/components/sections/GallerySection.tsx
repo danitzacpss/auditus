@@ -20,17 +20,17 @@ const GallerySection: React.FC = () => {
           </div>
 
           {/* Title */}
-          <h2 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 mb-6 font-poppins">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 font-primary max-w-4xl mx-auto leading-tight">
             Galería de{' '}
-            <span className="relative inline-block">
-              <span className="relative z-10 text-blue-600">Instalaciones</span>
+            <span className="text-primary-blue relative inline-block">
+              Instalaciones
               <svg
-                className="absolute bottom-0 left-0 w-full h-3 text-blue-200"
+                className="absolute -bottom-2 left-0 w-full h-3 text-blue-200"
                 viewBox="0 0 100 12"
-                fill="currentColor"
                 preserveAspectRatio="none"
+                fill="currentColor"
               >
-                <path d="M0,8 Q25,2 50,8 T100,8 L100,12 L0,12 Z" />
+                <path d="M0,8 Q50,0 100,8 L100,12 L0,12 Z" />
               </svg>
             </span>
           </h2>

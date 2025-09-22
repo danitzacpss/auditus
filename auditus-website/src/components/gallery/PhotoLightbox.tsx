@@ -130,9 +130,11 @@ const PhotoLightbox: React.FC<PhotoLightboxProps> = ({
         />
 
         {/* Photo Info */}
-        <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/80 to-transparent text-white rounded-b-lg">
-          <h3 className="text-lg font-semibold mb-1">{currentPhoto.title}</h3>
-          <p className="text-sm text-gray-200">{currentPhoto.description}</p>
+        <div className="absolute bottom-0 left-0 right-0 bg-black/50 text-white">
+          <div className="p-4">
+            <h3 className="text-lg font-bold drop-shadow-lg" style={{ color: '#ffffff' }}>{currentPhoto.title}</h3>
+            <p className="text-sm drop-shadow-md mt-1" style={{ color: '#f0f0f0' }}>{currentPhoto.description}</p>
+          </div>
         </div>
       </div>
 

@@ -62,10 +62,10 @@ const ServicesSection: React.FC = () => {
                 key={service.id}
                 className="professional-card group relative hover:bg-gradient-to-br hover:from-white hover:to-blue-50 border border-gray-200 hover:border-blue-200 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 rounded-3xl overflow-hidden"
               >
-                <CardContent className="p-8 h-full flex flex-col relative">
+                <CardContent className="p-3 sm:p-5 lg:p-8 h-full flex flex-col relative">
 
                   {/* Service icon with professional styling */}
-                  <div className="mb-8 relative">
+                  <div className="mb-3 sm:mb-5 lg:mb-8 relative">
                     <div className="w-20 h-20 rounded-2xl flex items-center justify-center transition-all duration-300 shadow-lg p-3 bg-white"
                          style={{
                            border: '2px solid #3b82f6'
@@ -89,8 +89,8 @@ const ServicesSection: React.FC = () => {
                   </div>
 
                   {/* Service header */}
-                  <div className="mb-6 flex-1">
-                    <div className="flex items-center justify-between mb-3">
+                  <div className="mb-3 sm:mb-5 flex-1">
+                    <div className="flex items-center justify-between mb-2">
                       <h3 className="text-2xl font-bold text-gray-900 font-primary">
                         {service.name}
                       </h3>
@@ -101,12 +101,12 @@ const ServicesSection: React.FC = () => {
                       </div>
                     </div>
                     
-                    <p className="text-gray-600 font-secondary mb-6 leading-relaxed">
+                    <p className="text-gray-600 font-secondary mb-3 sm:mb-4 leading-relaxed">
                       {service.description}
                     </p>
 
                     {/* Professional features with medical styling */}
-                    <div className="bg-gray-50 rounded-2xl p-4 mb-6">
+                    <div className="bg-gray-50 rounded-2xl p-2 sm:p-3 mb-3 sm:mb-4">
                       <h4 className="text-sm font-semibold text-gray-900 mb-3 font-primary">Incluye:</h4>
                       <ul className="space-y-2">
                         {service.features.slice(0, 3).map((feature, index) => (
@@ -123,7 +123,7 @@ const ServicesSection: React.FC = () => {
 
                   {/* Professional pricing section */}
                   <div className="space-y-4">
-                    <div className="rounded-2xl p-4 border border-blue-100" style={{background: 'linear-gradient(135deg, #eff6ff 0%, #ecfeff 100%)'}}>
+                    <div className="rounded-2xl p-2 sm:p-3 border border-blue-100" style={{background: 'linear-gradient(135deg, #eff6ff 0%, #ecfeff 100%)'}}>
                       <div className="flex items-center justify-between">
                         <div>
                           <div className="text-3xl font-bold text-primary-blue font-primary">

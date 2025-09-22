@@ -134,7 +134,7 @@ const HeroSection: React.FC = () => {
 
           {/* Visual - Right side (5 columns) */}
           <div className="lg:col-span-5 relative">
-            <div className="relative max-w-lg mx-auto">
+            <div className="relative max-w-lg mx-auto px-12 py-8 sm:px-14 sm:py-10 lg:px-0 lg:py-0">
 
               {/* Main Professional Card */}
               <div className="professional-card relative py-8">
@@ -189,19 +189,19 @@ const HeroSection: React.FC = () => {
               </div>
 
               {/* Floating Stats */}
-              <div className="absolute -top-8 -left-8 bg-primary-blue text-white rounded-2xl p-5 shadow-lg" style={{background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)', boxShadow: '0 10px 25px -5px rgba(59, 130, 246, 0.25)'}}>
+              <div className="absolute top-2 left-2 sm:-top-6 sm:-left-6 lg:-top-8 lg:-left-8 bg-primary-blue text-white rounded-2xl p-3 sm:p-4 lg:p-5 shadow-lg" style={{background: 'linear-gradient(135deg, #3b82f6 0%, #2563eb 100%)', boxShadow: '0 10px 25px -5px rgba(59, 130, 246, 0.25)'}}>
                 <div className="text-center">
-                  <div className="text-3xl font-bold">5+</div>
-                  <div className="text-sm">Años</div>
-                  <div className="text-sm">Experiencia</div>
+                  <div className="text-2xl sm:text-3xl font-bold">5+</div>
+                  <div className="text-xs sm:text-sm">Años</div>
+                  <div className="text-xs sm:text-sm">Experiencia</div>
                 </div>
               </div>
 
-              <div className="absolute -bottom-8 -right-8 bg-secondary-turquoise text-white rounded-2xl p-5 shadow-lg" style={{background: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 100%)', boxShadow: '0 10px 25px -5px rgba(6, 182, 212, 0.25)'}}>
+              <div className="absolute bottom-2 right-2 sm:-bottom-6 sm:-right-6 lg:-bottom-8 lg:-right-8 bg-secondary-turquoise text-white rounded-2xl p-3 sm:p-4 lg:p-5 shadow-lg" style={{background: 'linear-gradient(135deg, #06b6d4 0%, #0891b2 100%)', boxShadow: '0 10px 25px -5px rgba(6, 182, 212, 0.25)'}}>
                 <div className="text-center">
-                  <div className="text-2xl font-bold">UC</div>
-                  <div className="text-sm">Universidad</div>
-                  <div className="text-sm">Concepción</div>
+                  <div className="text-xl sm:text-2xl font-bold">UC</div>
+                  <div className="text-xs sm:text-sm">Universidad</div>
+                  <div className="text-xs sm:text-sm">Concepción</div>
                 </div>
               </div>
 

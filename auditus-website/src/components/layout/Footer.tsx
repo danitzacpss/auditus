@@ -30,7 +30,7 @@ const Footer: React.FC = () => {
                     </div>
                   </div>
                   <div>
-                    <h2 className="text-2xl lg:text-3xl font-bold font-primary text-white">
+                    <h2 className="text-2xl lg:text-3xl font-bold font-primary text-white" style={{ color: '#ffffff' }}>
                       Centro Auditus
                     </h2>
                     <p className="text-cyan-300 font-medium font-secondary">
@@ -45,7 +45,7 @@ const Footer: React.FC = () => {
 
                 {/* Google Maps */}
                 <div className="bg-blue-800/30 backdrop-blur-sm rounded-2xl p-3 border border-blue-400/30">
-                  <h4 className="text-sm font-semibold text-white mb-2 font-primary">Nuestra Ubicación</h4>
+                  <h4 className="text-sm font-semibold mb-2 font-primary" style={{ color: '#ffffff' }}>Nuestra Ubicación</h4>
                   <div className="relative">
                     <iframe
                       src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3174.123!2d-73.0504123!3d-36.8264456!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9669b5e6c0123456%3A0x789abcdef0123456!2sAn%C3%ADbal%20Pinto%20486%2C%20Concepci%C3%B3n%2C%20Regi%C3%B3n%20del%20Biob%C3%ADo%2C%20Chile!5e0!3m2!1ses!2scl!4v1732645890"
@@ -70,7 +70,7 @@ const Footer: React.FC = () => {
             {/* Quick Links */}
             <div className="lg:col-span-3">
               <div className="bg-blue-800/30 backdrop-blur-sm rounded-2xl p-6 border border-blue-400/30 h-fit">
-                <h3 className="text-lg font-bold font-primary text-white mb-6 flex items-center">
+                <h3 className="text-lg font-bold font-primary text-white mb-6 flex items-center" style={{ color: '#ffffff' }}>
                   <span className="w-2 h-2 bg-primary-500 rounded-full mr-3"></span>
                   Navegación
                 </h3>
@@ -107,7 +107,7 @@ const Footer: React.FC = () => {
             {/* Contact Information */}
             <div className="lg:col-span-4">
               <div className="bg-gradient-to-br from-blue-800/30 to-slate-800/40 backdrop-blur-sm rounded-2xl p-6 border border-blue-400/30">
-                <h3 className="text-lg font-bold font-primary text-white mb-6 flex items-center">
+                <h3 className="text-lg font-bold font-primary text-white mb-6 flex items-center" style={{ color: '#ffffff' }}>
                   <span className="w-2 h-2 bg-secondary-500 rounded-full mr-3"></span>
                   Información de Contacto
                 </h3>
@@ -189,7 +189,7 @@ const Footer: React.FC = () => {
                       <span className="text-white font-bold text-lg font-primary">V</span>
                     </div>
                     <div>
-                      <h3 className="text-lg font-bold text-white font-primary">
+                      <h3 className="text-lg font-bold text-white font-primary" style={{ color: '#ffffff' }}>
                         {PROFESSIONAL_INFO.name}
                       </h3>
                       <p className="text-cyan-300 font-medium font-secondary text-sm">

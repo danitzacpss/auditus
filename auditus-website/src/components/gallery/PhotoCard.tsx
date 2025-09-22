@@ -71,12 +71,14 @@ const PhotoCard: React.FC<PhotoCardProps> = ({ photo, index, className = '' }) =
 
         {/* Content Overlay */}
         <div className="absolute bottom-0 left-0 right-0 p-6 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-          <h3 className="text-lg font-semibold mb-2 font-poppins">
-            {photo.title}
-          </h3>
-          <p className="text-sm text-gray-200 font-lato">
-            {photo.description}
-          </p>
+          <div className="bg-black/70 backdrop-blur-sm rounded-lg p-4 -m-2">
+            <h3 className="text-lg font-bold mb-2 text-white drop-shadow-lg font-poppins">
+              {photo.title}
+            </h3>
+            <p className="text-sm text-gray-100 drop-shadow-md font-lato leading-relaxed">
+              {photo.description}
+            </p>
+          </div>
         </div>
 
         {/* View Icon */}

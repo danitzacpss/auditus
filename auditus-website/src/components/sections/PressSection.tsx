@@ -16,7 +16,7 @@ const PressSection: React.FC = () => {
   };
 
   return (
-    <section id="prensa" className="pt-4 pb-16 lg:pt-6 lg:pb-20 bg-gradient-to-b from-gray-50 to-white">
+    <section id="prensa" className="pt-4 pb-8 lg:pt-6 lg:pb-12 bg-gradient-to-b from-gray-50 to-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
         {/* Section header */}
@@ -28,7 +28,7 @@ const PressSection: React.FC = () => {
 
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-gray-900 mb-6 font-primary max-w-4xl mx-auto leading-tight">
             Reconocimiento{' '}
-            <span className="text-primary-600 relative inline-block">
+            <span className="text-primary-blue relative inline-block">
               Mediático
               <svg
                 className="absolute -bottom-2 left-0 w-full h-3 text-blue-200"
@@ -54,10 +54,10 @@ const PressSection: React.FC = () => {
               key={article.id}
               className="professional-card group relative hover:bg-gradient-to-br hover:from-white hover:to-blue-50 border border-gray-200 hover:border-blue-200 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 rounded-3xl overflow-hidden"
             >
-              <CardContent className="p-8 h-full flex flex-col relative">
+              <CardContent className="p-3 sm:p-5 lg:p-8 h-full flex flex-col relative">
 
                 {/* Press source badge */}
-                <div className="mb-6 relative">
+                <div className="mb-3 sm:mb-4 lg:mb-6 relative">
                   <div className="flex items-center justify-between">
                     <div className="flex items-center space-x-3">
                       <div className="w-12 h-12 rounded-2xl flex items-center justify-center bg-red-600 shadow-lg">
@@ -77,17 +77,17 @@ const PressSection: React.FC = () => {
                 </div>
 
                 {/* Article content */}
-                <div className="mb-6 flex-1">
-                  <h3 className="text-xl lg:text-2xl font-bold text-gray-900 font-primary mb-4 leading-tight line-clamp-3">
+                <div className="mb-3 sm:mb-4 lg:mb-6 flex-1">
+                  <h3 className="text-xl lg:text-2xl font-bold text-gray-900 font-primary mb-2 sm:mb-3 lg:mb-4 leading-tight line-clamp-3">
                     {article.title}
                   </h3>
 
-                  <p className="text-gray-600 font-secondary mb-4 leading-relaxed line-clamp-3">
+                  <p className="text-gray-600 font-secondary mb-2 sm:mb-3 lg:mb-4 leading-relaxed line-clamp-3">
                     {article.description}
                   </p>
 
                   {/* Category badge */}
-                  <div className="bg-gray-50 rounded-2xl p-3 mb-4">
+                  <div className="bg-gray-50 rounded-2xl p-2 sm:p-3 mb-2 sm:mb-3 lg:mb-4">
                     <div className="flex items-center space-x-2">
                       <div className="w-1.5 h-1.5 bg-primary-600 rounded-full"></div>
                       <span className="text-sm text-gray-700 font-secondary font-medium capitalize">
