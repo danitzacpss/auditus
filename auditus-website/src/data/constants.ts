@@ -22,7 +22,7 @@ export const SITE_CONFIG = {
 export const CONTACT_INFO: ContactInfo = {
   phone: '+56952024377',
   whatsapp: '56952024377',
-  email: 'valecampossovino@gmail.com',
+  email: 'centroauditus@gmail.com',
   address: {
     street: 'Aníbal Pinto 486',
     office: 'Oficina 403',
@@ -166,6 +166,7 @@ export const SERVICES: Service[] = [
       'Pruebas supraliminares'
     ],
     preparation: [
+      'Requisito Obligatorio: No tener tapón de cerumen',
       'Descansar bien la noche anterior',
       'Evitar exposición a ruidos intensos 24h antes',
       'No usar tapones auditivos el día del examen'
@@ -305,7 +306,8 @@ export const PRESS_ARTICLES: PressArticle[] = [
     date: '2025-08-19',
     url: 'https://www.canal9.cl/episodios/nuestra-casa/2025/08/19/tras-incidente-en-concierto-de-maluma-los-riesgos-de-exponer-a-bebes-y-ninos-pequenos-a-ruidos-de-alta-intensidad',
     description: 'Tras incidente en concierto de Maluma, analizamos los riesgos auditivos en menores expuestos a sonidos de alta intensidad y la importancia de la protección auditiva desde temprana edad.',
-    category: 'awareness'
+    category: 'awareness',
+    image: '/images/press/concierto-maluma.jpeg'
   },
   {
     id: 'canal9-perdida-auditiva-demencia',
@@ -314,6 +316,7 @@ export const PRESS_ARTICLES: PressArticle[] = [
     date: '2025-06-09',
     url: 'https://www.canal9.cl/episodios/nuestra-casa/2025/06/09/conoce-la-relacion-entre-la-perdida-auditiva-y-el-incremento-en-la-posibilidad-de-padecer-demencia',
     description: 'Exploramos la conexión científica entre la pérdida auditiva no tratada y el mayor riesgo de desarrollar demencia, destacando la importancia del diagnóstico temprano.',
-    category: 'health'
+    category: 'health',
+    image: '/images/press/salud-auditiva.jpeg'
   }
 ];

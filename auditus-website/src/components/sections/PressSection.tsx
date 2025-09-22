@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import Link from 'next/link';
-import { Card, CardContent } from '@/components/ui';
+import Image from 'next/image';
 import { ArrowRightIcon, CheckIcon } from '@/components/ui/Icon';
 import { PRESS_ARTICLES } from '@/data/constants';
 
@@ -48,81 +48,96 @@ const PressSection: React.FC = () => {
         </div>
 
         {/* Press articles grid */}
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8">
+        <div className="space-y-6 lg:space-y-8 max-w-5xl mx-auto">
           {PRESS_ARTICLES.map((article) => (
-            <Card
+            <article
               key={article.id}
-              className="professional-card group relative hover:bg-gradient-to-br hover:from-white hover:to-blue-50 border border-gray-200 hover:border-blue-200 shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-1 rounded-3xl overflow-hidden"
+              className="group bg-white rounded-3xl shadow-lg hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100"
             >
-              <CardContent className="p-3 sm:p-5 lg:p-8 h-full flex flex-col relative">
+              <div className="flex flex-col lg:flex-row h-full">
+                {/* Media Image - Full width on mobile, left side on desktop */}
+                <div className="w-full lg:w-1/3 flex-shrink-0 relative overflow-hidden rounded-t-3xl lg:rounded-t-none lg:rounded-l-3xl bg-white flex items-center justify-center">
+                  <Image
+                    src={article.image}
+                    alt={`Imagen de cobertura mediática: ${article.title}`}
+                    width={320}
+                    height={240}
+                    className="w-full h-80 sm:h-80 lg:h-full object-contain transition-transform duration-300 group-hover:scale-105"
+                    sizes="(max-width: 1024px) 100vw, 33vw"
+                    priority
+                  />
+                </div>
 
-                {/* Press source badge */}
-                <div className="mb-3 sm:mb-4 lg:mb-6 relative">
-                  <div className="flex items-center justify-between">
-                    <div className="flex items-center space-x-3">
-                      <div className="w-12 h-12 rounded-2xl flex items-center justify-center bg-red-600 shadow-lg">
-                        <span className="text-white font-bold text-lg font-primary">C9</span>
+                {/* Content - Right side */}
+                <div className="lg:w-2/3 p-4 sm:p-5 lg:p-6 flex flex-col justify-between">
+                  {/* Publication badge and status */}
+                  <div className="mb-4">
+                    <div className="flex items-center justify-between mb-3">
+                      <div className="flex items-center space-x-2 bg-gray-50 rounded-xl px-3 py-2 shadow-sm border border-gray-200">
+                        <div className="w-8 h-8 rounded-lg flex items-center justify-center bg-red-600 shadow-md">
+                          <span className="text-white font-bold text-xs font-primary">C9</span>
+                        </div>
+                        <div>
+                          <p className="text-xs font-semibold text-gray-900 font-primary">{article.publication}</p>
+                          <p className="text-xs text-gray-600 font-secondary">{formatDate(article.date)}</p>
+                        </div>
                       </div>
-                      <div>
-                        <p className="text-sm font-semibold text-gray-900 font-primary">{article.publication}</p>
-                        <p className="text-xs text-gray-500 font-secondary">{formatDate(article.date)}</p>
+                      <div className="bg-green-50 rounded-full p-2 border border-green-200">
+                        <div className="w-3 h-3 bg-green-500 rounded-full flex items-center justify-center">
+                          <CheckIcon size="sm" className="text-white" />
+                        </div>
                       </div>
                     </div>
-                    <div className="flex items-center space-x-1">
-                      <div className="w-6 h-6 bg-green-500 rounded-full flex items-center justify-center">
-                        <CheckIcon size="sm" className="text-white" />
+
+                    {/* Category badge */}
+                    <div className="bg-blue-50 rounded-xl p-2 border border-blue-100">
+                      <div className="flex items-center space-x-2">
+                        <div className="w-1 h-1 bg-blue-600 rounded-full"></div>
+                        <span className="text-xs text-blue-700 font-secondary font-medium">
+                          {article.category === 'health' ? 'Salud Auditiva' :
+                           article.category === 'awareness' ? 'Prevención y Concienciación' :
+                           'Información Médica'}
+                        </span>
                       </div>
                     </div>
                   </div>
-                </div>
 
-                {/* Article content */}
-                <div className="mb-3 sm:mb-4 lg:mb-6 flex-1">
-                  <h3 className="text-xl lg:text-2xl font-bold text-gray-900 font-primary mb-2 sm:mb-3 lg:mb-4 leading-tight line-clamp-3">
-                    {article.title}
-                  </h3>
+                  {/* Article content */}
+                  <div className="flex-1 mb-4">
+                    <h3 className="text-lg lg:text-xl font-bold text-gray-900 font-primary mb-2 leading-tight group-hover:text-blue-700 transition-colors">
+                      {article.title}
+                    </h3>
 
-                  <p className="text-gray-600 font-secondary mb-2 sm:mb-3 lg:mb-4 leading-relaxed line-clamp-3">
-                    {article.description}
-                  </p>
+                    <p className="text-gray-600 font-secondary leading-relaxed text-sm lg:text-base">
+                      {article.description}
+                    </p>
+                  </div>
 
-                  {/* Category badge */}
-                  <div className="bg-gray-50 rounded-2xl p-2 sm:p-3 mb-2 sm:mb-3 lg:mb-4">
-                    <div className="flex items-center space-x-2">
-                      <div className="w-1.5 h-1.5 bg-primary-600 rounded-full"></div>
-                      <span className="text-sm text-gray-700 font-secondary font-medium capitalize">
-                        {article.category === 'health' ? 'Salud Auditiva' :
-                         article.category === 'awareness' ? 'Prevención y Concienciación' :
-                         'Información Médica'}
-                      </span>
-                    </div>
+                  {/* CTA button */}
+                  <div className="pt-3 border-t border-gray-100">
+                    <Link
+                      href={article.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="group/link inline-flex w-full sm:w-auto"
+                    >
+                      <button className="btn-primary w-full sm:w-auto text-xs lg:text-sm flex items-center justify-center space-x-2 group-hover/link:bg-blue-700 transition-all duration-300 px-4 py-2">
+                        <span>Ver Artículo Completo</span>
+                        <ArrowRightIcon
+                          size="sm"
+                          className="group-hover/link:translate-x-1 transition-transform duration-300"
+                        />
+                      </button>
+                    </Link>
                   </div>
                 </div>
+              </div>
 
-                {/* CTA button */}
-                <div className="space-y-3">
-                  <Link
-                    href={article.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="group/link w-full"
-                  >
-                    <button className="btn-primary w-full text-sm flex items-center justify-center space-x-2 group-hover/link:bg-primary-700 transition-colors">
-                      <span>Ver Artículo Completo</span>
-                      <ArrowRightIcon
-                        size="sm"
-                        className="group-hover:translate-x-1 transition-transform"
-                      />
-                    </button>
-                  </Link>
-                </div>
-
-                {/* Press credibility indicator */}
-                <div className="absolute top-4 right-4 bg-white rounded-full p-2 shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                  <div className="w-2 h-2 bg-blue-600 rounded-full animate-pulse"></div>
-                </div>
-              </CardContent>
-            </Card>
+              {/* Press credibility indicator */}
+              <div className="absolute top-4 right-4 bg-white rounded-full p-1.5 shadow-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 z-10">
+                <div className="w-1.5 h-1.5 bg-blue-600 rounded-full animate-pulse"></div>
+              </div>
+            </article>
           ))}
         </div>
 

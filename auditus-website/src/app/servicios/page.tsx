@@ -130,8 +130,8 @@ export default function ServicesPage() {
               <div className="text-gray-700 font-secondary">Procedimientos Seguros</div>
             </div>
             <div className="bg-white/80 backdrop-blur-md rounded-2xl p-6 text-center shadow-xl border border-blue-100/50 hover:shadow-2xl transition-all duration-300 hover:-translate-y-1">
-              <div className="text-4xl font-bold text-cyan-600 font-primary mb-2">24h</div>
-              <div className="text-gray-700 font-secondary">Respuesta Promedio</div>
+              <div className="text-3xl font-bold text-cyan-600 font-primary mb-2">Respuesta Inmediata</div>
+              <div className="text-gray-700 font-secondary">Atención Rápida</div>
             </div>
           </div>
 

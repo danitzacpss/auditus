@@ -5,3 +5,4 @@ export { default as TestimonialsSection } from './TestimonialsSection';
 export { default as LocationSection } from './LocationSection';
 export { default as GallerySection } from './GallerySection';
 export { default as PressSection } from './PressSection';
+export { default as SocialMediaSection } from './SocialMediaSection';

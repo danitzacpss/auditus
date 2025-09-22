@@ -1026,6 +1026,8 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
                   </h3>
                 </div>
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
+                  {/* DEBUG: Check features length */}
+                  {console.log('Service features:', service.features)}
                   {service.features.map((feature, index) => (
                     <div key={index} className="flex items-start space-x-3 group/item">
                       <div className="p-1.5 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full mt-1 flex-shrink-0 group-hover/item:scale-110 transition-transform duration-200">
@@ -1096,8 +1098,18 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
                   <ul className="space-y-3">
                     {service.preparation.map((item, index) => (
                       <li key={index} className="flex items-start space-x-3 group/item">
-                        <div className="w-2.5 h-2.5 bg-gradient-to-r from-cyan-400 to-teal-400 rounded-full mt-1.5 flex-shrink-0 group-hover/item:scale-125 transition-transform duration-200" />
-                        <span className="text-gray-700 leading-relaxed text-sm">{item}</span>
+                        <div className={`w-2.5 h-2.5 rounded-full mt-1.5 flex-shrink-0 group-hover/item:scale-125 transition-transform duration-200 ${
+                          item.includes('Requisito Obligatorio')
+                            ? 'bg-gradient-to-r from-red-400 to-red-500'
+                            : 'bg-gradient-to-r from-cyan-400 to-teal-400'
+                        }`} />
+                        <span className={`leading-relaxed text-sm ${
+                          item.includes('Requisito Obligatorio')
+                            ? 'text-red-700 font-semibold'
+                            : 'text-gray-700'
+                        }`}>
+                          {item}
+                        </span>
                       </li>
                     ))}
                   </ul>
@@ -1308,7 +1320,12 @@ export default function ServicePageClient({ service }: ServicePageClientProps) {
                 question: "¿Cómo puedo agendar mi cita?",
                 answer: "Puedes agendar tu cita de forma fácil usando nuestro calendario online, por WhatsApp, o llamando directamente. Todos nuestros canales están disponibles para tu conveniencia.",
                 icon: "📅"
-              }
+              },
+              ...(service.id === 'audiometria' ? [{
+                question: "¿Qué pasa si agendo una audiometría y me encuentran un tapón de cerumen?",
+                answer: "Previo a realizar una audiometría siempre se evalúa el conducto auditivo a través de una videotoscopía. En caso de encontrar un tapón, nuestro centro ofrece el servicio de lavado de oídos, el cual se puede realizar de inmediato.",
+                icon: "🔍"
+              }] : [])
             ].map((faq, index) => (
               <div key={index} className="group">
                 <button
