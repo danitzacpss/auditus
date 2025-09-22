@@ -110,7 +110,7 @@ export default function ServicesPage() {
                     </div>
                     <div className="flex-1">
                       <div className="text-sm lg:text-sm font-bold text-gray-900 font-primary whitespace-nowrap leading-none">Tecnología Moderna</div>
-                      <div className="text-xs text-blue-600 font-secondary whitespace-nowrap leading-none -mt-2">Equipos de Precisión</div>
+                      <div className="text-xs text-blue-600 font-secondary whitespace-nowrap leading-none -mt-2 lg:mt-0">Equipos de Precisión</div>
                     </div>
                   </div>
                 </div>
