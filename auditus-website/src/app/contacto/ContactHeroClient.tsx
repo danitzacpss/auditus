@@ -12,7 +12,7 @@ export default function ContactHeroClient() {
   return (
     <>
       {/* Enhanced Hero Section - Similar to Nosotros */}
-      <section className="pt-24 pb-8 lg:pb-12 hero-gradient relative overflow-hidden">
+      <section className="pt-16 pb-8 lg:pt-20 lg:pb-12 hero-gradient relative overflow-hidden">
         {/* Subtle background pattern */}
         <div className="absolute inset-0 opacity-[0.015]">
           <svg className="w-full h-full" viewBox="0 0 400 400" preserveAspectRatio="none">
@@ -28,11 +28,10 @@ export default function ContactHeroClient() {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           {/* Professional Badge - Centered */}
-          <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-green-100 to-emerald-100 border border-green-200 px-6 py-3 rounded-full text-sm font-semibold font-secondary shadow-lg">
-              <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse shadow-lg"></div>
-              <span className="text-green-700">Respuesta Inmediata Garantizada</span>
-              <WhatsAppIcon size="sm" className="text-green-600" />
+          <div className="text-center mb-6 lg:mb-12">
+            <div className="inline-flex items-center gap-3 bg-gradient-to-r from-blue-500 to-cyan-500 px-8 py-4 rounded-full text-sm font-semibold font-secondary shadow-lg text-white">
+              <div className="w-2 h-2 bg-white rounded-full animate-pulse"></div>
+              <span>Respuesta Inmediata Garantizada</span>
             </div>
           </div>
 
@@ -40,15 +39,15 @@ export default function ContactHeroClient() {
           <div className="text-center mb-16">
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6 font-primary leading-tight max-w-4xl mx-auto">
               Contacta con{' '}
-              <span className="text-primary-600 relative inline-block">
+              <span className="text-primary-blue relative inline-block">
                 Centro Auditus
                 <svg
-                  className="absolute -bottom-2 left-0 w-full h-4 text-blue-200"
-                  viewBox="0 0 200 16"
+                  className="absolute -bottom-2 left-0 w-full h-3 text-blue-200"
+                  viewBox="0 0 100 12"
                   preserveAspectRatio="none"
                   fill="currentColor"
                 >
-                  <path d="M0,12 Q100,2 200,12 L200,16 L0,16 Z" />
+                  <path d="M0,8 Q50,0 100,8 L100,12 L0,12 Z" />
                 </svg>
               </span>
             </h1>

@@ -252,4 +252,10 @@ export const TargetIcon = (props: IconProps) => (
   </Icon>
 );
 
+export const EyeIcon = (props: IconProps) => (
+  <Icon {...props}>
+    <path d="M12,9A3,3 0 0,0 9,12A3,3 0 0,0 12,15A3,3 0 0,0 15,12A3,3 0 0,0 12,9M12,17C7.58,17 4.15,13.5 2.46,12C4.15,10.5 7.58,7 12,7C16.42,7 19.85,10.5 21.54,12C19.85,13.5 16.42,17 12,17Z"/>
+  </Icon>
+);
+
 export default Icon;

@@ -53,7 +53,7 @@ export default async function ProfessionalPage({
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pb-2">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 pb-2 lg:pb-8">
         <div className="grid lg:grid-cols-12 gap-8 lg:gap-12">
           <ProfessionalPageClient professional={professional} />
 

@@ -13,6 +13,7 @@ import {
   ShieldIcon,
   AwardIcon,
   CalendarIcon,
+  EyeIcon,
 } from "@/components/ui/Icon";
 import { CalendarBookingModal } from "@/components/ui";
 
@@ -390,7 +391,18 @@ export default function NosotrosPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
             <h2 className="text-3xl font-bold text-gray-900 mb-4 font-primary">
-              Misión y Visión
+              Misión y{' '}
+              <span className="text-primary-blue relative inline-block">
+                Visión
+                <svg
+                  className="absolute -bottom-2 left-0 w-full h-3 text-blue-200"
+                  viewBox="0 0 100 12"
+                  preserveAspectRatio="none"
+                  fill="currentColor"
+                >
+                  <path d="M0,8 Q50,0 100,8 L100,12 L0,12 Z" />
+                </svg>
+              </span>
             </h2>
             <p className="text-lg text-gray-600 font-secondary max-w-2xl mx-auto">
               Los valores que nos guían en nuestro compromiso con la excelencia
@@ -416,7 +428,7 @@ export default function NosotrosPage() {
 
             <div className="bg-white rounded-3xl p-8 shadow-lg border border-gray-100">
               <div className="w-16 h-16 bg-gradient-to-br from-secondary-turquoise to-cyan-600 rounded-2xl flex items-center justify-center mx-auto mb-6">
-                <EarIcon size="lg" className="text-white" />
+                <EyeIcon size="lg" className="text-white" />
               </div>
               <h3 className="text-2xl font-bold text-gray-900 mb-4 font-primary text-center">
                 Visión

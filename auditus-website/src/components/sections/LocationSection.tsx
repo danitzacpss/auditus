@@ -22,7 +22,7 @@ export default function LocationSection() {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-gray-50 to-blue-50">
+    <section className="pt-8 pb-8 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header Section */}
@@ -110,10 +110,10 @@ export default function LocationSection() {
               <button
                 onClick={openGoogleMaps}
                 className="w-full bg-primary-blue hover:bg-blue-600 text-white font-semibold py-3 px-4 rounded-xl transition-all duration-200 flex items-center justify-center space-x-2"
-                aria-label="Obtener direcciones en Google Maps"
+                aria-label="Ver en el mapa en Google Maps"
               >
                 <LocationIcon size="sm" className="text-white" />
-                <span>Obtener Direcciones</span>
+                <span>Ver en el Mapa</span>
                 <ArrowRightIcon size="sm" className="text-white" />
               </button>
             </div>
