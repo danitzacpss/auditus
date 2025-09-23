@@ -22,7 +22,7 @@ export async function POST(request: NextRequest) {
 
     // Send email to your business email
     await transporter.sendMail({
-      from: process.env.GMAIL_USER,
+      from: `"Centro Auditus" <${process.env.GMAIL_USER}>`,
       to: 'centroauditus@gmail.com',
       subject: `Nueva consulta: ${subject}`,
       text: `
@@ -50,7 +50,7 @@ Fecha: ${new Date().toLocaleString('es-CL')}
 
     // Send confirmation email to client
     await transporter.sendMail({
-      from: process.env.GMAIL_USER,
+      from: `"Centro Auditus" <${process.env.GMAIL_USER}>`,
       to: email,
       subject: 'Confirmación de consulta recibida - Centro Auditus',
       text: `
