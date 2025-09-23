@@ -63,8 +63,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ initialService = '', onSucces
     } catch (error: unknown) {
       const fieldErrors: FormErrors<ContactFormData> = {};
 
-      if (error && typeof error === 'object' && 'issues' in error && Array.isArray((error as any).issues)) {
-        (error as any).issues.forEach((err: { path: string[]; message: string }) => {
+      if (error && typeof error === 'object' && 'issues' in error && Array.isArray((error as { issues: { path: string[]; message: string }[] }).issues)) {
+        (error as { issues: { path: string[]; message: string }[] }).issues.forEach((err: { path: string[]; message: string }) => {
           const field = err.path[0] as keyof ContactFormData;
           fieldErrors[field] = err.message;
         });
