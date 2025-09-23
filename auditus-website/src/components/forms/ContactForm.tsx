@@ -32,6 +32,20 @@ const ContactForm: React.FC<ContactFormProps> = ({ initialService = '', onSucces
 
   const [errors, setErrors] = useState<FormErrors<ContactFormData>>({});
 
+  const resetForm = () => {
+    setFormData({
+      name: '',
+      email: '',
+      phone: '',
+      subject: initialService ? `Consulta sobre ${initialService}` : '',
+      message: '',
+      preferredContact: 'whatsapp',
+      consent: false
+    });
+    setFormState({ isLoading: false, error: undefined, success: false });
+    setErrors({});
+  };
+
   const handleInputChange = (field: keyof ContactFormData, value: string | boolean) => {
     setFormData(prev => ({ ...prev, [field]: value }));
     
@@ -48,14 +62,14 @@ const ContactForm: React.FC<ContactFormProps> = ({ initialService = '', onSucces
       return true;
     } catch (error: unknown) {
       const fieldErrors: FormErrors<ContactFormData> = {};
-      
-      if (error && typeof error === 'object' && 'errors' in error && Array.isArray(error.errors)) {
-        error.errors.forEach((err: { path: string[]; message: string }) => {
+
+      if (error && typeof error === 'object' && 'issues' in error && Array.isArray((error as any).issues)) {
+        (error as any).issues.forEach((err: { path: string[]; message: string }) => {
           const field = err.path[0] as keyof ContactFormData;
           fieldErrors[field] = err.message;
         });
       }
-      
+
       setErrors(fieldErrors);
       return false;
     }
@@ -63,7 +77,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ initialService = '', onSucces
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    
+
     if (!validateForm()) {
       return;
     }
@@ -71,38 +85,23 @@ const ContactForm: React.FC<ContactFormProps> = ({ initialService = '', onSucces
     setFormState({ isLoading: true, error: undefined, success: false });
 
     try {
-      // Simulate form submission - in real app, this would be an API call
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // Send form data to API
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      });
 
-      // For now, we'll redirect to WhatsApp as a fallback
-      const whatsappMessage = `Hola, soy ${formData.name}.
+      const result = await response.json();
 
-Asunto: ${formData.subject}
+      if (!response.ok) {
+        throw new Error(result.error || 'Error al enviar el mensaje');
+      }
 
-${formData.message}
-
-Preferencia de contacto: ${formData.preferredContact === 'email' ? 'Email' : formData.preferredContact === 'phone' ? 'Teléfono' : 'WhatsApp'}
-Teléfono: ${formData.phone}
-Email: ${formData.email}`;
-
-      window.open(getWhatsAppUrl(CONTACT_INFO.whatsapp, whatsappMessage), '_blank');
-      
       setFormState({ isLoading: false, error: undefined, success: true });
-      
-      // Reset form after successful submission
-      setTimeout(() => {
-        setFormData({
-          name: '',
-          email: '',
-          phone: '',
-          subject: '',
-          message: '',
-          preferredContact: 'whatsapp',
-          consent: false
-        });
-        setFormState({ isLoading: false, error: undefined, success: false });
-        onSuccess?.();
-      }, 3000);
+      onSuccess?.();
 
     } catch {
       setFormState({ 
@@ -122,9 +121,18 @@ Email: ${formData.email}`;
         <h3 className="text-xl font-semibold text-green-800 dark:text-green-800 font-primary mb-2">
           ¡Mensaje enviado exitosamente!
         </h3>
-        <p className="text-green-700 dark:text-green-700 font-secondary">
-          Hemos redirigido tu consulta a WhatsApp. Te contactaremos pronto para coordinar tu cita.
+        <p className="text-green-700 dark:text-green-700 font-secondary mb-6">
+          Hemos recibido tu consulta y te enviaremos una confirmación por email. Te contactaremos en las próximas 2 horas.
         </p>
+        <Button
+          type="button"
+          variant="primary"
+          size="md"
+          onClick={resetForm}
+          className="mt-4"
+        >
+          Enviar otro mensaje
+        </Button>
       </div>
     );
   }
@@ -210,10 +218,11 @@ Email: ${formData.email}`;
           ].map((option) => (
             <label
               key={option.value}
+              htmlFor={`contact-${option.value}`}
               className={`
                 relative flex items-center p-4 border rounded-lg cursor-pointer transition-all
-                ${formData.preferredContact === option.value 
-                  ? 'border-primary-500 bg-primary-50' 
+                ${formData.preferredContact === option.value
+                  ? 'border-primary-500 bg-primary-50'
                   : 'border-gray-200 bg-white hover:border-gray-300'
                 }
                 ${formState.isLoading ? 'opacity-50 cursor-not-allowed' : ''}
@@ -221,6 +230,7 @@ Email: ${formData.email}`;
             >
               <input
                 type="radio"
+                id={`contact-${option.value}`}
                 name="preferredContact"
                 value={option.value}
                 checked={formData.preferredContact === option.value}
@@ -242,17 +252,19 @@ Email: ${formData.email}`;
       </div>
 
       <div className="flex items-start space-x-3">
-        <label className="flex items-start space-x-3 cursor-pointer">
+        <label htmlFor="consent-checkbox" className="flex items-start space-x-3 cursor-pointer">
           <input
             type="checkbox"
+            id="consent-checkbox"
+            name="consent"
             checked={formData.consent}
             onChange={(e) => handleInputChange('consent', e.target.checked)}
             disabled={formState.isLoading}
             className="mt-1 h-4 w-4 text-primary-600 focus:ring-primary-500 border-gray-300 rounded"
           />
           <span className="text-sm text-gray-600 font-secondary">
-            Acepto el tratamiento de mis datos personales para responder a mi consulta, 
-            según la <span className="text-primary-600 underline">Política de Privacidad</span>
+            Acepto el tratamiento de mis datos personales únicamente para responder a mi consulta
+            y agendar citas médicas en Centro Auditus.
           </span>
         </label>
       </div>

@@ -149,7 +149,7 @@ export default function LocationSection() {
 
               <div className="mt-4 p-3 bg-blue-50 rounded-xl border border-blue-100">
                 <p className="text-blue-800 text-sm font-medium">
-                  💡 Recomendamos agendar con anticipación para garantizar disponibilidad
+                  💡 En Centro Auditus, siempre habrá una hora para ti.
                 </p>
               </div>
             </div>

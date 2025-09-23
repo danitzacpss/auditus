@@ -27,9 +27,6 @@ function ContactPageContent() {
       {/* Contact Hero with Client Component */}
       <ContactHeroClient />
 
-
-
-
       {/* Location Section - Moved from Nosotros page */}
       <LocationSection />
     </main>
